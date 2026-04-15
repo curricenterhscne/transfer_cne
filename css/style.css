@@ -1,551 +1,248 @@
 /* ================================================
-   충청남도교육청 전입학 안내 — 공통 스타일
+   충청남도교육청 전입학 안내
+   Apple Design System — 전면 적용
    ================================================ */
 
 :root {
-  --primary:       #1a5fa8;
-  --primary-dark:  #154d89;
-  --primary-light: #eff6ff;
-  --danger:        #c0392b;
-  --danger-bg:     #fef2f2;
-  --danger-border: #fecaca;
-  --warning:       #b45309;
-  --warning-bg:    #fffbeb;
-  --warning-border:#fde68a;
-  --inquiry:       #374151;
-  --inquiry-bg:    #f3f4f6;
-  --inquiry-border:#d1d5db;
-  --bg-card:       #f4f7fc;
-  --border:        #dde4ee;
-  --text:          #1e293b;
-  --text-muted:    #64748b;
-  --radius:        12px;
-  --shadow:        0 2px 12px rgba(0, 0, 0, 0.08);
+  /* ── Apple 컬러 토큰 ── */
+  --blue:           #0071e3;
+  --blue-hover:     #0077ed;
+  --link-light:     #0066cc;
+  --link-dark:      #2997ff;
+
+  --black:          #000000;
+  --near-black:     #1d1d1f;
+  --bg-light:       #f5f5f7;
+  --white:          #ffffff;
+
+  --text:           #1d1d1f;
+  --text-body:      rgba(0, 0, 0, 0.80);
+  --text-muted:     rgba(0, 0, 0, 0.48);
+  --text-white:     #ffffff;
+
+  --nav-bg:         rgba(29, 29, 31, 0.82);
+  --nav-blur:       saturate(180%) blur(20px);
+  --shadow-card:    rgba(0, 0, 0, 0.16) 0px 4px 24px 0px;
+  --shadow-sm:      rgba(0, 0, 0, 0.08) 0px 2px 8px 0px;
+
+  /* ── 설문 상태 컬러 ── */
+  --danger:         #ff3b30;
+  --danger-bg:      rgba(255, 59, 48,  0.08);
+  --danger-border:  rgba(255, 59, 48,  0.25);
+  --warning:        #ff9500;
+  --warning-bg:     rgba(255, 149, 0,  0.08);
+  --warning-border: rgba(255, 149, 0,  0.25);
+  --inquiry:        #6e6e73;
+  --inquiry-bg:     var(--bg-light);
+  --inquiry-border: rgba(0, 0, 0, 0.1);
+
+  /* ── legacy 별칭 (survey.js·HTML 호환) ── */
+  --primary:        var(--blue);
+  --primary-dark:   var(--blue-hover);
+  --primary-light:  rgba(0, 113, 227, 0.08);
+  --border:         rgba(0, 0, 0, 0.10);
+  --bg-card:        var(--bg-light);
+  --radius:         18px;
+  --shadow:         var(--shadow-card);
 }
 
-/* ---- Reset ---- */
+/* ─────────────────────────────────────────────
+   Reset
+───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background: #eef2f7;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
   color: var(--text);
+  background: var(--bg-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* ---- Header ---- */
+/* ─────────────────────────────────────────────
+   Glass Navigation
+───────────────────────────────────────────── */
 .site-header {
-  background: var(--primary);
-  color: #fff;
-  padding: 0 1.5rem;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: var(--nav-blur);
+  backdrop-filter: var(--nav-blur);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  height: 48px;
 }
 
 .header-inner {
-  max-width: 900px;
+  max-width: 980px;
   margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 56px;
 }
 
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.5rem;
   text-decoration: none;
-  color: #fff;
+  color: var(--white);
 }
 
 .header-logo-circle {
-  width: 34px;
-  height: 34px;
-  background: rgba(255, 255, 255, 0.22);
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.68rem;
   font-weight: 700;
-  font-size: 0.75rem;
+  color: var(--white);
   flex-shrink: 0;
+  letter-spacing: 0;
 }
 
 .header-brand-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: -0.15px;
 }
 
 .back-link {
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--link-dark);
   text-decoration: none;
   font-size: 0.82rem;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 6px;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-
-.back-link:hover,
-.back-link:focus {
-  color: #fff;
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.5);
-}
-
-/* ---- Page title banner ---- */
-.page-title-section {
-  background: var(--primary);
-  background-image: linear-gradient(135deg, #1a5fa8 0%, #154d89 100%);
-  color: #fff;
-  text-align: center;
-  padding: 2.5rem 1.5rem 3rem;
-}
-
-.page-title-section h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.page-title-section p {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-/* ---- Main ---- */
-main {
-  flex: 1;
-  padding: 2rem 1rem;
-}
-
-/* ---- Survey wrapper ---- */
-.survey-wrapper {
-  max-width: 680px;
-  margin: -1.5rem auto 0;
-}
-
-/* ---- Progress section ---- */
-.progress-section {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 1.125rem 1.5rem;
-  margin-bottom: 1.125rem;
-  box-shadow: var(--shadow);
-}
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.625rem;
-  font-size: 0.82rem;
-}
-
-.progress-step-label {
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.progress-pct {
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.progress-bar-track {
-  background: #e2e8f0;
-  border-radius: 100px;
-  height: 7px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%);
-  height: 100%;
-  border-radius: 100px;
-  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 0%;
-}
-
-/* ---- Question card ---- */
-.question-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 2rem 1.75rem;
-  box-shadow: var(--shadow);
-  margin-bottom: 1.125rem;
-}
-
-.question-step-badge {
-  display: inline-flex;
-  align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  letter-spacing: 0.02em;
-}
-
-.question-text {
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1.65;
-  margin-bottom: 0.375rem;
-  color: var(--text);
-}
-
-.question-hint {
-  font-size: 0.83rem;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-}
-
-/* ---- Option buttons ---- */
-.options-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
-
-.option-btn {
-  width: 100%;
-  padding: 0.875rem 1.125rem;
-  background: #fff;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.95rem;
-  color: var(--text);
-  cursor: pointer;
-  text-align: left;
-  transition: border-color 0.18s, background 0.18s, color 0.18s;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  line-height: 1.5;
-}
-
-.option-btn::before {
-  content: '';
-  width: 20px;
-  height: 20px;
-  border: 2px solid #cbd5e1;
-  border-radius: 50%;
-  flex-shrink: 0;
-  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
-}
-
-.option-btn:hover,
-.option-btn:focus-visible {
-  border-color: var(--primary);
-  background: var(--primary-light);
-  color: var(--primary);
-  outline: none;
-}
-
-.option-btn:hover::before,
-.option-btn:focus-visible::before {
-  border-color: var(--primary);
-}
-
-.option-btn.selected {
-  border-color: var(--primary);
-  background: var(--primary-light);
-  color: var(--primary);
-  font-weight: 600;
-}
-
-.option-btn.selected::before {
-  background: var(--primary);
-  border-color: var(--primary);
-  box-shadow: inset 0 0 0 4px #fff;
-}
-
-/* ---- Navigation ---- */
-.nav-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 1.125rem 1.5rem;
-  box-shadow: var(--shadow);
-  display: flex;
-  gap: 0.875rem;
-}
-
-.btn-nav {
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.18s;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+  transition: opacity 0.18s;
+  padding: 0.25rem 0;
   border: none;
+  background: none;
 }
 
-.btn-prev {
-  background: #fff;
-  border: 2px solid var(--border);
-  color: var(--text-muted);
-  flex: 0 0 auto;
-  min-width: 90px;
-}
-
-.btn-prev:hover:not(:disabled),
-.btn-prev:focus-visible:not(:disabled) {
-  border-color: var(--primary);
-  color: var(--primary);
+.back-link:hover, .back-link:focus-visible {
+  opacity: 0.75;
   outline: none;
 }
 
-.btn-prev:disabled { opacity: 0.35; cursor: not-allowed; }
-
-.btn-next {
-  background: var(--primary);
-  color: #fff;
-  flex: 1;
-}
-
-.btn-next:hover:not(:disabled),
-.btn-next:focus-visible:not(:disabled) {
-  background: var(--primary-dark);
-  outline: none;
-}
-
-.btn-next:disabled { opacity: 0.45; cursor: not-allowed; }
-
-/* ---- Result area ---- */
-.result-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  box-shadow: var(--shadow);
-  text-align: center;
-}
-
-.result-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem;
-  font-size: 1.75rem;
-  font-weight: 700;
-}
-
-.result-icon-possible   { background: #dbeafe; color: #1d4ed8; }
-.result-icon-impossible { background: #fee2e2; color: #dc2626; }
-.result-icon-conditional{ background: #fef3c7; color: #92400e; }
-.result-icon-inquiry    { background: #e5e7eb; color: #374151; }
-
-.result-badge {
-  display: inline-block;
-  padding: 0.3rem 1rem;
-  border-radius: 100px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.badge-possible    { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
-.badge-impossible  { background: var(--danger-bg);  color: var(--danger);  border: 1px solid var(--danger-border); }
-.badge-conditional { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
-.badge-inquiry     { background: var(--inquiry-bg); color: var(--inquiry); border: 1px solid var(--inquiry-border); }
-
-.result-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: var(--text);
-  line-height: 1.45;
-}
-
-.result-detail-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  text-align: left;
-  margin-bottom: 0.75rem;
-}
-
-.result-detail p {
-  font-size: 0.88rem;
-  line-height: 1.75;
-  color: var(--text);
-  margin-bottom: 0.625rem;
-}
-
-.result-detail p:last-child { margin-bottom: 0; }
-
-.result-detail ul {
-  font-size: 0.88rem;
-  line-height: 1.75;
-  color: var(--text);
-  padding-left: 1.25rem;
-  margin-top: 0.5rem;
-}
-
-.result-detail li { margin-bottom: 0.2rem; }
-
-.result-code {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.btn-reset {
-  background: #fff;
-  border: 2px solid var(--border);
-  color: var(--text);
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.18s;
-  display: inline-block;
-}
-
-.btn-reset:hover,
-.btn-reset:focus-visible {
-  border-color: var(--primary);
-  color: var(--primary);
-  outline: none;
-}
-
-/* ---- Contact bar ---- */
-.contact-bar {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1rem 1.5rem;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 1.125rem;
-  box-shadow: var(--shadow);
-}
-
-.contact-bar strong { color: var(--primary); }
-
-/* ---- Site footer ---- */
-.site-footer {
-  background: #1e293b;
-  color: rgba(255, 255, 255, 0.5);
-  text-align: center;
-  padding: 1.25rem 1rem;
-  font-size: 0.78rem;
-  margin-top: auto;
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 520px) {
-  .page-title-section h1 { font-size: 1.2rem; }
-  .question-card { padding: 1.5rem 1.125rem; }
-  .question-text { font-size: 1rem; }
-  .result-card   { padding: 2rem 1.125rem; }
-  .result-title  { font-size: 1.1rem; }
-  .header-brand-name { display: none; }
-}
-
-
-/* ====================================================
-   INDEX.HTML — 히어로 / 탭 / 콘텐츠 스타일
-   ==================================================== */
-
-/* ---- Hero banner ---- */
+/* ─────────────────────────────────────────────
+   Dark Hero  (index.html)
+───────────────────────────────────────────── */
 .hero-banner {
-  background: linear-gradient(135deg, #1a5fa8 0%, #0d3f75 100%);
-  color: #fff;
-  padding: 3.5rem 1.5rem 4rem;
+  background: var(--black);
+  color: var(--white);
   text-align: center;
+  padding: 5rem 1.5rem 5.5rem;
 }
 
 .hero-inner {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
 }
 
 .hero-subtitle {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.48);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 .hero-title {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 1.125rem;
 }
 
 .hero-desc {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.82);
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  margin-bottom: 2.25rem;
 }
 
 .btn-hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: #fff;
-  color: var(--primary);
-  font-family: 'Noto Sans KR', sans-serif;
+  gap: 0.375rem;
+  background: var(--blue);
+  color: var(--white);
+  font-family: inherit;
   font-size: 1rem;
-  font-weight: 700;
-  padding: 0.875rem 2rem;
-  border-radius: 50px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  padding: 0.8rem 1.875rem;
+  border-radius: 980px;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  transition: transform 0.18s, box-shadow 0.18s;
+  transition: background 0.18s;
 }
 
-.btn-hero-cta:hover,
-.btn-hero-cta:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.24);
+.btn-hero-cta:hover, .btn-hero-cta:focus-visible {
+  background: var(--blue-hover);
   outline: none;
 }
 
-/* ---- Tab navigation ---- */
+/* ─────────────────────────────────────────────
+   Dark Hero (survey.html)
+───────────────────────────────────────────── */
+.page-title-section {
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 3.5rem 1.5rem 4rem;
+}
+
+.page-title-section h1 {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.625rem;
+}
+
+.page-title-section p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.58);
+  letter-spacing: -0.2px;
+}
+
+/* ─────────────────────────────────────────────
+   Tab Navigation
+───────────────────────────────────────────── */
 .tab-nav-wrap {
-  background: #fff;
-  border-bottom: 2px solid var(--border);
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   position: sticky;
-  top: 56px;
+  top: 48px;
   z-index: 90;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .tab-nav-inner {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
+  padding: 0 1.5rem;
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
@@ -555,182 +252,192 @@ main {
 
 .tab-btn {
   flex: 0 0 auto;
-  padding: 0.875rem 1.25rem;
+  padding: 0.875rem 1rem;
   background: none;
   border: none;
-  border-bottom: 3px solid transparent;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  color: var(--text-body);
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.18s, border-color 0.18s;
-  margin-bottom: -2px;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
 }
 
-.tab-btn:hover { color: var(--primary); }
+.tab-btn:hover { color: var(--text); }
 
 .tab-btn.active,
 .tab-btn[aria-selected="true"] {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-  font-weight: 700;
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+  font-weight: 600;
 }
 
-/* ---- Tab panels ---- */
+/* ─────────────────────────────────────────────
+   Main / Tab Content
+───────────────────────────────────────────── */
+main {
+  flex: 1;
+  background: var(--bg-light);
+}
+
 .tab-content-wrap {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 2rem 1rem 3rem;
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 .tab-panel { display: none; }
 .tab-panel.active,
 .tab-panel:not([hidden]) { display: block; }
 
-/* ---- Section blocks ---- */
+/* ─────────────────────────────────────────────
+   Section Titles
+───────────────────────────────────────────── */
 .content-section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .section-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
   color: var(--text);
-  margin-bottom: 1.125rem;
-  padding-bottom: 0.625rem;
-  border-bottom: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  margin-bottom: 1.375rem;
 }
 
-.section-title::before {
-  content: '';
-  width: 4px;
-  height: 1.15rem;
-  background: var(--primary);
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-/* ---- Inline CTA banner (Tab 1 top) ---- */
+/* ─────────────────────────────────────────────
+   Inline CTA Banner (탭 1 상단)
+───────────────────────────────────────────── */
 .cta-banner {
-  background: linear-gradient(135deg, #1a5fa8 0%, #2563eb 100%);
-  border-radius: var(--radius);
-  padding: 1.5rem 1.75rem;
+  background: var(--black);
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
 }
 
 .cta-banner-text strong {
   display: block;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.25rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  color: var(--white);
+  margin-bottom: 0.375rem;
 }
 
 .cta-banner-text p {
   font-size: 0.875rem;
-  color: rgba(255,255,255,0.82);
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: -0.2px;
 }
 
 .btn-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  background: #fff;
-  color: var(--primary);
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  padding: 0.7rem 1.375rem;
-  border-radius: 50px;
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  padding: 0.625rem 1.375rem;
+  border-radius: 980px;
   text-decoration: none;
-  white-space: nowrap;
   flex-shrink: 0;
-  transition: transform 0.18s, box-shadow 0.18s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: background 0.18s;
 }
 
-.btn-cta:hover,
-.btn-cta:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+.btn-cta:hover, .btn-cta:focus-visible {
+  background: rgba(255, 255, 255, 0.88);
   outline: none;
 }
 
-/* ---- Info cards (Tab 1 — 전입학 대상) ---- */
+/* ─────────────────────────────────────────────
+   Info Cards (탭 1 — 전입학 대상)
+───────────────────────────────────────────── */
 .info-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .info-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 1.5rem 1.25rem;
-  border-top: 4px solid var(--border);
-  box-shadow: var(--shadow);
+  background: var(--white);
+  padding: 1.875rem 1.5rem;
 }
-
-.info-card.card-possible  { border-top-color: var(--primary); }
-.info-card.card-conditional{ border-top-color: #d97706; }
-.info-card.card-impossible { border-top-color: var(--danger); }
 
 .card-type-badge {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.2rem 0.625rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
   border-radius: 100px;
-  margin-bottom: 0.75rem;
-  border: 1px solid transparent;
+  margin-bottom: 0.875rem;
+  background: var(--bg-light);
+  color: var(--text-muted);
 }
 
-.card-possible  .card-type-badge { background: #dbeafe; color: #1d4ed8; border-color: #bfdbfe; }
-.card-conditional .card-type-badge { background: var(--warning-bg); color: var(--warning); border-color: var(--warning-border); }
-.card-impossible .card-type-badge { background: var(--danger-bg); color: var(--danger); border-color: var(--danger-border); }
+.card-possible   .card-type-badge { color: var(--blue); }
+.card-conditional .card-type-badge { color: var(--warning); }
+.card-impossible  .card-type-badge { color: var(--danger); }
 
 .info-card h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 0.375rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
   color: var(--text);
-  line-height: 1.4;
+  margin-bottom: 0.375rem;
 }
 
 .info-card > p {
-  font-size: 0.82rem;
+  font-size: 0.83rem;
   color: var(--text-muted);
-  margin-bottom: 0.875rem;
+  margin-bottom: 1rem;
   line-height: 1.5;
 }
 
 .info-card ul {
-  padding-left: 1.125rem;
+  padding-left: 1rem;
   font-size: 0.83rem;
-  line-height: 1.75;
-  color: var(--text);
+  line-height: 1.8;
+  color: var(--text-body);
 }
 
-/* ---- Process steps (Tab 1 — 전입학 절차) ---- */
+/* ─────────────────────────────────────────────
+   Process Steps (탭 1 — 절차)
+───────────────────────────────────────────── */
 .steps-wrap {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
   display: flex;
   align-items: flex-start;
-  gap: 0;
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 1.75rem 1.5rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-card);
   flex-wrap: wrap;
+  gap: 0;
 }
 
 .step-item {
@@ -741,82 +448,149 @@ main {
 }
 
 .step-num {
-  width: 44px;
-  height: 44px;
-  background: var(--primary);
-  color: #fff;
+  width: 40px;
+  height: 40px;
+  background: var(--blue);
+  color: var(--white);
   border-radius: 50%;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0.625rem;
+  margin: 0 auto 0.75rem;
 }
 
 .step-label {
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
   color: var(--text);
   margin-bottom: 0.375rem;
 }
 
 .step-desc {
-  font-size: 0.78rem;
+  font-size: 0.77rem;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .step-arrow {
   flex: 0 0 auto;
-  font-size: 1.25rem;
-  color: #94a3b8;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.18);
   align-self: center;
+  margin-top: -2rem;
   padding: 0 0.25rem;
-  margin-top: -1.5rem;
 }
 
-/* ---- Contact grid (Tab 1) ---- */
+/* ─────────────────────────────────────────────
+   Contact Grid (탭 1)
+───────────────────────────────────────────── */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .contact-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 1.25rem 1.375rem;
-  box-shadow: var(--shadow);
-  border-left: 4px solid var(--primary);
+  background: var(--white);
+  padding: 1.625rem 1.5rem;
 }
 
 .contact-label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 0.375rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: -0.05px;
+  margin-bottom: 0.5rem;
 }
 
 .contact-phone {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
   color: var(--text);
-  margin-bottom: 0.25rem;
-  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.375rem;
 }
 
 .contact-desc {
   font-size: 0.78rem;
   color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ─────────────────────────────────────────────
+   Type Cards (탭 3 — 전형 유형)
+───────────────────────────────────────────── */
+.type-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.type-card {
+  background: var(--white);
+  padding: 1.875rem 1.5rem;
+}
+
+.type-card-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  margin-bottom: 0.875rem;
+  background: var(--bg-light);
+  color: var(--text-muted);
+}
+
+.type-card-a .type-card-badge { color: var(--blue); }
+.type-card-b .type-card-badge { color: #7c3aed; }
+
+.type-card h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 0.375rem;
+}
+
+.type-card > p {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  margin-bottom: 0.875rem;
   line-height: 1.5;
 }
 
-/* ---- Map placeholder (Tab 2) ---- */
+.type-card ul {
+  padding-left: 1rem;
+  font-size: 0.83rem;
+  line-height: 1.8;
+  color: var(--text-body);
+}
+
+/* ─────────────────────────────────────────────
+   Map Placeholder (탭 2)
+───────────────────────────────────────────── */
 .map-placeholder {
-  background: var(--bg-card);
-  border: 2px dashed var(--border);
-  border-radius: var(--radius);
+  background: var(--white);
+  border: 2px dashed rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
   height: 380px;
   display: flex;
   flex-direction: column;
@@ -829,74 +603,94 @@ main {
   padding: 2rem;
 }
 
-.map-placeholder-icon {
-  font-size: 2.5rem;
-  opacity: 0.4;
-}
+.map-placeholder-icon { font-size: 2.5rem; opacity: 0.3; }
+.map-placeholder p    { margin: 0; line-height: 1.6; }
+.map-placeholder strong { color: var(--text); }
+.map-placeholder a    { color: var(--link-light); text-decoration: none; }
+.map-placeholder code { font-size: 0.8rem; color: var(--blue); }
 
-.map-placeholder p { margin: 0; line-height: 1.6; }
-
-.map-placeholder strong { color: var(--primary); }
-
-/* ---- Generic data table ---- */
+/* ─────────────────────────────────────────────
+   Data Tables
+───────────────────────────────────────────── */
 .data-table-wrap {
   overflow-x: auto;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
 }
 
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--white);
   font-size: 0.875rem;
 }
 
 .data-table thead th {
-  background: var(--primary);
-  color: #fff;
-  padding: 0.75rem 1rem;
+  background: var(--near-black);
+  color: var(--white);
+  padding: 0.875rem 1.125rem;
   text-align: center;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: -0.1px;
   white-space: nowrap;
 }
 
-.data-table thead th:first-child { text-align: left; border-radius: 0; }
+.data-table thead th:first-child { text-align: left; }
 
 .data-table tbody td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border);
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   vertical-align: middle;
   text-align: center;
+  color: var(--text-body);
   line-height: 1.5;
 }
 
-.data-table tbody td:first-child { text-align: left; font-weight: 600; }
+.data-table tbody td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+}
 
 .data-table tbody tr:last-child td { border-bottom: none; }
-.data-table tbody tr:hover td { background: var(--bg-card); }
+.data-table tbody tr:hover td { background: rgba(0, 113, 227, 0.025); }
 
-/* schedule cell types */
-.cell-ok    { color: #1d4ed8; font-weight: 700; }
-.cell-cond  { color: var(--warning); font-weight: 700; }
-.cell-no    { color: var(--danger);  font-weight: 700; }
-.cell-ask   { color: #6b7280; }
+/* 셀 상태 */
+.cell-ok   { color: var(--blue);    font-weight: 600; }
+.cell-cond { color: var(--warning); font-weight: 600; }
+.cell-no   { color: var(--danger);  font-weight: 600; }
+.cell-ask  { color: var(--text-muted); }
 
-/* ---- Timeline (Tab 3) ---- */
+/* 서식 카테고리 헤더 행 */
+.forms-cat-row td {
+  background: var(--bg-light) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase;
+  color: var(--text-muted) !important;
+  padding: 0.5rem 1.125rem !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  text-align: left !important;
+}
+
+/* ─────────────────────────────────────────────
+   Timeline (탭 3)
+───────────────────────────────────────────── */
 .timeline-wrap {
   position: relative;
-  padding-left: 2rem;
+  padding-left: 1.75rem;
 }
 
 .timeline-wrap::before {
   content: '';
   position: absolute;
-  left: 8px;
-  top: 0;
+  left: 5px;
+  top: 5px;
   bottom: 0;
-  width: 2px;
-  background: var(--border);
-  border-radius: 2px;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .timeline-item {
@@ -907,56 +701,57 @@ main {
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: -1.625rem;
+  left: -1.5rem;
   top: 4px;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--primary);
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 2px var(--primary);
+  background: var(--blue);
+  border: 2px solid var(--bg-light);
+  box-shadow: 0 0 0 2px var(--blue);
 }
 
 .timeline-item:last-child { padding-bottom: 0; }
 
 .timeline-date {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: -0.1px;
+  margin-bottom: 0.2rem;
 }
 
 .timeline-event {
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.2px;
   color: var(--text);
   margin-bottom: 0.25rem;
 }
 
 .timeline-desc {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   line-height: 1.55;
 }
 
-/* ---- FAQ accordion (Tab 4) ---- */
+/* ─────────────────────────────────────────────
+   FAQ Accordion (탭 4)
+───────────────────────────────────────────── */
 .faq-wrap {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 details.faq-item {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  border: 1px solid var(--border);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-details.faq-item[open] {
-  border-color: var(--primary);
-}
+details.faq-item:last-child { border-bottom: none; }
 
 details.faq-item summary {
   padding: 1.125rem 1.375rem;
@@ -967,195 +762,536 @@ details.faq-item summary {
   justify-content: space-between;
   gap: 1rem;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: -0.2px;
   color: var(--text);
   user-select: none;
-  transition: color 0.18s;
+  transition: color 0.15s, background 0.15s;
 }
 
 details.faq-item summary::-webkit-details-marker { display: none; }
 
+details.faq-item summary:hover { background: rgba(0, 0, 0, 0.02); }
+
 details.faq-item summary::after {
   content: '+';
-  font-size: 1.25rem;
-  color: var(--text-muted);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--blue);
   flex-shrink: 0;
-  font-weight: 400;
-  transition: transform 0.25s;
+  line-height: 1;
+  min-width: 1em;
+  text-align: center;
 }
 
-details.faq-item[open] summary {
-  color: var(--primary);
-  border-bottom: 1px solid var(--border);
+details.faq-item[open] > summary {
+  color: var(--blue);
 }
 
-details.faq-item[open] summary::after {
+details.faq-item[open] > summary::after {
   content: '−';
-  color: var(--primary);
 }
 
 .faq-answer {
-  padding: 1.125rem 1.375rem;
-  font-size: 0.88rem;
-  color: var(--text);
-  line-height: 1.8;
+  padding: 0 1.375rem 1.375rem;
+  font-size: 0.875rem;
+  color: var(--text-body);
+  line-height: 1.75;
 }
 
-.faq-answer p + p { margin-top: 0.625rem; }
+.faq-answer p + p { margin-top: 0.5rem; }
 
 .faq-answer ul {
-  padding-left: 1.25rem;
+  padding-left: 1.125rem;
   margin-top: 0.5rem;
 }
 
 .faq-answer li { margin-bottom: 0.25rem; }
+.faq-answer strong { color: var(--text); font-weight: 600; }
+.faq-answer a { color: var(--link-light); text-decoration: none; }
+.faq-answer a:hover { text-decoration: underline; }
 
-.faq-answer strong { color: var(--primary); }
-
-/* ---- Forms download table (Tab 5) ---- */
+/* ─────────────────────────────────────────────
+   Forms Download (탭 5)
+───────────────────────────────────────────── */
 .forms-table tbody td:last-child { text-align: center; }
 
 .btn-download {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  background: var(--primary);
-  color: #fff;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.4rem 0.875rem;
-  border-radius: 6px;
+  gap: 0.25rem;
+  background: var(--blue);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  padding: 0.375rem 0.875rem;
+  border-radius: 980px;
   text-decoration: none;
-  transition: background 0.18s;
   white-space: nowrap;
+  transition: background 0.18s;
 }
 
-.btn-download:hover,
-.btn-download:focus-visible {
-  background: var(--primary-dark);
+.btn-download:hover, .btn-download:focus-visible {
+  background: var(--blue-hover);
   outline: none;
 }
 
 .btn-download.disabled {
-  background: #94a3b8;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text-muted);
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .file-type-badge {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   padding: 0.15rem 0.4rem;
-  border-radius: 3px;
-  background: #e2e8f0;
+  border-radius: 4px;
+  background: var(--bg-light);
   color: var(--text-muted);
 }
 
 .file-type-badge.hwp  { background: #dbeafe; color: #1d4ed8; }
-.file-type-badge.pdf  { background: #fee2e2; color: #dc2626; }
-.file-type-badge.xlsx { background: #dcfce7; color: #15803d; }
+.file-type-badge.pdf  { background: #fee2e2; color: #c0392b; }
+.file-type-badge.xlsx { background: #dcfce7; color: #166534; }
 
-/* ---- Notice / info box ---- */
+/* ─────────────────────────────────────────────
+   Notice Box
+───────────────────────────────────────────── */
 .notice-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--primary);
-  border-radius: 8px;
+  background: var(--white);
+  border-radius: 12px;
   padding: 1rem 1.25rem;
   font-size: 0.85rem;
-  color: var(--text);
+  color: var(--text-body);
   line-height: 1.7;
   margin-top: 1rem;
+  box-shadow: var(--shadow-sm);
 }
 
-.notice-box strong { color: var(--primary); }
+.notice-box strong { color: var(--text); font-weight: 600; }
+.notice-box a { color: var(--link-light); text-decoration: none; }
+.notice-box a:hover { text-decoration: underline; }
+.notice-box code { font-size: 0.8rem; color: var(--blue); font-family: 'SF Mono', 'Fira Code', monospace; }
 
-/* ---- Type cards (Tab 3 — 전형 유형) ---- */
-.type-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.type-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 1.5rem 1.375rem;
-  box-shadow: var(--shadow);
-  border-top: 4px solid var(--border);
-}
-
-.type-card-a { border-top-color: var(--primary); }
-.type-card-b { border-top-color: #7c3aed; }
-
-.type-card-badge {
-  display: inline-block;
+/* ─────────────────────────────────────────────
+   Footer
+───────────────────────────────────────────── */
+.site-footer {
+  background: var(--near-black);
+  color: rgba(255, 255, 255, 0.36);
+  text-align: center;
+  padding: 1.5rem 1rem;
   font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.25rem 0.75rem;
-  border-radius: 100px;
-  margin-bottom: 0.75rem;
+  letter-spacing: -0.1px;
 }
 
-.type-card-a .type-card-badge { background: #dbeafe; color: #1d4ed8; }
-.type-card-b .type-card-badge { background: #ede9fe; color: #5b21b6; }
+/* ─────────────────────────────────────────────
+   Survey Wrapper
+───────────────────────────────────────────── */
+.survey-wrapper {
+  max-width: 640px;
+  margin: -1.5rem auto 0;
+  padding: 0 1rem 2.5rem;
+}
 
-.type-card h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
+/* ─────────────────────────────────────────────
+   Survey — Progress
+───────────────────────────────────────────── */
+.progress-section {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.125rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-card);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.625rem;
+  font-size: 0.8rem;
+}
+
+.progress-step-label {
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: var(--blue);
+}
+
+.progress-pct {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-bar-track {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 100px;
+  height: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  background: var(--blue);
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+/* ─────────────────────────────────────────────
+   Survey — Question Card
+───────────────────────────────────────────── */
+.question-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1rem;
+}
+
+.question-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--bg-light);
+  border-radius: 100px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 1rem;
+  letter-spacing: -0.05px;
+}
+
+.question-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
   margin-bottom: 0.375rem;
   color: var(--text);
-  line-height: 1.4;
 }
 
-.type-card > p {
+.question-hint {
   font-size: 0.82rem;
   color: var(--text-muted);
-  margin-bottom: 0.875rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+}
+
+/* ─────────────────────────────────────────────
+   Survey — Options
+───────────────────────────────────────────── */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-btn {
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  background: var(--bg-light);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  letter-spacing: -0.2px;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   line-height: 1.5;
 }
 
-.type-card ul {
-  padding-left: 1.125rem;
-  font-size: 0.83rem;
-  line-height: 1.8;
+.option-btn::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.option-btn:hover, .option-btn:focus-visible {
+  background: rgba(0, 113, 227, 0.06);
+  border-color: rgba(0, 113, 227, 0.3);
+  outline: none;
+}
+
+.option-btn:hover::before { border-color: var(--blue); }
+
+.option-btn.selected {
+  background: rgba(0, 113, 227, 0.06);
+  border-color: var(--blue);
+  font-weight: 600;
+}
+
+.option-btn.selected::before {
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 4px var(--white);
+}
+
+/* ─────────────────────────────────────────────
+   Survey — Navigation
+───────────────────────────────────────────── */
+.nav-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 1.125rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-nav {
+  padding: 0.75rem 1.375rem;
+  border-radius: 980px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  letter-spacing: -0.2px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.18s;
+  border: none;
+}
+
+.btn-prev {
+  background: var(--bg-light);
+  color: var(--text-body);
+  flex: 0 0 auto;
+  min-width: 90px;
+}
+
+.btn-prev:hover:not(:disabled) { background: rgba(0, 0, 0, 0.09); color: var(--text); }
+.btn-prev:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.btn-prev:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btn-next {
+  background: var(--blue);
+  color: var(--white);
+  flex: 1;
+}
+
+.btn-next:hover:not(:disabled) { background: var(--blue-hover); }
+.btn-next:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ─────────────────────────────────────────────
+   Survey — Result
+───────────────────────────────────────────── */
+.result-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.result-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.result-icon-possible    { background: rgba(0, 113, 227, 0.08); color: var(--blue); }
+.result-icon-impossible  { background: rgba(255, 59, 48,  0.08); color: var(--danger); }
+.result-icon-conditional { background: rgba(255, 149, 0,  0.08); color: var(--warning); }
+.result-icon-inquiry     { background: var(--bg-light); color: var(--text-muted); }
+
+.result-badge {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 980px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 1rem;
+}
+
+.badge-possible    { background: rgba(0, 113, 227, 0.1);  color: var(--blue); }
+.badge-impossible  { background: rgba(255, 59, 48, 0.1);  color: var(--danger); }
+.badge-conditional { background: rgba(255, 149, 0, 0.1);  color: var(--warning); }
+.badge-inquiry     { background: var(--bg-light); color: var(--text-muted); }
+
+.result-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
   color: var(--text);
 }
 
-/* ---- Forms category header row ---- */
-.forms-cat-row td {
-  background: var(--bg-card) !important;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--primary);
-  padding: 0.5rem 1rem !important;
-  border-bottom: 1px solid var(--border) !important;
-  text-align: left !important;
+.result-detail-box {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 1.25rem 1.375rem;
+  text-align: left;
+  margin-bottom: 0.75rem;
 }
 
-/* ---- Responsive additions ---- */
+.result-detail p {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--text-body);
+  margin-bottom: 0.5rem;
+}
+
+.result-detail p:last-child { margin-bottom: 0; }
+
+.result-detail ul {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--text-body);
+  padding-left: 1.125rem;
+  margin-top: 0.5rem;
+}
+
+.result-detail li { margin-bottom: 0.2rem; }
+
+.result-code {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--bg-light);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  padding: 0.75rem 2rem;
+  border-radius: 980px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.btn-reset:hover, .btn-reset:focus-visible {
+  background: rgba(0, 0, 0, 0.08);
+  outline: none;
+}
+
+/* ─────────────────────────────────────────────
+   Survey — Contact Bar
+───────────────────────────────────────────── */
+.contact-bar {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-bar strong { color: var(--text); font-weight: 600; }
+
+/* ─────────────────────────────────────────────
+   Filter Chips (탭 2 — 지역 필터)
+───────────────────────────────────────────── */
+.filter-chip-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.filter-chip {
+  padding: 0.35rem 0.875rem;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 980px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: -0.15px;
+  color: var(--text-muted);
+  cursor: not-allowed;
+  transition: none;
+}
+
+.filter-chip.active {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+
+/* ─────────────────────────────────────────────
+   Timeline Grid + Section Title (탭 3)
+───────────────────────────────────────────── */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.timeline-section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 113, 227, 0.2);
+  letter-spacing: -0.2px;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .hero-title { font-size: 1.5rem; }
-
-  .info-cards  { grid-template-columns: 1fr; }
-  .contact-grid{ grid-template-columns: 1fr; }
-
-  .steps-wrap  { flex-direction: column; align-items: center; gap: 0.5rem; }
-  .step-arrow  { transform: rotate(90deg); margin: 0; }
-  .step-item   { min-width: unset; width: 100%; max-width: 260px; }
-
-  .cta-banner  { flex-direction: column; text-align: center; }
-  .btn-cta     { align-self: center; }
-
-  .tab-btn     { padding: 0.75rem 0.875rem; font-size: 0.82rem; }
+  .info-cards      { grid-template-columns: 1fr; }
+  .contact-grid    { grid-template-columns: 1fr; }
+  .type-cards      { grid-template-columns: 1fr; }
+  .timeline-grid   { grid-template-columns: 1fr; }
+  .steps-wrap      { flex-direction: column; align-items: center; gap: 0.5rem; }
+  .step-arrow      { transform: rotate(90deg); margin: 0; }
+  .step-item       { min-width: unset; width: 100%; max-width: 260px; }
+  .cta-banner      { flex-direction: column; text-align: center; border-radius: 16px; }
+  .btn-cta         { align-self: center; }
+  .tab-btn         { padding: 0.75rem 0.875rem; font-size: 0.82rem; }
 }
 
 @media (max-width: 520px) {
-  .hero-banner { padding: 2.5rem 1rem 3rem; }
-  .hero-title  { font-size: 1.3rem; }
-  .hero-desc   { font-size: 0.875rem; }
-  .btn-hero-cta{ font-size: 0.9rem; padding: 0.75rem 1.5rem; }
-  .tab-content-wrap { padding: 1.5rem 0.75rem 2.5rem; }
+  .hero-banner      { padding: 4rem 1.25rem 4.5rem; }
+  .hero-title       { font-size: 1.875rem; }
+  .tab-content-wrap { padding: 2rem 1rem 3rem; }
+  .question-card    { padding: 1.5rem 1.25rem; }
+  .result-card      { padding: 2rem 1.25rem; }
+  .result-title     { font-size: 1.1rem; }
+  .header-brand-name { display: none; }
+  .cta-banner       { padding: 1.625rem 1.375rem; border-radius: 14px; }
+  .info-cards, .contact-grid, .type-cards { border-radius: 14px; }
+  .steps-wrap, .faq-wrap, .data-table-wrap { border-radius: 14px; }
 }

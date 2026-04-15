@@ -193,12 +193,12 @@
           <h2 class="section-title" id="sec-map">충남 고등학교 분포 지도</h2>
 
           <!-- 시군 필터 버튼 (지도 연동 후 활성화) -->
-          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem;" role="group" aria-label="지역 필터">
-            <button class="tab-btn active" style="border:1px solid var(--border); border-radius:6px; background:#fff;" disabled>전체</button>
-            <button class="tab-btn" style="border:1px solid var(--border); border-radius:6px; background:#fff;" disabled>천안</button>
-            <button class="tab-btn" style="border:1px solid var(--border); border-radius:6px; background:#fff;" disabled>아산</button>
-            <button class="tab-btn" style="border:1px solid var(--border); border-radius:6px; background:#fff;" disabled>공주</button>
-            <button class="tab-btn" style="border:1px solid var(--border); border-radius:6px; background:#fff;" disabled>기타</button>
+          <div class="filter-chip-group" role="group" aria-label="지역 필터">
+            <button class="filter-chip active" disabled>전체</button>
+            <button class="filter-chip" disabled>천안</button>
+            <button class="filter-chip" disabled>아산</button>
+            <button class="filter-chip" disabled>공주</button>
+            <button class="filter-chip" disabled>기타</button>
           </div>
 
           <div id="kakao-map" class="map-placeholder" aria-label="충남 고등학교 분포 지도 영역">
@@ -208,9 +208,7 @@
               <a href="https://developers.kakao.com" target="_blank" rel="noopener noreferrer">developers.kakao.com</a>에서<br>
               앱 키를 발급받아 <code>js/map.js</code>에 입력하세요.
             </p>
-            <p style="margin-top:0.5rem; font-size:0.8rem; color:#94a3b8;">
-              지도 초기화 후 일반계(파랑)·특성화고(초록)·특목고(보라) 마커가 표시됩니다.
-            </p>
+            <p>지도 초기화 후 일반계(파랑)·특성화고(초록)·특목고(보라) 마커가 표시됩니다.</p>
           </div>
         </section>
 
@@ -434,13 +432,11 @@
         <section class="content-section" aria-labelledby="sec-timeline">
           <h2 class="section-title" id="sec-timeline">학기별 전입학 신청 타임라인</h2>
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+          <div class="timeline-grid">
 
             <!-- 1학기 -->
             <div>
-              <h3 style="font-size:0.875rem; font-weight:700; color:var(--primary); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--primary);">
-                1학기 전입학 (3월 기준)
-              </h3>
+              <h3 class="timeline-section-title">1학기 전입학 (3월 기준)</h3>
               <div class="timeline-wrap">
                 <div class="timeline-item">
                   <div class="timeline-date">이사 완료 즉시</div>
@@ -475,9 +471,7 @@
 
             <!-- 2학기 -->
             <div>
-              <h3 style="font-size:0.875rem; font-weight:700; color:var(--primary); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--primary);">
-                2학기 전입학 (9월 기준)
-              </h3>
+              <h3 class="timeline-section-title">2학기 전입학 (9월 기준)</h3>
               <div class="timeline-wrap">
                 <div class="timeline-item">
                   <div class="timeline-date">이사 완료 즉시</div>
