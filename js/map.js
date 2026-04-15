@@ -186,6 +186,24 @@ function initMap() {
   buildLegend();
 }
 
+/* ── SDK 로드 실패 안내 ──────────────────────────────────── */
+function showSdkError() {
+  const container = document.getElementById('kakao-map');
+  if (!container) return;
+  container.classList.add('map-placeholder');
+  container.classList.remove('map-container');
+  container.innerHTML = `
+    <div class="map-placeholder-icon" aria-hidden="true">⚠️</div>
+    <p><strong>카카오맵 SDK를 불러오지 못했습니다.</strong></p>
+    <p style="font-size:0.82rem;line-height:1.6;max-width:340px;text-align:center;">
+      <a href="https://developers.kakao.com" target="_blank" rel="noopener"
+         style="color:#0071e3;">developers.kakao.com</a> →
+      내 애플리케이션 → 앱 설정 → 플랫폼 → Web에서<br>
+      <strong>curricenterhscne.github.io</strong> 도메인을 등록하세요.
+    </p>
+  `;
+}
+
 /* ── 진입점: 탭2 클릭 시 지연 초기화 ───────────────────────
    ① main.js 핸들러가 먼저 실행 → 탭2 패널이 보임
    ② map.js 핸들러가 실행      → 가시 상태에서 지도 초기화  */
@@ -194,8 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!tab2Btn) return;
 
   tab2Btn.addEventListener('click', () => {
+    /* SDK 로드 자체가 실패한 경우 */
+    if (typeof kakao === 'undefined' || typeof kakao.maps === 'undefined') {
+      showSdkError();
+      return;
+    }
     if (!mapReady) {
-      /* SDK가 아직 로드 중일 수도 있으므로 kakao.maps.load 사용 */
       kakao.maps.load(initMap);
     } else {
       /* 탭 재진입 시 지도 크기 재계산 */
