@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b7522bf3fe95da9b5b9c6e7799a30b2&autoload=false">
+  </script>
 </head>
 
 <body>
@@ -192,23 +195,28 @@
         <section class="content-section" aria-labelledby="sec-map">
           <h2 class="section-title" id="sec-map">충남 고등학교 분포 지도</h2>
 
-          <!-- 시군 필터 버튼 (지도 연동 후 활성화) -->
+          <!-- 지역 필터 -->
           <div class="filter-chip-group" role="group" aria-label="지역 필터">
             <button class="filter-chip active" disabled>전체</button>
             <button class="filter-chip" disabled>천안</button>
             <button class="filter-chip" disabled>아산</button>
             <button class="filter-chip" disabled>공주</button>
+            <button class="filter-chip" disabled>논산</button>
             <button class="filter-chip" disabled>기타</button>
           </div>
 
-          <div id="kakao-map" class="map-placeholder" aria-label="충남 고등학교 분포 지도 영역">
+          <!-- 범례 (map.js가 채움) -->
+          <div class="map-legend" aria-label="지도 마커 범례"></div>
+
+          <!-- 지도 영역 (map.js가 초기화) -->
+          <div
+            id="kakao-map"
+            class="map-placeholder"
+            aria-label="충남 고등학교 분포 지도"
+            role="img"
+          >
             <div class="map-placeholder-icon" aria-hidden="true">🗺️</div>
-            <p><strong>카카오맵 API 연동 전</strong></p>
-            <p>
-              <a href="https://developers.kakao.com" target="_blank" rel="noopener noreferrer">developers.kakao.com</a>에서<br>
-              앱 키를 발급받아 <code>js/map.js</code>에 입력하세요.
-            </p>
-            <p>지도 초기화 후 일반계(파랑)·특성화고(초록)·특목고(보라) 마커가 표시됩니다.</p>
+            <p><strong>학교 소개 자료</strong> 탭을 처음 열면 지도가 로드됩니다.</p>
           </div>
         </section>
 
@@ -228,15 +236,15 @@
               <tbody id="school-table-body">
                 <tr>
                   <td colspan="4" style="text-align:center; color:var(--text-muted); padding:2rem;">
-                    <code>js/schools.js</code> 연동 후 학교 목록이 자동으로 표시됩니다.
+                    지도 로드 후 목록이 표시됩니다.
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="notice-box">
-            학교 데이터는 <strong>학교알리미</strong>(schoolinfo.go.kr)에서 CSV로 다운로드하여
-            <code>js/schools.js</code>에 추가할 수 있습니다.
+            학교 데이터는 <strong><code>js/schools.js</code></strong>에서 관리합니다.
+            학교알리미 URL은 schoolinfo.go.kr에서 학교 코드를 확인하여 업데이트하세요.
           </div>
         </section>
 
@@ -833,5 +841,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/schools.js"></script>
+  <script src="js/map.js"></script>
 </body>
 </html>
