@@ -19,6 +19,7 @@ const TYPE_COLOR = {
   '외국어고':       '#ff3b30',
   '국제고':         '#ff3b30',
   '자율형 사립고':  '#ff3b30',
+  '자율형 공립고':  '#ff3b30',
 };
 
 const LEGEND_ITEMS = [
