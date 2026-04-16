@@ -97,26 +97,11 @@ body {
   color: var(--white);
 }
 
-.header-logo-circle {
-  width: 28px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--white);
+.header-logo-img {
+  height: 30px;
+  width: auto;
+  display: block;
   flex-shrink: 0;
-  letter-spacing: 0;
-}
-
-.header-brand-name {
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.75);
-  letter-spacing: -0.15px;
 }
 
 .back-link {
@@ -144,11 +129,26 @@ body {
   color: var(--white);
   text-align: center;
   padding: 5rem 1.5rem 5.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0.38;
+  z-index: 0;
 }
 
 .hero-inner {
   max-width: 680px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-subtitle {
@@ -1300,6 +1300,56 @@ details.faq-item[open] > summary::after {
 }
 
 /* ─────────────────────────────────────────────
+   학교알리미 배너 (탭 2 하단)
+───────────────────────────────────────────── */
+.schoolinfo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  background: linear-gradient(135deg, #0071e3 0%, #0a5fc0 100%);
+  border-radius: 20px;
+  padding: 1.625rem 2rem;
+  margin-top: 2.5rem;
+  color: var(--white);
+}
+
+.schoolinfo-banner-text strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  margin-bottom: 0.35rem;
+}
+
+.schoolinfo-banner-text p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.btn-schoolinfo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--white);
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.625rem 1.375rem;
+  border-radius: 980px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.18s;
+}
+
+.btn-schoolinfo-link:hover {
+  opacity: 0.88;
+}
+
+/* ─────────────────────────────────────────────
    Timeline Grid + Section Title (탭 3)
 ───────────────────────────────────────────── */
 .timeline-grid {
@@ -1329,8 +1379,10 @@ details.faq-item[open] > summary::after {
   .steps-wrap      { flex-direction: column; align-items: center; gap: 0.5rem; }
   .step-arrow      { transform: rotate(90deg); margin: 0; }
   .step-item       { min-width: unset; width: 100%; max-width: 260px; }
-  .cta-banner      { flex-direction: column; text-align: center; border-radius: 16px; }
-  .btn-cta         { align-self: center; }
+  .cta-banner        { flex-direction: column; text-align: center; border-radius: 16px; }
+  .btn-cta           { align-self: center; }
+  .schoolinfo-banner { flex-direction: column; text-align: center; border-radius: 16px; }
+  .btn-schoolinfo-link { align-self: center; }
   .tab-btn         { padding: 0.75rem 0.875rem; font-size: 0.82rem; }
 }
 

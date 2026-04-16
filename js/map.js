@@ -5,9 +5,8 @@
    의존성: schools.js (SCHOOLS 배열), Kakao Maps JS SDK
    ============================================================ */
 
-const MAP_CENTER  = { lat: 36.5184, lng: 126.8000 };
-const MAP_ZOOM    = 9;
-const MAIN_CITIES = ['천안', '아산', '공주', '논산'];
+const MAP_CENTER = { lat: 36.5184, lng: 126.8000 };
+const MAP_ZOOM   = 9;
 
 const TYPE_COLOR = {
   '일반계':         '#0071e3',
@@ -61,9 +60,9 @@ function buildInfoContent(school) {
     `background:${color}18;color:${color};">${school.type}</span>`,
     `<span style="font-size:0.72rem;color:#6e6e73;">${school.city}</span>`,
     '</div>',
-    `<a href="${school.schoolinfoUrl}" target="_blank" rel="noopener noreferrer"`,
+    `<a href="${school.homepageUrl || school.schoolinfoUrl}" target="_blank" rel="noopener noreferrer"`,
     ' style="font-size:0.78rem;color:#0071e3;text-decoration:none;">',
-    '학교알리미 보기 →</a>',
+    '홈페이지 →</a>',
     '</div>',
   ].join('');
 }
@@ -71,7 +70,6 @@ function buildInfoContent(school) {
 /* ── 필터링 헬퍼 ─────────────────────────────────────────── */
 function getFilteredSchools(filter) {
   if (filter === '전체') return SCHOOLS;
-  if (filter === '기타') return SCHOOLS.filter(s => !MAIN_CITIES.includes(s.city));
   return SCHOOLS.filter(s => s.city === filter);
 }
 
@@ -121,8 +119,8 @@ function renderSchoolTable(filter) {
       `<td><span style="display:inline-block;font-size:0.7rem;font-weight:600;`,
       `padding:2px 8px;border-radius:100px;background:${color}18;color:${color};">`,
       `${s.type}</span></td>`,
-      `<td><a href="${s.schoolinfoUrl}" target="_blank" rel="noopener noreferrer"`,
-      ' style="color:#0071e3;font-size:0.82rem;text-decoration:none;">알리미 →</a></td>',
+      `<td><a href="${s.homepageUrl || s.schoolinfoUrl}" target="_blank" rel="noopener noreferrer"`,
+      ' style="color:#0071e3;font-size:0.82rem;text-decoration:none;">홈페이지 →</a></td>',
       '</tr>',
     ].join('');
   }).join('');
