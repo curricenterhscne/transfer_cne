@@ -1,855 +1,807 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>고등학교 전입학 안내 — 충청남도교육청</title>
-  <meta name="description" content="충청남도교육청 고등학교 전입학 안내: 전입학 절차, 학교 소개, 일정, FAQ, 서식 자료를 확인하세요." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <script type="text/javascript"
-    src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1b7522bf3fe95da9b5b9c6e7799a30b2&autoload=false">
-  </script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>고등학교 전입학 안내 — 충청남도교육청</title>
+<meta name="description" content="충청남도교육청 고등학교 전입학 안내: 전입학 절차, 학교 소개, 일정, FAQ, 서식 자료를 확인하세요." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript"
+  src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1b7522bf3fe95da9b5b9c6e7799a30b2&autoload=false">
+</script>
 </head>
-
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <a href="index.html" class="header-brand" aria-label="충청남도교육청 홈으로">
-        <img src="images/cne-logo.png" alt="충청남도교육청" class="header-logo-img">
-      </a>
-      <a href="survey.html" class="back-link" aria-label="전입학 가능 여부 진단 페이지로 이동">
-        전입학 진단하기 →
-      </a>
-    </div>
-  </header>
+<!-- ===== HEADER ===== -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand" aria-label="충청남도교육청 홈으로">
+      <img src="images/cne-logo.png" alt="충청남도교육청" class="header-logo-img">
+    </a>
+    <a href="survey.html" class="back-link" aria-label="전입학 가능 여부 진단 페이지로 이동">
+      전입학 진단하기 →
+    </a>
+  </div>
+</header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero-banner" aria-label="페이지 소개">
-    <img src="images/cne-building.jpg" alt="" class="hero-bg-img" aria-hidden="true">
-    <div class="hero-inner">
-      <p class="hero-subtitle">충청남도교육청 중등교육과</p>
-      <h1 class="hero-title">고등학교 전입학 안내</h1>
-      <p class="hero-desc">전입학 절차, 일정, 자주 묻는 질문, 서식 자료를 한곳에서 확인하세요.</p>
-      <a href="survey.html" class="btn-hero-cta" aria-label="전입학 가능 여부 진단 페이지로 이동">
-        전입학 가능 여부 진단하기 <span aria-hidden="true">→</span>
-      </a>
+<!-- ===== HERO ===== -->
+<section class="hero-banner" aria-label="페이지 소개">
+  <img src="images/cne-building.jpg" alt="" class="hero-bg-img" aria-hidden="true">
+  <div class="hero-inner">
+    <p class="hero-subtitle">충청남도교육청 중등교육과</p>
+    <h1 class="hero-title">고등학교 전입학 안내</h1>
+    <p class="hero-desc">전입학 절차, 일정, 자주 묻는 질문, 서식 자료를 한곳에서 확인하세요.</p>
+    <a href="survey.html" class="btn-hero-cta" aria-label="전입학 가능 여부 진단 페이지로 이동">
+      전입학 가능 여부 진단하기 <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== TAB NAVIGATION ===== -->
+<div class="tab-nav-wrap">
+  <div class="tab-nav-inner" role="tablist" aria-label="전입학 안내 메뉴">
+    <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab1" id="btn-tab1" tabindex="0">고등학교 안내</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2" id="btn-tab2" tabindex="-1">학교 소개 자료</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab3" id="btn-tab3" tabindex="-1">전입학 유형</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab4" id="btn-tab4" tabindex="-1">FAQ</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab5" id="btn-tab5" tabindex="-1">서식 자료실</button>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main role="main" id="main-content">
+<div class="tab-content-wrap">
+
+<!-- ══════════════════════════════════════════
+     탭 1 — 고등학교 안내
+══════════════════════════════════════════ -->
+<div id="tab1" role="tabpanel" aria-labelledby="btn-tab1" class="tab-panel active">
+
+  <!-- 진단하기 CTA 배너 -->
+  <div class="cta-banner" role="complementary" aria-label="전입학 진단 안내">
+    <div class="cta-banner-text">
+      <strong>전입학이 가능한지 바로 확인해 보세요</strong>
+      <p>7가지 질문으로 전입학 가능 여부와 필요 조건을 안내해 드립니다.</p>
+    </div>
+    <a href="survey.html" class="btn-cta" aria-label="전입학 가능 여부 진단 시작">
+      전입학 진단하기 →
+    </a>
+  </div>
+
+  <!-- 전입학 대상 -->
+  <section class="content-section" aria-labelledby="sec-target">
+    <h2 class="section-title" id="sec-target">전입학 대상</h2>
+    <div class="info-cards">
+      <div class="info-card card-possible">
+        <span class="card-type-badge">일반계(인문계)</span>
+        <h3>일반계 고등학교</h3>
+        <p>조건 충족 시 전입학 가능</p>
+        <ul>
+          <li>특성화고&lt;-&gt;일반고: 2학년 1학기까지 신청 가능</li>
+          <li>계열이 같을 경우 3학년 1학기까지 신청 가능</li>
+          <li>전 가족 이사 + 세대주 등록 필요</li>
+          <li><strong>교육감전형</strong>: 타시도/타시군→천안·아산 일반계(교육청에서 배정)</li>
+          <li><strong>학교장전형</strong>: 해당 학교로 문의</li>
+        </ul>
+      </div>
+      <div class="info-card card-conditional">
+        <span class="card-type-badge">특성화·예체능</span>
+        <h3>특성화고·예술고·체육고·마이스터고</h3>
+        <p>학교별 조건이 다름 (학교 직접 문의)</p>
+        <ul>
+          <li>동일 계열 학교로 전학이 원칙</li>
+          <li>학교장 허가 필요</li>
+          <li>결원 발생 시에 한하여 가능</li>
+          <li>마이스터고는 별도 전형 적용</li>
+        </ul>
+      </div>
+      <div class="info-card card-impossible">
+        <span class="card-type-badge">특수목적고·자사고</span>
+        <h3>과학고·외고·국제고·영재고·자사고</h3>
+        <p>일반 전입학 규정 미적용</p>
+        <ul>
+          <li>소재지 1년 거주 후 학교장 허가 시 가능</li>
+          <li>전 가족이 타시도로 거주지 이전 시 가능한 경우 있음</li>
+          <li>해당 학교 및 시·도 교육청에 별도 문의</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- ===== TAB NAVIGATION ===== -->
-  <div class="tab-nav-wrap">
-    <div class="tab-nav-inner" role="tablist" aria-label="전입학 안내 메뉴">
-      <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab1" id="btn-tab1" tabindex="0">고등학교 안내</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab2" id="btn-tab2" tabindex="-1">학교 소개 자료</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab3" id="btn-tab3" tabindex="-1">전입학 유형</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab4" id="btn-tab4" tabindex="-1">FAQ</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab5" id="btn-tab5" tabindex="-1">서식 자료실</button>
+  <!-- 전입학 절차 -->
+  <section class="content-section" aria-labelledby="sec-process">
+    <h2 class="section-title" id="sec-process">전입학 절차</h2>
+    <div class="steps-wrap" role="list" aria-label="전입학 4단계 절차">
+      <div class="step-item" role="listitem">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-label">이사 완료</div>
+        <div class="step-desc">전 가족 이사 및 주민등록 이전 완료</div>
+      </div>
+      <div class="step-arrow" aria-hidden="true">→</div>
+      <div class="step-item" role="listitem">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-label">서류 준비</div>
+        <div class="step-desc">재학증명서·학교생활기록부·주민등록등본(주소변동내역 포함) 발급</div>
+      </div>
+      <div class="step-arrow" aria-hidden="true">→</div>
+      <div class="step-item" role="listitem">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-label">접수</div>
+        <div class="step-desc">천안·아산 일반계는 충청남도교육청에 서류 제출(방문·우편접수)/그 외 학교는 해당학교로 제출</div>
+      </div>
+      <div class="step-arrow" aria-hidden="true">→</div>
+      <div class="step-item" role="listitem">
+        <div class="step-num" aria-hidden="true">4</div>
+        <div class="step-label">배정 확정</div>
+        <div class="step-desc">배정 완료 통보(서류 도착 및 접수로부터 전학일까지 3~5일 소요)</div>
+      </div>
     </div>
+    <div class="notice-box">
+      <strong>교육감전형(천안·아산 일반계)</strong> — 전입학 배정신청서, 주민등록등본(주소변동내역 포함), 학교생활기록부 각각 1부<br>
+      <strong>학교장전형(그 외)</strong> — 전·편입학 원서 1부, 주민등록등본(주소변동내역 포함), 학교생활기록부 각각 1부
+    </div>
+  </section>
+
+  <!-- 담당자 문의처 -->
+  <section class="content-section" aria-labelledby="sec-contact">
+    <h2 class="section-title" id="sec-contact">담당자 문의처</h2>
+    <div class="contact-label">충청남도교육청 중등교육과</div>
+    <div class="contact-phone">041-640-7217(천안·아산), 041-640-7216(그 외 지역)</div>
+  </section>
+
+</div><!-- /#tab1 -->
+
+<!-- ══════════════════════════════════════════
+     탭 2 — 학교 소개 자료
+══════════════════════════════════════════ -->
+<div id="tab2" role="tabpanel" aria-labelledby="btn-tab2" class="tab-panel" hidden>
+
+  <!-- 지도 -->
+  <section class="content-section" aria-labelledby="sec-map">
+    <h2 class="section-title" id="sec-map">충남 고등학교 분포 지도</h2>
+
+    <!-- 지역 필터 -->
+    <div class="filter-chip-group" role="group" aria-label="지역 필터">
+      <button class="filter-chip active" disabled>전체</button>
+      <button class="filter-chip" disabled>천안</button>
+      <button class="filter-chip" disabled>아산</button>
+      <button class="filter-chip" disabled>공주</button>
+      <button class="filter-chip" disabled>논산</button>
+      <button class="filter-chip" disabled>서산</button>
+      <button class="filter-chip" disabled>당진</button>
+      <button class="filter-chip" disabled>홍성</button>
+      <button class="filter-chip" disabled>보령</button>
+      <button class="filter-chip" disabled>금산</button>
+      <button class="filter-chip" disabled>예산</button>
+      <button class="filter-chip" disabled>부여</button>
+      <button class="filter-chip" disabled>태안</button>
+      <button class="filter-chip" disabled>서천</button>
+      <button class="filter-chip" disabled>청양</button>
+      <button class="filter-chip" disabled>계룡</button>
+    </div>
+
+    <!-- 범례 (map.js가 채움) -->
+    <div class="map-legend" aria-label="지도 마커 범례"></div>
+
+    <!-- 지도 영역 (map.js가 초기화) -->
+    <div
+      id="kakao-map"
+      class="map-placeholder"
+      aria-label="충남 고등학교 분포 지도"
+      role="img"
+    >
+      <div class="map-placeholder-icon" aria-hidden="true">🗺️</div>
+      <p><strong>학교 소개 자료</strong> 탭을 처음 열면 지도가 로드됩니다.</p>
+    </div>
+  </section>
+
+  <!-- 시군별 학교 목록 -->
+  <section class="content-section" aria-labelledby="sec-school-list">
+    <h2 class="section-title" id="sec-school-list">시·군별 학교 목록</h2>
+    <div class="data-table-wrap">
+      <table class="data-table" aria-label="충남 고등학교 목록">
+        <thead>
+          <tr>
+            <th scope="col">학교명</th>
+            <th scope="col">지역</th>
+            <th scope="col">유형</th>
+            <th scope="col">홈페이지</th>
+          </tr>
+        </thead>
+        <tbody id="school-table-body">
+          <tr>
+            <td colspan="4" style="text-align:center; color:var(--text-muted); padding:2rem;">
+              지도 로드 후 목록이 표시됩니다.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 학교알리미 배너 -->
+  <div class="schoolinfo-banner" role="complementary" aria-label="학교알리미 안내">
+    <div class="schoolinfo-banner-text">
+      <strong>학교알리미에서 더 자세한 학교 정보를 확인하세요</strong>
+      <p>입학전형, 학업성취도, 급식, 방과후학교 등 학교별 상세 정보를 제공합니다.</p>
+    </div>
+    <a href="https://www.schoolinfo.go.kr/Main.do" target="_blank" rel="noopener noreferrer"
+       class="btn-schoolinfo-link" aria-label="학교알리미 새 창으로 열기">
+      학교알리미 바로가기 →
+    </a>
   </div>
 
-  <!-- ===== MAIN ===== -->
-  <main role="main" id="main-content">
-    <div class="tab-content-wrap">
+</div><!-- /#tab2 -->
 
-      <!-- ══════════════════════════════════════════
-           탭 1 — 고등학교 안내
-           ══════════════════════════════════════════ -->
-      <div id="tab1" role="tabpanel" aria-labelledby="btn-tab1" class="tab-panel active">
+<!-- ══════════════════════════════════════════
+     탭 3 — 전입학 유형
+══════════════════════════════════════════ -->
+<div id="tab3" role="tabpanel" aria-labelledby="btn-tab3" class="tab-panel" hidden>
 
-        <!-- 진단하기 CTA 배너 -->
-        <div class="cta-banner" role="complementary" aria-label="전입학 진단 안내">
-          <div class="cta-banner-text">
-            <strong>전입학이 가능한지 바로 확인해 보세요</strong>
-            <p>7가지 질문으로 전입학 가능 여부와 필요 조건을 안내해 드립니다.</p>
-          </div>
-          <a href="survey.html" class="btn-cta" aria-label="전입학 가능 여부 진단 시작">
-            전입학 진단하기 →
-          </a>
+  <!-- 전입학 유형 안내 -->
+  <section class="content-section" aria-labelledby="sec-type">
+    <h2 class="section-title" id="sec-type">전입학 유형</h2>
+    <div class="type-cards">
+      <div class="type-card type-card-a">
+        <span class="type-card-badge">교육감전형</span>
+        <h3>타시도·타시군 → 천안·아산 일반계</h3>
+        <p>교육감이 배정권을 갖는 전형으로, 충청남도교육청 중등교육과에 신청합니다.</p>
+        <ul>
+          <li><strong>대상</strong>: 다른 시·도 혹은 시·군에서 천안·아산 일반계로 전입</li>
+          <li><strong>신청처</strong>: 충청남도교육청 중등교육과</li>
+          <li><strong>배정 방식</strong>: 충청남도교육청 중등교육과에서 희망학교에 결원이 있는 경우에 한하여 배정</li>
+        </ul>
+      </div>
+      <div class="type-card type-card-b">
+        <span class="type-card-badge">학교장전형</span>
+        <h3>천안·아산 특성화고,특목고, 자사고 / 천안·아산 이외 지역 일반계고</h3>
+        <p>학교장의 재량으로 전입학을 허가하며, 희망 학교에 직접 신청합니다.</p>
+        <ul>
+          <li><strong>대상</strong>: 타시도 및 충남 타시군→천안·아산 등</li>
+          <li><strong>신청처</strong>: 전입 희망 학교 교무실</li>
+          <li><strong>배정 방식</strong>: 학교장 허가 후 전입학 처리</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 학년·학기별 가능 여부 표 -->
+  <section class="content-section" aria-labelledby="sec-schedule">
+    <h2 class="section-title" id="sec-schedule">학년·학기별 전입학 가능 여부</h2>
+    <div class="data-table-wrap">
+      <table class="data-table" aria-label="학년·학기별 전입학 가능 여부">
+        <thead>
+          <tr>
+            <th scope="col">구분</th>
+            <th scope="col">1학년 1학기</th>
+            <th scope="col">1학년 2학기</th>
+            <th scope="col">2학년 1학기</th>
+            <th scope="col">2학년 2학기</th>
+            <th scope="col">3학년 1학기</th>
+            <th scope="col">3학년 2학기</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>일반계고 — 일반계고<br><small style="font-weight:400;color:var(--text-muted)">타시도·타시군 → 천안·아산</small></td>
+            <td class="cell-ok">✓ 가능</td>
+            <td class="cell-ok">✓ 가능</td>
+            <td class="cell-ok">✓ 가능</td>
+            <td class="cell-no">✓ 가능</td>
+            <td class="cell-no">✓ 가능</td>
+            <td class="cell-no">✕ 불가</td>
+          </tr>
+          <tr>
+            <td>일반계고 — 특성화고<br><small style="font-weight:400;color:var(--text-muted)">충남 내 전학 등</small></td>
+            <td class="cell-ok">✓ 가능</td>
+            <td class="cell-ok">✓ 가능</td>
+            <td class="cell-ok">✓ 가능</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+          </tr>
+          <tr>
+            <td>예술고·체육고-일반계고<br><small style="font-weight:400;color:var(--text-muted)">동일 계열 전학 원칙</small></td>
+            <td class="cell-ask">✓ 가능</td>
+            <td class="cell-ask">✓ 가능</td>
+            <td class="cell-ask">✓ 가능</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+          </tr>
+          <tr>
+            <td>마이스터고-일반계고<br><small style="font-weight:400;color:var(--text-muted)">별도 전형 적용</small></td>
+            <td class="cell-ask">✓ 가능</td>
+            <td class="cell-ask">✓ 가능</td>
+            <td class="cell-ask">✓ 가능</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+          </tr>
+          <tr>
+            <td>과학고·외고·국제고<br>영재고·자율형 사립고</td>
+            <td class="cell-cond">△ 별도 규정</td>
+            <td class="cell-cond">△ 별도 규정</td>
+            <td class="cell-cond">△ 별도 규정</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+            <td class="cell-no">✕ 불가</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice-box">
+      <strong>※ 계열이 달라지는 경우 2학년 1학기까지, 같은 계열은 3학년 1학기까지</strong> 전입학 신청이 가능합니다.<br>
+      단, 거주지 이전이 있고, 경우에 따라 거주 기간 조건(6개월 또는 1년)이 충족되어야 합니다. 세부 조건은 담당자에게 문의하세요.
+    </div>
+  </section>
+
+  <!-- 거주 기간 조건 요약 -->
+  <section class="content-section" aria-labelledby="sec-residence">
+    <h2 class="section-title" id="sec-residence">거주 기간 조건 요약</h2>
+    <div class="data-table-wrap">
+      <table class="data-table" aria-label="거주 기간 조건 요약표">
+        <thead>
+          <tr>
+            <th scope="col">현 재학 학교 소재지</th>
+            <th scope="col">이사(전입) 지역</th>
+            <th scope="col">중학교 졸업지</th>
+            <th scope="col">거주 기간 조건</th>
+            <th scope="col">결과</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>충남 외 타시도</td>
+            <td>천안 또는 아산</td>
+            <td>천안·아산</td>
+            <td class="cell-cond">현 학교 소재지 1년↑(특성화고: 6개월)</td>
+            <td class="cell-cond">△ 조건부 가능</td>
+          </tr>
+          <tr>
+            <td>충남 외 타시도</td>
+            <td>천안 또는 아산</td>
+            <td>천안·아산 이외</td>
+            <td class="cell-ok">조건 없음</td>
+            <td class="cell-ok">✓ 가능</td>
+          </tr>
+          <tr>
+            <td>충남 외 타시도</td>
+            <td>충남 내 타시군</td>
+            <td>해당 시·군</td>
+            <td class="cell-ok">조건 없음</td>
+            <td class="cell-ok">✓ 가능</td>
+          </tr>
+          <tr>
+            <td>충남 내 타시군</td>
+            <td>천안 또는 아산</td>
+            <td>천안·아산</td>
+            <td class="cell-cond">현 학교 소재지 1년↑(특성화고: 6개월)</td>
+            <td class="cell-cond">△ 조건부 가능</td>
+          </tr>
+          <tr>
+            <td>충남 내 타시군</td>
+            <td>천안 또는 아산</td>
+            <td>해당 시·군</td>
+            <td class="cell-ok">조건 없음</td>
+            <td class="cell-ok">✓ 가능</td>
+          </tr>
+          <tr>
+            <td>아산</td>
+            <td>천안</td>
+            <td>아산</td>
+            <td class="cell-cond">조건 없음</td>
+            <td class="cell-cond">✓ 가능</td>
+          </tr>
+          <tr>
+            <td>천안</td>
+            <td>아산</td>
+            <td>천안</td>
+            <td class="cell-cond">조건 없음</td>
+            <td class="cell-cond">✓ 가능</td>
+          </tr>
+          <tr>
+            <td>아산 또는 천안</td>
+            <td>같은 시(동일 시내)</td>
+            <td>—</td>
+            <td class="cell-no">해당 없음</td>
+            <td class="cell-no">✕ 불가</td>
+          </tr>
+          <tr>
+            <td>아산 또는 천안</td>
+            <td>충남 내 타시군 또는 타시도</td>
+            <td>—</td>
+            <td class="cell-cond">전 가족 이전·세대주 조건</td>
+            <td class="cell-cond">△ 조건부 가능</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice-box">
+      <strong>거주 기간 기산일</strong>은 현재 재학 학교 소재지에서의 실거주 시작일 기준입니다.
+      정확한 충족 여부는 주민등록등본으로 확인하거나 담당자에게 문의하세요.
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="sec-agency">
+    <h2 class="section-title" id="sec-agency">처리기관</h2>
+    <div class="data-table-wrap">
+      <table class="data-table" aria-label="처리기관 요약표">
+        <tbody>
+          <tr>
+            <td>전학 희망교</td>
+            <td>천안·아산 일반계고등학교(교육감전형 고등학교, 평준화지역)</td>
+            <td>일반계고등학교(천안·아산 제외)(비평준화지역)</td>
+            <td>특성화고등학교, 특수목적고등학교</td>
+          </tr>
+          <tr>
+            <td>전입학</td>
+            <td>충청남도교육청 중등교육과</td>
+            <td>각 학교로 직접 문의</td>
+            <td>각 학교로 직접 문의</td>
+          </tr>
+          <tr>
+            <td>재입학·편입학</td>
+            <td>각 학교로 직접 문의</td>
+            <td>각 학교로 직접 문의</td>
+            <td>각 학교로 직접 문의</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div><!-- /#tab3 -->
+
+<!-- ══════════════════════════════════════════
+     탭 4 — 고입전형의 이해 (FAQ)
+══════════════════════════════════════════ -->
+<div id="tab4" role="tabpanel" aria-labelledby="btn-tab4" class="tab-panel" hidden>
+
+  <section class="content-section" aria-labelledby="sec-faq">
+    <h2 class="section-title" id="sec-faq">자주 묻는 질문 (FAQ)</h2>
+    <div class="faq-wrap">
+
+      <details class="faq-item">
+        <summary>Q1.전 가족이 모두 이사해야만 전입학이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p><strong>네, 원칙적으로 부·모·자녀 전 가족이 이사해야 합니다.</strong></p>
+          <p>충청남도 고등학교 전입학은 가족 전원의 실거주 및 주민등록 이전이 기본 조건입니다.
+          부모 중 한 명만 이사하거나 자녀만 먼저 이사한 경우에는 전입학이 허용되지 않습니다.</p>
         </div>
+      </details>
 
-        <!-- 전입학 대상 -->
-        <section class="content-section" aria-labelledby="sec-target">
-          <h2 class="section-title" id="sec-target">전입학 대상</h2>
-          <div class="info-cards">
-
-            <div class="info-card card-possible">
-              <span class="card-type-badge">일반계(인문계)</span>
-              <h3>일반계 고등학교</h3>
-              <p>조건 충족 시 전입학 가능</p>
-              <ul>
-                <li>특성화고<->일반고: 2학년 1학기까지 신청 가능</li>
-                <li>계열이 같을 경우 3학년 1학기까지 신청 가능</li>
-                <li>전 가족 이사 + 세대주 등록 필요</li>
-                <li><strong>교육감전형</strong>: 타시도/타시군→천안·아산 일반계(교육청에서 배정)</li>
-                <li><strong>학교장전형</strong>: 해당 학교로 문의</li>
-              </ul>
-            </div>
-
-            <div class="info-card card-conditional">
-              <span class="card-type-badge">특성화·예체능</span>
-              <h3>특성화고·예술고·체육고·마이스터고</h3>
-              <p>학교별 조건이 다름 (학교 직접 문의)</p>
-              <ul>
-                <li>동일 계열 학교로 전학이 원칙</li>
-                <li>학교장 허가 필요</li>
-                <li>결원 발생 시에 한하여 가능</li>
-                <li>마이스터고는 별도 전형 적용</li>
-              </ul>
-            </div>
-
-            <div class="info-card card-impossible">
-              <span class="card-type-badge">특수목적고·자사고</span>
-              <h3>과학고·외고·국제고·영재고·자사고</h3>
-              <p>일반 전입학 규정 미적용</p>
-              <ul>
-                <li>소재지 1년 거주 후 학교장 허가 시 가능</li>
-                <li>전 가족이 타시도로 거주지 이전 시 가능한 경우 있음</li>
-                <li>해당 학교 및 시·도 교육청에 별도 문의</li>
-              </ul>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- 전입학 절차 -->
-        <section class="content-section" aria-labelledby="sec-process">
-          <h2 class="section-title" id="sec-process">전입학 절차</h2>
-          <div class="steps-wrap" role="list" aria-label="전입학 4단계 절차">
-
-            <div class="step-item" role="listitem">
-              <div class="step-num" aria-hidden="true">1</div>
-              <div class="step-label">이사 완료</div>
-              <div class="step-desc">전 가족 이사 및 주민등록 이전 완료</div>
-            </div>
-
-            <div class="step-arrow" aria-hidden="true">→</div>
-
-            <div class="step-item" role="listitem">
-              <div class="step-num" aria-hidden="true">2</div>
-              <div class="step-label">서류 준비</div>
-              <div class="step-desc">재학증명서·학교생활기록부·주민등록등본(주소변동내역 포함) 발급</div>
-            </div>
-
-            <div class="step-arrow" aria-hidden="true">→</div>
-
-            <div class="step-item" role="listitem">
-              <div class="step-num" aria-hidden="true">3</div>
-              <div class="step-label">접수</div>
-              <div class="step-desc">천안·아산 일반계는 충청남도교육청에 서류 제출(방문·우편접수)/그 외 학교는 해당학교로 제출</div>
-            </div>
-
-            <div class="step-arrow" aria-hidden="true">→</div>
-
-            <div class="step-item" role="listitem">
-              <div class="step-num" aria-hidden="true">4</div>
-              <div class="step-label">배정 확정</div>
-              <div class="step-desc">배정 완료 통보(서류 도착 및 접수로부터 전학일까지 3~5일 소요)</div>
-            </div>
-
-          </div>
-          <div class="notice-box">
-            <strong>교육감전형(천안·아산 일반계)</strong> — 전입학 배정신청서, 주민등록등본(주소변동내역 포함), 학교생활기록부 각각 1부<br>
-            <strong>학교장전형(그 외)</strong> — 전·편입학 원서 1부, 주민등록등본(주소변동내역 포함), 학교생활기록부 각각 1부
-          </div>
-        </section>
-
-        <!-- 담당자 문의처 -->
-        <section class="content-section" aria-labelledby="sec-contact">
-          <h2 class="section-title" id="sec-contact">담당자 문의처</h2>          
-              <div class="contact-label">충청남도교육청 중등교육과</div>
-              <div class="contact-phone">041-640-7217(천안·아산), 041-640-7216(그 외 지역)</div>            
-        </section>
-
-      </div><!-- /#tab1 -->
-
-
-      <!-- ══════════════════════════════════════════
-           탭 2 — 학교 소개 자료
-           ══════════════════════════════════════════ -->
-      <div id="tab2" role="tabpanel" aria-labelledby="btn-tab2" class="tab-panel" hidden>
-
-        <!-- 지도 -->
-        <section class="content-section" aria-labelledby="sec-map">
-          <h2 class="section-title" id="sec-map">충남 고등학교 분포 지도</h2>
-
-          <!-- 지역 필터 -->
-          <div class="filter-chip-group" role="group" aria-label="지역 필터">
-            <button class="filter-chip active" disabled>전체</button>
-            <button class="filter-chip" disabled>천안</button>
-            <button class="filter-chip" disabled>아산</button>
-            <button class="filter-chip" disabled>공주</button>
-            <button class="filter-chip" disabled>논산</button>
-            <button class="filter-chip" disabled>서산</button>
-            <button class="filter-chip" disabled>당진</button>
-            <button class="filter-chip" disabled>홍성</button>
-            <button class="filter-chip" disabled>보령</button>
-            <button class="filter-chip" disabled>금산</button>
-            <button class="filter-chip" disabled>예산</button>
-            <button class="filter-chip" disabled>부여</button>
-            <button class="filter-chip" disabled>태안</button>
-            <button class="filter-chip" disabled>서천</button>
-            <button class="filter-chip" disabled>청양</button>
-            <button class="filter-chip" disabled>계룡</button>
-          </div>
-
-          <!-- 범례 (map.js가 채움) -->
-          <div class="map-legend" aria-label="지도 마커 범례"></div>
-
-          <!-- 지도 영역 (map.js가 초기화) -->
-          <div
-            id="kakao-map"
-            class="map-placeholder"
-            aria-label="충남 고등학교 분포 지도"
-            role="img"
-          >
-            <div class="map-placeholder-icon" aria-hidden="true">🗺️</div>
-            <p><strong>학교 소개 자료</strong> 탭을 처음 열면 지도가 로드됩니다.</p>
-          </div>
-        </section>
-
-        <!-- 시군별 학교 목록 -->
-        <section class="content-section" aria-labelledby="sec-school-list">
-          <h2> class="section-title" id="sec-school-list">시·군별 학교 목록</h2>
-          <div class="data-table-wrap">
-            <table class="data-table" aria-label="충남 고등학교 목록">
-              <thead>
-                <tr>
-                  <th scope="col">학교명</th>
-                  <th scope="col">지역</th>
-                  <th scope="col">유형</th>
-                  <th scope="col">홈페이지</th>
-                </tr>
-              </thead>
-              <tbody id="school-table-body">
-                <tr>
-                  <td colspan="4" style="text-align:center; color:var(--text-muted); padding:2rem;">
-                    지도 로드 후 목록이 표시됩니다.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- 학교알리미 배너 -->
-        <div class="schoolinfo-banner" role="complementary" aria-label="학교알리미 안내">
-          <div class="schoolinfo-banner-text">
-            <strong>학교알리미에서 더 자세한 학교 정보를 확인하세요</strong>
-            <p>입학전형, 학업성취도, 급식, 방과후학교 등 학교별 상세 정보를 제공합니다.</p>
-          </div>
-          <a href="https://www.schoolinfo.go.kr/Main.do" target="_blank" rel="noopener noreferrer"
-             class="btn-schoolinfo-link" aria-label="학교알리미 새 창으로 열기">
-            학교알리미 바로가기 →
-          </a>
+      <details class="faq-item">
+        <summary>Q2.'세대주 조건'이란 무엇인가요?</summary>
+        <div class="faq-answer">
+          <p>이사한 지역에서 <strong>부모 중 한 분이 주민등록등본 기준 세대주</strong>로 등록되어 있어야 합니다.</p>
+          <p>세대주 여부는 주민등록등본으로 확인하며, 단순 거주자(세대원)로만 등록된 경우에는 조건을 충족하지 못할 수 있습니다.</p>
         </div>
+      </details>
 
-      </div><!-- /#tab2 -->
+      <details class="faq-item">
+        <summary>Q3.충남 내 같은 시·군 안에서도 전학이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p><strong>원칙적으로 불가합니다.</strong> 천안→천안, 아산→아산처럼 동일시·군 내 전학은 허용되지 않습니다.</p>
+          <p><strong>예외:</strong> 일반고에서 특성화고로의 진로 변경(계열 변경)은 2학년 1학기까지 가능합니다. 단, 천안·아산 지역은 특성화고에서 일반고로 전학이 불가합니다.</p>
+        </div>
+      </details>
 
+      <details class="faq-item">
+        <summary>Q4.전학이 가능한 시기는 언제까지인가요?</summary>
+        <div class="faq-answer">
+          <p>일반고와 특성화고 사이의 전학은 2학년 1학기까지, 계열이 같은 경우는 3학년 1학기까지 가능합니다.</p>
+          <p><strong>예외:</strong> 일반고에서 특성화고로의 진로 변경(계열 변경)은 2학년 1학기까지 가능합니다. 단, 천안·아산 지역은 특성화고에서 일반고로 전학이 불가합니다.</p>
+        </div>
+      </details>
 
-      <!-- ══════════════════════════════════════════
-           탭 3 — 전입학 유형
-           ══════════════════════════════════════════ -->
-      <div id="tab3" role="tabpanel" aria-labelledby="btn-tab3" class="tab-panel" hidden>
+      <details class="faq-item">
+        <summary>Q5.중학교 3학년 2학기 말에 이사를 가게 되어, 고입 전 중학교 전학이 가능한 시기가 지났습니다. 고등학교 전학 방법이 있나요?</summary>
+        <div class="faq-answer">
+          <p>충남 외 타시도에서 전 가족이 이사를 오는 경우, 2월에 타시도 일반고등학교 입학예정자 입학 전 전학으로 신청 가능합니다.</p>
+          <p>충남에서 고등학교 배정이 완료되면 기존 타시도에서 배정받은 일반고등학교는 배정포기절차를 진행하시면 됩니다.</p>
+          <p>만약 타시도 입학 전 전학 신청기간 이후에 이사를 오시면 고등학교 1학년 1학기때 전학을 신청하시면 됩니다.</p>
+        </div>
+      </details>
 
-        <!-- 전입학 유형 안내 -->
-        <section class="content-section" aria-labelledby="sec-type">
-          <h2 class="section-title" id="sec-type">전입학 유형</h2>
-          <div class="type-cards">
+      <details class="faq-item">
+        <summary>Q6.타시도에서 충남으로 이사할 때 거주 기간 제한이 있나요?</summary>
+        <div class="faq-answer">
+          <p>중학교 졸업 지역과 이사 지역에 따라 거주 기간 조건이 다릅니다.</p>
+          <ul>
+            <li><strong>중학교 졸업지 = 이사 지역</strong> (예: 아산 중졸→아산 전입): 현 학교 소재지 <strong>1년 이상 거주</strong> 조건</li>
+            <li><strong>중학교 졸업지 ≠ 이사 지역</strong> (예: 서울 중졸→천안 전입): 거주 기간 제한 없이 전 가족 이사 조건만 충족하면 가능</li>
+          </ul>
+          <p>정확한 조건은 <a href="survey.html" style="color:var(--primary); font-weight:600;">전입학 진단하기</a>를 이용하거나 담당자에게 문의하세요.</p>
+        </div>
+      </details>
 
-            <div class="type-card type-card-a">
-              <span class="type-card-badge">교육감전형</span>
-              <h3>타시도·타시군 → 천안·아산 일반계</h3>
-              <p>교육감이 배정권을 갖는 전형으로, 충청남도교육청 중등교육과에 신청합니다.</p>
-              <ul>
-                <li><strong>대상</strong>: 다른 시·도 혹은 시·군에서 천안·아산 일반계로 전입</li>
-                <li><strong>신청처</strong>: 충청남도교육청 중등교육과</li>
-                <li><strong>배정 방식</strong>: 충청남도교육청 중등교육과에서 희망학교에 결원이 있는 경우에 한하여 배정</li>          
-                
-              </ul>
-            </div>
+      <details class="faq-item">
+        <summary>Q7.중학교 졸업 지역이 전입학에 영향을 미치나요?</summary>
+        <div class="faq-answer">
+          <p><strong>네, 영향을 미칩니다.</strong> 중학교 졸업 지역이 이사하려는 지역과 같을 경우, 거주 기간 조건(6개월 또는 1년)이 추가로 적용됩니다.</p>
+          <p>예를 들어, 아산에서 중학교를 졸업하고 타 지역으로 이사한 후 다시 아산으로 전입하려는 경우, 현재 재학 중인 학교 소재지에서 일정 기간 거주해야 합니다.</p>
+        </div>
+      </details>
 
-            <div class="type-card type-card-b">
-              <span class="type-card-badge">학교장전형</span>
-              <h3>천안·아산 특성화고,특목고, 자사고 / 천안·아산 이외 지역 일반계고</h3>
-              <p>학교장의 재량으로 전입학을 허가하며, 희망 학교에 직접 신청합니다.</p>
-              <ul>
-                <li><strong>대상</strong>: 타시도 및 충남 타시군→천안·아산 등</li>
-                <li><strong>신청처</strong>: 전입 희망 학교 교무실</li>
-                <li><strong>배정 방식</strong>: 학교장 허가 후 전입학 처리</li>                
-              </ul>
-            </div>
+      <details class="faq-item">
+        <summary>Q8.과학고·외고 등 특수목적고 재학생도 전입학이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p>일반적인 전입학 규정이 <strong>적용되지 않습니다.</strong></p>
+          <ul>
+            <li>소재지 1년 거주 후 학교장 허가를 받는 경우 가능</li>
+            <li>전 가족 이전 조건을 갖춘 경우 가능한 경우도 있음</li>
+            <li>과학고→일반고 전학은 해당 시·도 교육청에 별도 문의 필요</li>
+          </ul>
+        </div>
+      </details>
 
-          </div>
-        </section>
+      <details class="faq-item">
+        <summary>Q9.학교 배정은 어떻게 이루어지나요?</summary>
+        <div class="faq-answer">
+          <p><strong>교육감전형</strong>의 경우 희망 학교에 결원이 있는 경우 배정합니다.</p>
+          <p><strong>학교장전형</strong>은 전입 희망 학교에 직접 신청하며, 해당 학교의 결원과 학교장 허가 여부에 따라 결정됩니다.</p>
+        </div>
+      </details>
 
-        <!-- 학년·학기별 가능 여부 표 -->
-        <section class="content-section" aria-labelledby="sec-schedule">
-          <h2 class="section-title" id="sec-schedule">학년·학기별 전입학 가능 여부</h2>
-          <div class="data-table-wrap">
-            <table class="data-table" aria-label="학년·학기별 전입학 가능 여부">
-              <thead>
-                <tr>
-                  <th scope="col">구분</th>
-                  <th scope="col">1학년 1학기</th>
-                  <th scope="col">1학년 2학기</th>
-                  <th scope="col">2학년 1학기</th>
-                  <th scope="col">2학년 2학기</th>
-                  <th scope="col">3학년 1학기</th>
-                  <th scope="col">3학년 2학기</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>일반계고 — 일반계고<br><small style="font-weight:400;color:var(--text-muted)">타시도·타시군 → 천안·아산</small></td>
-                  <td class="cell-ok">✓ 가능</td>
-                  <td class="cell-ok">✓ 가능</td>
-                  <td class="cell-ok">✓ 가능</td>
-                  <td class="cell-no">✓ 가능</td>
-                  <td class="cell-no">✓ 가능</td>
-                  <td class="cell-no">✕ 불가</td>
-                </tr>
-                <tr>
-                  <td>일반계고 — 특성화고<br><small style="font-weight:400;color:var(--text-muted)">충남 내 전학 등</small></td>
-                  <td class="cell-ok">✓ 가능</td>
-                  <td class="cell-ok">✓ 가능</td>
-                  <td class="cell-ok">✓ 가능</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                </tr>
-                <tr>
-                  <td>예술고·체육고-일반계고<br><small style="font-weight:400;color:var(--text-muted)">동일 계열 전학 원칙</small></td>
-                  <td class="cell-ask">✓ 가능</td>
-                  <td class="cell-ask">✓ 가능</td>
-                  <td class="cell-ask">✓ 가능</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                </tr>
-                <tr>
-                  <td>마이스터고-일반계고<br><small style="font-weight:400;color:var(--text-muted)">별도 전형 적용</small></td>
-                  <td class="cell-ask">✓ 가능</td>
-                  <td class="cell-ask">✓ 가능</td>
-                  <td class="cell-ask">✓ 가능</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                </tr>
-                <tr>
-                  <td>과학고·외고·국제고<br>영재고·자율형 사립고</td>
-                  <td class="cell-cond">△ 별도 규정</td>
-                  <td class="cell-cond">△ 별도 규정</td>
-                  <td class="cell-cond">△ 별도 규정</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                  <td class="cell-no">✕ 불가</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="notice-box">
-            <strong>※ 계열이 달라지는 경우 2학년 1학기까지, 같은 계열은 3학년 1학기까지</strong> 전입학 신청이 가능합니다.<br>
-            단, 거주지 이전이 있고, 경우에 따라 거주 기간 조건(6개월 또는 1년)이 충족되어야 합니다. 세부 조건은 담당자에게 문의하세요.
-          </div>
-        </section>
+      <details class="faq-item">
+        <summary>Q10.3학년 2학기에도 전입학이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p><strong>불가합니다.</strong> 학교폭력 피해 등 예외적인 사유가 있는 경우에만 가능합니다.</p>
+        </div>
+      </details>
 
-        <!-- 거주 기간 조건 요약 -->
-        <section class="content-section" aria-labelledby="sec-residence">
-          <h2 class="section-title" id="sec-residence">거주 기간 조건 요약</h2>
-          <div class="data-table-wrap">
-            <table class="data-table" aria-label="거주 기간 조건 요약표">
-              <thead>
-                <tr>
-                  <th scope="col">현 재학 학교 소재지</th>
-                  <th scope="col">이사(전입) 지역</th>
-                  <th scope="col">중학교 졸업지</th>
-                  <th scope="col">거주 기간 조건</th>
-                  <th scope="col">결과</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>충남 외 타시도</td>
-                  <td>천안 또는 아산</td>
-                  <td>천안·아산</td>
-                  <td class="cell-cond">현 학교 소재지 1년↑(툭성화고: 6개월)</td>
-                  <td class="cell-cond">△ 조건부 가능</td>
-                </tr>
-                <tr>
-                  <td>충남 외 타시도</td>
-                  <td>천안 또는 아산</td>
-                  <td>천안·아산 이외</td>
-                  <td class="cell-ok">조건 없음</td>
-                  <td class="cell-ok">✓ 가능</td>
-                </tr>
-                <tr>
-                  <td>충남 외 타시도</td>
-                  <td>충남 내 타시군</td>
-                  <td>해당 시·군</td>
-                  <td class="cell-ok">조건 없음</td>
-                  <td class="cell-ok">✓ 가능</td>
-                </tr>
-                <tr>
-                  <td>충남 내 타시군</td>
-                  <td>천안 또는 아산</td>
-                  <td>천안·아산</td>
-                  <td class="cell-cond">현 학교 소재지 1년↑(툭성화고: 6개월)</td>
-                  <td class="cell-cond">△ 조건부 가능</td>
-                </tr>
-                <tr>
-                  <td>충남 내 타시군</td>
-                  <td>천안 또는 아산</td>
-                  <td>해당 시·군</td>
-                  <td class="cell-ok">조건 없음</td>
-                  <td class="cell-ok">✓ 가능</td>
-                </tr>
-                <tr>
-                  <td>아산</td>
-                  <td>천안</td>
-                  <td>아산</td>
-                  <td class="cell-cond">조건 없음</td>
-                  <td class="cell-cond">✓ 가능</td>
-                </tr>
-                <tr>
-                  <td>천안</td>
-                  <td>아산</td>
-                  <td>천안</td>
-                  <td class="cell-cond">조건 없음</td>
-                  <td class="cell-cond">✓ 가능</td>
-                </tr>
-                <tr>
-                  <td>아산 또는 천안</td>
-                  <td>같은 시(동일 시내)</td>
-                  <td>—</td>
-                  <td class="cell-no">해당 없음</td>
-                  <td class="cell-no">✕ 불가</td>
-                </tr>
-                <tr>
-                  <td>아산 또는 천안</td>
-                  <td>충남 내 타시군 또는 타시도</td>
-                  <td>—</td>
-                  <td class="cell-cond">전 가족 이전·세대주 조건</td>
-                  <td class="cell-cond">△ 조건부 가능</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="notice-box">
-            <strong>거주 기간 기산일</strong>은 현재 재학 학교 소재지에서의 실거주 시작일 기준입니다.
-            정확한 충족 여부는 주민등록등본으로 확인하거나 담당자에게 문의하세요.
-          </div>
-        </section>   
+      <details class="faq-item">
+        <summary>Q11.이사 후 주민등록 이전 없이 전입학 신청이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p><strong>불가합니다.</strong> 주민등록 이전은 전입학의 필수 전제 조건입니다.</p>
+          <p>전입학 신청 시 주민등록등본(전 가족 기재)을 제출해야 하며, 이사 지역으로의 세대 이전이 등본에서 확인되어야 합니다.</p>
+          <p>이사 직후 주민센터를 방문하여 주민등록 이전을 먼저 완료한 뒤 전입학을 신청하세요.</p>
+        </div>
+      </details>
 
-        <section class="content-section" aria-labelledby="sec-residence">
-          <h2 class="section-title" id="sec-residence">처리기관</h2>
-          <div class="data-table-wrap">
-            <table class="data-table" aria-label="처리기관 요약표">              
-              <tbody>
-                <tr>
-                  <td>전학 희망교</td>
-                  <td>천안·아산 일반계고등학교(교육감전형 고등학교, 평준화지역)</td>
-                  <td>일반계고등학교(천안·아산 제외)(비평준화지역)</td>
-                  <td>특성화고등학교, 특수목적고등학교</td>
-                <tr>
-                  <td>전입학</td>
-                  <td>충청남도교육청 중등교육과</td>
-                  <td>각 학교로 직접 문의</td>
-                  <td>각 학교로 직접 문의</td>                  
-                </tr>
-                <tr>
-                  <td>재입학·편입학</td>
-                  <td>각 학교로 직접 문의</td>
-                  <td>각 학교로 직접 문의</td>
-                  <td>각 학교로 직접 문의</td>       
-                </tr>
-              </tbody>
-            </table>          
-        </section>     
+      <details class="faq-item">
+        <summary>Q12.천안·아산 지역에서 고등학교를 입학했다가 다른 지역으로 전학을 갔습니다. 다시 천안·아산으로 이사를 왔는데, 전학이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p>천안·아산으로 다시 전 가족(부,모,자녀)가 이사를 올 경우 입학했던 고등학교로 다시 배정됩니다.</p>
+        </div>
+      </details>
 
-      </div><!-- /#tab3 -->
+      <details class="faq-item">
+        <summary>Q13.주소지는 천안인데, 학생은 천안이 아닌 타시도 고등학교에 재학 중입니다. 중학교는 천안에서 졸업했습니다. 천안으로 고등학교 전학이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p>천안에서 중학교를 졸업하고, 타시도 일반고등학교에 재학 중인 경우 전 가족(부,모,자녀)가
+          고등학교가 소재한 해당 지역에서 만 1년 이상(특성화고 재학 중인 경우 6개월) 거주한 후 천안으로 다시 거주지를 이전해야 전학이 가능합니다.</p>
+        </div>
+      </details>
 
+      <details class="faq-item">
+        <summary>Q14.학기 중간(3~6월, 9~11월)에도 전입학 신청이 가능한가요?</summary>
+        <div class="faq-answer">
+          <p><strong>네, 학기 중에도 신청할 수 있습니다.</strong> 전입학은 학기 시작 전뿐만 아니라 학기 중 언제든지 신청 가능합니다.</p>
+          <p>다만 시험기간 중에는 전입학이 어려울 수 있으며, 시험 기간을 제외한 기간에는 방학을 포함해서 전입학이 가능합니다.</p>
+        </div>
+      </details>
 
-      <!-- ══════════════════════════════════════════
-           탭 4 — 고입전형의 이해 (FAQ)
-           ══════════════════════════════════════════ -->
-      <div id="tab4" role="tabpanel" aria-labelledby="btn-tab4" class="tab-panel" hidden>
+      <details class="faq-item">
+        <summary>Q15.희망하는 학교에 결원이 없으면 어떻게 되나요?</summary>
+        <div class="faq-answer">
+          <p>전형 유형에 따라 대응 방법이 다릅니다.</p>
+          <ul>
+            <li><strong>교육감전형</strong>: 결원이 있는 다른 학교로 배정됩니다.</li>
+            <li><strong>학교장전형</strong>: 희망 학교에 결원이 없으면 입학이 불가합니다. 결원이 있는 다른 학교를 찾아 신청해야 합니다.</li>
+          </ul>
+          <p>학교장전형 고등학교의 경우 신청 전에 해당 학교에 직접 연락하여 결원 여부를 미리 확인하는 것을 권장합니다.</p>
+        </div>
+      </details>
 
-        <section class="content-section" aria-labelledby="sec-faq">
-          <h2 class="section-title" id="sec-faq">자주 묻는 질문 (FAQ)</h2>
+      <details class="faq-item">
+        <summary>Q16.전입학 후 학교생활기록부는 어떻게 처리되나요?</summary>
+        <div class="faq-answer">
+          <p>전입학이 확정되면 이전 학교에서 전입 학교로 <strong>학교생활기록부가 이관</strong>됩니다.</p>
+          <ul>
+            <li>성적, 출결, 봉사활동, 동아리 활동 등 모든 기록이 이전됩니다.</li>
+            <li>이관은 학교 간 공문으로 처리되며, 학생이 별도로 행동할 필요는 없습니다.</li>
+            <li>대학 입시에는 고등학교 전체 재학 기간의 기록이 모두 반영됩니다.</li>
+            <li>이전 학교에서의 성적 표기 방식 차이(예: 절대평가↔상대평가)는 학교와 상담하세요.</li>
+          </ul>
+        </div>
+      </details>
 
-          <div class="faq-wrap">
+    </div>
+  </section>
 
-            <details class="faq-item">
-              <summary>Q1.전 가족이 모두 이사해야만 전입학이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p><strong>네, 원칙적으로 부·모·자녀 전 가족이 이사해야 합니다.</strong></p>
-                <p>충청남도 고등학교 전입학은 가족 전원의 실거주 및 주민등록 이전이 기본 조건입니다.
-                부모 중 한 명만 이사하거나 자녀만 먼저 이사한 경우에는 전입학이 허용되지 않습니다.</p>
-              </div>
-            </details>
+</div><!-- /#tab4 -->
 
-            <details class="faq-item">
-              <summary>Q2.'세대주 조건'이란 무엇인가요?</summary>
-              <div class="faq-answer">
-                <p>이사한 지역에서 <strong>부모 중 한 분이 주민등록등본 기준 세대주</strong>로 등록되어 있어야 합니다.</p>
-                <p>세대주 여부는 주민등록등본으로 확인하며, 단순 거주자(세대원)로만 등록된 경우에는 조건을 충족하지 못할 수 있습니다.</p>
-              </div>
-            </details>          
+<!-- ══════════════════════════════════════════
+     탭 5 — 서식 자료실
+══════════════════════════════════════════ -->
+<div id="tab5" role="tabpanel" aria-labelledby="btn-tab5" class="tab-panel" hidden>
 
-            <details class="faq-item">
-              <summary>Q3.충남 내 같은 시·군 안에서도 전학이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p><strong>원칙적으로 불가합니다.</strong> 천안→천안, 아산→아산처럼 동일시·군 내 전학은 허용되지 않습니다.</p>
-                <p><strong>예외:</strong> 일반고에서 특성화고로의 진로 변경(계열 변경)은 2학년 1학기까지 가능합니다. 단, 천안·아산 지역은 특성화고에서 일반고로 전학이 불가합니다.</p>
-              </div>
-            </details>
+  <section class="content-section" aria-labelledby="sec-forms">
+    <h2 class="section-title" id="sec-forms">전입학 관련 서식 안내</h2>
 
-            <details class="faq-item">
-              <summary>Q4.전학이 가능한 시기는 언제까지인가요?</summary>
-              <div class="faq-answer">
-                <p>일반고와 특성화고 사이의 전학은 2학년 1학기까지, 계열이 같은 경우는 3학년 1학기까지 가능합니다.</p>
-                <p><strong>예외:</strong> 일반고에서 특성화고로의 진로 변경(계열 변경)은 2학년 1학기까지 가능합니다. 단, 천안·아산 지역은 특성화고에서 일반고로 전학이 불가합니다.</p>
-              </div>
-            </details>
+    <div class="notice-box">
+      <strong>제출 방법:</strong> 충청남도교육청 중등교육과 <strong>방문 접수</strong> 또는 <strong>등기우편 발송</strong>
+    </div>
 
-            <details class="faq-item">
-              <summary>Q5.중학교 3학년 2학기 말에 이사를 가게 되어, 고입 전 중학교 전학이 가능한 시기가 지났습니다. 고등학교 전학 방법이 있나요?</summary>
-              <div class="faq-answer">
-                <p>충남 외 타시도에서 전 가족이 이사를 오는 경우, 2월에 타시도 일반고등학교 입학예정자 입학 전 전학으로 신청 가능합니다.</p>
-                <p>충남에서 고등학교 배정이 완료되면 기존 타시도에서 배정받은 일반고등학교는 배정포기절차를 진행하시면 됩니다.</p>
-                <p>만약 타시도 입학 전 전학 신청기간 이후에 이사를 오시면 고등학교 1학년 1학기때 전학을 신청하시면 됩니다.</p>
-              </div>
-            </details>
+    <!-- 가. 교육감전형 -->
+    <div class="forms-doc-section">
+      <h3 class="forms-doc-title">가. 교육감전형 전·편입학 기본 서류</h3>
+      <ol class="forms-doc-list">
+        <li>
+          전입학 배정 신청서 1부
+          <span class="forms-doc-note">(전·편입자료 게시판에 게시)</span>
+        </li>
+        <li>
+          주민등록등본 1부
+          <span class="forms-doc-note">(주소변동내역 포함 / 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span>
+        </li>
+        <li>학교생활기록부(전산화 출력물) 1부</li>
+        <li>개인정보 활용 동의서 1부</li>
+      </ol>
+    </div>
 
-            <details class="faq-item">
-              <summary>Q6.타시도에서 충남으로 이사할 때 거주 기간 제한이 있나요?</summary>
-              <div class="faq-answer">
-                <p>중학교 졸업 지역과 이사 지역에 따라 거주 기간 조건이 다릅니다.</p>
-                <ul>
-                  <li><strong>중학교 졸업지 = 이사 지역</strong> (예: 아산 중졸→아산 전입): 현 학교 소재지 <strong>1년 이상 거주</strong> 조건</li>
-                  <li><strong>중학교 졸업지 ≠ 이사 지역</strong> (예: 서울 중졸→천안 전입): 거주 기간 제한 없이 전 가족 이사 조건만 충족하면 가능</li>
-                </ul>
-                <p>정확한 조건은 <a href="survey.html" style="color:var(--primary); font-weight:600;">전입학 진단하기</a>를 이용하거나 담당자에게 문의하세요.</p>
-              </div>
-            </details>
+    <!-- 나. 이혼가정 -->
+    <div class="forms-doc-section">
+      <h3 class="forms-doc-title">나. 이혼가정</h3>
+      <ol class="forms-doc-list">
+        <li>
+          전입학 배정 신청서 1부
+          <span class="forms-doc-note">(전·편입자료 게시판에 게시)</span>
+        </li>
+        <li>
+          주민등록등본 1부
+          <span class="forms-doc-note">(주소변동내역 포함 / 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span>
+        </li>
+        <li>학교생활기록부(전산화 출력물) 1부</li>
+        <li>
+          <span class="forms-doc-case">[친권자가 양육 시]</span>
+          학생의 기본증명서(친권자가 표시된 것) 1부
+        </li>
+        <li>
+          <span class="forms-doc-case">[친권자가 아닌 부 또는 모가 양육 시]</span>
+          학생의 가족관계증명서 1부, 친권자의 주민등록증 사본,
+          친권자의 전학동의서(고등학교 전편입학 업무처리지침 양식10) 1부
+        </li>
+        <li>개인정보 활용 동의서 1부</li>
+      </ol>
+    </div>
 
-            <details class="faq-item">
-              <summary>Q7.중학교 졸업 지역이 전입학에 영향을 미치나요?</summary>
-              <div class="faq-answer">
-                <p><strong>네, 영향을 미칩니다.</strong> 중학교 졸업 지역이 이사하려는 지역과 같을 경우, 거주 기간 조건(6개월 또는 1년)이 추가로 적용됩니다.</p>
-                <p>예를 들어, 아산에서 중학교를 졸업하고 타 지역으로 이사한 후 다시 아산으로 전입하려는 경우, 현재 재학 중인 학교 소재지에서 일정 기간 거주해야 합니다.</p>
-              </div>
-            </details>
+    <!-- 다. 생업 종사자 -->
+    <div class="forms-doc-section">
+      <h3 class="forms-doc-title">다. 부 또는 모가 생업으로 인해 주소를 이전할 수 없는 경우</h3>
+      <p class="forms-doc-desc">주민등록이 타 지역에 되어 있는 '생업 종사자'에 해당하는 경우</p>
+      <ol class="forms-doc-list">
+        <li>
+          전입학 배정 신청서 1부
+          <span class="forms-doc-note">(전·편입자료 게시판에 게시)</span>
+        </li>
+        <li>
+          주민등록등본 1부
+          <span class="forms-doc-note">(주소변동내역 포함 / 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span>
+        </li>
+        <li>학교생활기록부(전산화 출력물) 1부</li>
+        <li>
+          학생의 가족관계증명서 1부,
+          이전 못하는 부 또는 모의 주민등록등본 1부,
+          재직증명서 혹은 사업자등록증 1부
+        </li>
+        <li>개인정보 활용 동의서 1부</li>
+      </ol>
+    </div>
 
-            <details class="faq-item">
-              <summary>Q8.과학고·외고 등 특수목적고 재학생도 전입학이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p>일반적인 전입학 규정이 <strong>적용되지 않습니다.</strong></p>
-                <ul>
-                  <li>소재지 1년 거주 후 학교장 허가를 받는 경우 가능</li>
-                  <li>전 가족 이전 조건을 갖춘 경우 가능한 경우도 있음</li>
-                  <li>과학고→일반고 전학은 해당 시·도 교육청에 별도 문의 필요</li>
-                </ul>
-              </div>
-            </details>            
+    <!-- 귀국학생 -->
+    <div class="forms-doc-section">
+      <h3 class="forms-doc-title">귀국학생 편입학 제출서류</h3>
+      <div class="notice-box" style="margin-bottom:1rem;">
+        <strong>신청 기한:</strong> 학기 중 귀국 시 외국학교 최종 재학일 이후 <strong>1개월 이내</strong> 신청<br>
+        <strong>접수 방법:</strong> 학교로 직접 방문 접수하여 편입학 신청<br>
+        <strong>대상:</strong> 한국국적 학생 / 부모 중 한 명이 외국인인 국제결혼가정이면서 우리나라에서 출생하고 한국국적이 있는 다문화가정 학생<br>
+        <strong>공증 안내:</strong> 성적증명서·졸업증명서에는 해당 학교가 정규학교임을 증명하는
+        <em>아포스티유</em> 혹은 <em>영사관/대사관 공증</em>이 필요하며,
+        모든 외국어 서류는 한국어로 번역 공증하여 제출
+      </div>
+      <ol class="forms-doc-list">
+        <li>외국학교 전 학년의 성적증명서</li>
+        <li>
+          외국학교 초·중학교 졸업증명서
+          <span class="forms-doc-note">(해당될 경우만)</span>
+        </li>
+        <li>국내 최종학교 재학/제적/졸업 증명서</li>
+        <li>국내 최종학교 생활기록부</li>
+        <li>
+          출입국사실증명서
+          <span class="forms-doc-note">(부, 모, 학생)</span>
+        </li>
+        <li>
+          주민등록등본
+          <span class="forms-doc-note">(전 가족 등재, 단독세대, 귀국일자 이후 발행)</span>
+        </li>
+        <li>
+          재외국민등록부등본
+          <span class="forms-doc-note">(부모와 함께 2년 이상 외국에서 재학한 학생만)</span>
+        </li>
+        <li>
+          예방접종증명서
+          <span class="forms-doc-note">(감염병의 예방 및 관리에 관한 법률 제27조)</span>
+        </li>
+        <li>
+          편입학 신청서
+          <span class="forms-doc-note">(고등학교 전편입학 업무처리지침 [양식4] 귀국학생 입취학(편입학) 신청서)</span>
+        </li>
+        <li>개인정보 활용 동의서 1부</li>
+      </ol>
+    </div>
 
-            <details class="faq-item">
-              <summary>Q9.학교 배정은 어떻게 이루어지나요?</summary>
-              <div class="faq-answer">
-                <p><strong>교육감전형</strong>의 경우 희망 학교에 결원이 있는 경우 배정합니다.</p>
-                <p><strong>학교장전형</strong>은 전입 희망 학교에 직접 신청하며, 해당 학교의 결원과 학교장 허가 여부에 따라 결정됩니다.</p>
-              </div>
-            </details>
+    <!-- 외국인학생 -->
+    <div class="forms-doc-section">
+      <h3 class="forms-doc-title">외국인학생 편입학 제출서류</h3>
+      <div class="notice-box" style="margin-bottom:1rem;">
+        <strong>신청 기한:</strong> 학기 중 귀국 시 외국학교 최종 재학일 이후 <strong>1개월 이내</strong> 신청<br>
+        <strong>제출 대상:</strong> 외국국적 외국인가정 학생 / 외국·한국국적 다문화가정 학생<br>
+        <strong>제출 방법</strong>
+        <ul style="margin:0.5rem 0 0 1.4rem; padding:0;">
+          <li>주거지가 <strong>천안·아산</strong>인 경우 → 충청남도교육청 중등교육과로 방문 접수</li>
+          <li>주거지가 <strong>천안·아산 이외</strong>의 지역인 경우 → 학교로 직접 방문 접수하여 편입학 신청</li>
+        </ul>
+        <br>
+        <strong>공증 안내:</strong> 성적증명서·졸업증명서에는 해당 학교가 정규학교임을 증명하는
+        <em>아포스티유</em> 혹은 <em>영사관/대사관 공증</em>이 필요하며,
+        모든 외국어 서류는 한국어로 번역 공증하여 제출
+      </div>
+      <ol class="forms-doc-list">
+        <li>외국학교 전 학년의 성적증명서</li>
+        <li>
+          외국학교 초·중학교 졸업증명서
+          <span class="forms-doc-note">(해당될 경우만)</span>
+        </li>
+        <li>
+          출입국사실증명서
+          <span class="forms-doc-note">(부, 모, 학생)</span>
+        </li>
+        <li>제적등본, 호구부 등 가족관계를 입증할 수 있는 서류</li>
+        <li>
+          주민등록등본
+          <span class="forms-doc-note">(부모 중 1인이 한국인이고, 주민등록등본에 전 가족이 등재되어 있는 경우만)</span>
+        </li>
+        <li>
+          국내거소신고 사실증명서(부, 모, 학생) 혹은 외국인등록 사실증명서, 외국인등록증 등
+          국내거주사실을 확인할 수 있는 증명서류
+        </li>
+        <li>
+          예방접종증명서
+          <span class="forms-doc-note">(감염병의 예방 및 관리에 관한 법률 제27조)</span>
+        </li>
+        <li>
+          입학·편입학 신청서
+          <span class="forms-doc-note">(고등학교 전편입학 업무처리지침 [양식2] 교육감 전형 외국인 학생용)</span>
+        </li>
+        <li>
+          국내 이전학교 학교생활기록부
+          <span class="forms-doc-note">(국내학교 재학 이력이 있을 경우)</span>
+        </li>
+        <li>개인정보 활용 동의서 1부</li>
+      </ol>
+    </div>
 
-            <details class="faq-item">
-              <summary>Q10.3학년 2학기에도 전입학이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p><strong>불가합니다.</strong> 학교폭력 피해 등 예외적인 사유가 있는 경우에만 가능합니다.</p>                
-              </div>
-            </details>
+  </section>
 
-            <details class="faq-item">
-              <summary>Q11.이사 후 주민등록 이전 없이 전입학 신청이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p><strong>불가합니다.</strong> 주민등록 이전은 전입학의 필수 전제 조건입니다.</p>
-                <p>전입학 신청 시 주민등록등본(전 가족 기재)을 제출해야 하며, 이사 지역으로의 세대 이전이 등본에서 확인되어야 합니다.</p>
-                <p>이사 직후 주민센터를 방문하여 주민등록 이전을 먼저 완료한 뒤 전입학을 신청하세요.</p>
-              </div>
-            </details>
+</div><!-- /#tab5 -->
 
-            <details class="faq-item">
-              <summary>Q12.천안·아산 지역에서 고등학교를 입학했다가 다른 지역으로 전학을 갔습니다. 다시 천안·아산으로 이사를 왔는데, 전학이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p>천안·아산으로 다시 전 가족(부,모,자녀)가 이사를 올 경우 입학했던 고등학교로 다시 배정됩니다.</p>                
-              </div>
-            </details>
+</div><!-- /.tab-content-wrap -->
+</main>
 
-            <details class="faq-item">
-              <summary>Q13.주소지는 천안인데, 학생은 천안이 아닌 타시도 고등학교에 재학 중입니다. 중학교는 천안에서 졸업했습니다. 천안으로 고등학교 전학이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p>천안에서 중학교를 졸업하고, 타시도 일반고등학교에 재학 중인 경우 전 가족(부,모,자녀)가</p>
-                <p>고등학교가 소재한 해당 지역에서 만 1년 이상(특성화고 재학 중인 경우 6개월) 거주한 후 천안으로 다시 거주지를 이전해야 전학이 가능합니다.</p>                
-              </div>
-            </details>
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" role="contentinfo">
+  <p>© 충청남도교육청. All rights reserved. &nbsp;|&nbsp; 중등교육과 041-640-7217(천안·아산), 041-640-7216(그 외 지역)</p>
+</footer>
 
-            <details class="faq-item">
-              <summary>Q14.학기 중간(3~6월, 9~11월)에도 전입학 신청이 가능한가요?</summary>
-              <div class="faq-answer">
-                <p><strong>네, 학기 중에도 신청할 수 있습니다.</strong> 전입학은 학기 시작 전뿐만 아니라 학기 중 언제든지 신청 가능합니다.</p>
-                <p>다만 시험기간 중에는 전입학이 어려울 수 있으며, 시험 기간을 제외한 기간에는 방학을 포함해서 전입학이 가능합니다.</p>
-              </div>
-            </details>
+<script src="js/main.js"></script>
+<script src="js/schools.js"></script>
+<script src="js/map.js"></script>
 
-            <details class="faq-item">
-              <summary>Q15.희망하는 학교에 결원이 없으면 어떻게 되나요?</summary>
-              <div class="faq-answer">
-                <p>전형 유형에 따라 대응 방법이 다릅니다.</p>
-                <ul>
-                  <li><strong>교육감전형</strong>: 결원이 있는 다른 학교로 배정됩니다.</li>
-                  <li><strong>학교장전형</strong>: 희망 학교에 결원이 없으면 입학이 불가합니다. 결원이 있는 다른 학교를 찾아 신청해야 합니다.</li>
-                </ul>
-                <p>학교장전형 고등학교의 경우 신청 전에 해당 학교에 직접 연락하여 결원 여부를 미리 확인하는 것을 권장합니다.</p>
-              </div>
-            </details>
-
-            <details class="faq-item">
-              <summary>Q16.전입학 후 학교생활기록부는 어떻게 처리되나요?</summary>
-              <div class="faq-answer">
-                <p>전입학이 확정되면 이전 학교에서 전입 학교로 <strong>학교생활기록부가 이관</strong>됩니다.</p>
-                <ul>
-                  <li>성적, 출결, 봉사활동, 동아리 활동 등 모든 기록이 이전됩니다.</li>
-                  <li>이관은 학교 간 공문으로 처리되며, 학생이 별도로 행동할 필요는 없습니다.</li>
-                  <li>대학 입시에는 고등학교 전체 재학 기간의 기록이 모두 반영됩니다.</li>
-                  <li>이전 학교에서의 성적 표기 방식 차이(예: 절대평가↔상대평가)는 학교와 상담하세요.</li>
-                </ul>
-              </div>
-            </details>            
-
-          </div>
-        </section>
-
-      </div><!-- /#tab4 -->
-
-
-      <!-- ══════════════════════════════════════════
-           탭 5 — 서식 자료실
-           ══════════════════════════════════════════ -->
-      <div id="tab5" role="tabpanel" aria-labelledby="btn-tab5" class="tab-panel" hidden>
-
-        <section class="content-section" aria-labelledby="sec-forms">
-          <h2 class="section-title" id="sec-forms">전입학 관련 서식 안내</h2>
-            <p><strong>제출서류(제출방법: 충청남도교육청 중등교육과 방문 접수 혹은 등기우편 발송)</strong></p>       
-           
-           <p>가. 교육감전형 전·편입학 기본 서류</p>
-                  <p>1) 전입학 배정 신청서 1부.(전·편입자료 게시판에 게시)</p>
-                  <p>2) 주민등록등본 1부(주소변동내역 포함, 주소변동내역이 나오지 않을 경우 초본 추가 제출)</p>
-                  <p>3) 학교생활기록부(전산화 출력물) 1부</p>
-                  <p>4) 개인정보 활용 동의서 1부</p> 
-                       
-           <p>나. 이혼가정</p>
-                  <p>1) 전입학 배정 신청서 1부.(전·편입자료 게시판에 게시)</p>
-                  <p>2) 주민등록등본 1부(주소변동내역 포함, 주소변동내역이 나오지 않을 경우 초본 추가 제출)</p>  
-                  <p>3) 학교생활기록부(전산화 출력물) 1부</p>
-                  <p>4) (친권자가 양육시) 학생의 기본증명서(친권자가 표시된) 1부.</p>
-                  <p>5) (친권자가 아닌 부 또는 모가 양육시)학생의 가족관계증명서 1부, 친권자의 주민등록증 사본, 친권자의 전학동의서(고등학교 전편입학 업무처리지침 양식10) 1부.</p>
-                  <p>6) 개인정보 활용 동의서 1부.</p>
-                  
-           <p>다. 부 또는 모가 주소를 이전할 수 없는 ‘생업 종사자’로 주민등록이 타 지역에 되어 있는 경우</p>
-                  <p>1) 전입학 배정 신청서 1부.(전·편입자료 게시판에 게시)</p>
-                  <p>2) 주민등록등본 1부(주소변동내역 포함, 주소변동내역이 나오지 않을 경우 초본 추가 제출)</p>
-                  <p>3) 학교생활기록부(전산화 출력물) 1부</p>
-                  <p>4) 학생의 가족관계증명서 1부, 이전 못하는 부 또는 모의 주민등록등본 1부, 재직증명서 혹은 사업자등록증 1부.</p>
-                  <p>5) 개인정보 활용 동의서 1부</p>
-                  
-                     
-           <p><strong>귀국학생 편입학 제출서류(학기 중 귀국시 외국학교 최종 재학일 이후 1개월 이내에 신청, 학교로 직접 방문 접수하여 편입학 신청)</strong></p>
-           
-                  <p>대상: 한국국적 학생, 부모 중 한명이 외국인인 국제결혼가정이면서 우리나라에서 출생하고 한국국적이 있는 다문화가정 학생</p>
-                
-                  <p>성적증명서, 졸업증명서에는 외국소재 해당학교가 정규학교임을 증명하는 아포스티유 혹은 영사관/대사관 공증이 필요하며, 모든 외국어 서류는 한국어로 번역 공증하여 제출</p>
-                  
-                  <p>1. 외국학교 전학년의 성적증명서</p>
-                  <p>2. 외국학교 초·중학교 졸업증명서(해당될 경우만)</p>
-                  <p>3. 국내 최종학교 재학/제적/졸업 증명서</p>
-                  <p>4. 국내 최종학교 생활기록부</p>
-                  <p>5. 출입국사실증명서(부,모,학생)</p>
-                  <p>6. 주민등록등본(전가족 등재, 단독세대, 귀국일자 이후 발행)</p>
-                  <p>7. 재외국민등록부등본(부모와 함께 2년 이상 외국에서 재학한 학생만)</p>
-                  <p>8. 예방접종증명서(감염병의 예방 및 관리에 관한 법률 제27조)</p>
-                  <p>9. 편입학 신청서(고등학교 전편입학 업무처리지침[양식4]귀국학생 입취학(편입학) 신청서)</p>
-                  <p>10. 개인정보 활용 동의서 1부</p>
-                  
-                  
-           <p><strong>외국인학생 편입학 제출서류(학기 중 귀국시 외국학교 최종 재학일 이후 1개월 이내에 신청)</strong></p>
-           
-            <p>제출대상: 외국국적 외국인가정 학생, 외국/한국국적 다문화가정 학생</p>
-            
-             <p>제출방법</p>
-                <p>1) 주거지가 천안,아산인 경우: 충청남도교육청 중등교육과로 방문 접수</p>
-                <p>2) 주거지가 천안,아산 이외의 지역인 경우: 학교로 직접 방문 접수하여 편입학 신청</p>
-                
-             <p>성적증명서, 졸업증명서에는 외국소재 해당학교가 정규학교임을 증명하는 아포스티유 혹은 영사관/대사관 공증이 필요하며, 모든 외국어 서류는 한국어로 번역 공증하여 제출</p>
-             
-                  <p>1. 외국학교 전학년의 성적증명서</p>
-                  <p>2. 외국학교 초·중학교 졸업증명서(해당될 경우만)</p>
-                  <p>3. 출입국사실증명서(부,모,학생)</p>
-                  <p>4. 제적등본, 호구부 등 가족관계를 입증할 수 있는 서류</p>
-                  <p>5. 주민등록등본(부모중 1인이 한국인이고, 주민등록등본에 전 가족이 등재되어 있는 경우만)</p>
-                  <p>6. 국내거소신고 사실증명서(부,모,학생) 혹은 외국인등록 사실증명서, 외국인등록증 등 국내거주사실을 확인할 수 있는 증명서류</p>
-                  <p>7. 예방접종증명서(감염병의 예방 및 관리에 관한 법률 제27조)</p>
-                  <p>8. 입학.편입학 신청서(고등학교 전편입학 업무처리지침[양식2]교육감 전형 외국인 학생용)</p>
-                  <p>9. 국내 이전학교 학교생활기록부(국내학교 재학한 이력이 있을 경우)</p>
-                  <p>10. 개인정보 활용 동의서 1부</p>
-          </div>
-
-        <section class="content-section" aria-labelledby="sec-forms">
-          <h2 class="section-title" id="sec-forms">전입학 관련 서식 다운로드</h2>
-
-          <div class="data-table-wrap">
-            <table class="data-table forms-table" aria-label="전입학 관련 서식 목록">
-              <thead>
-                <tr>
-                  <th scope="col">서식명</th>
-                  <th scope="col">대상</th>
-                  <th scope="col">설명</th>
-                  <th scope="col">형식</th>
-                 <th scope="col">다운로드</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <!-- 카테고리: 신청 서식 -->
-                <tr class="forms-cat-row">
-                  <td colspan="5">● 필요 서식 안내</td>
-                </tr>
-                <tr>
-                  <td>전입학 원서</td>
-                  <td>전입학 희망자 전체</td>
-                  <td>전입학 신청 시 기본 제출 서류. 학교장전형에 필수</td>
-                  <td><span class="file-type-badge hwp">HWP</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>교육감전형 배정 신청서</td>
-                  <td>타시도 → 천안·아산 일반계</td>
-                  <td>교육지원청에 제출하는 교육감전형 전용 신청서</td>
-                  <td><span class="file-type-badge hwp">HWP</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>개인정보 수집·이용 동의서</td>
-                  <td>전입학 신청자 전체</td>
-                  <td>전입학 처리 과정에서의 개인정보 활용 동의</td>
-                  <td><span class="file-type-badge hwp">HWP</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-
-                <!-- 카테고리: 제출 서류 안내 -->
-                <tr class="forms-cat-row">
-                  <td colspan="5">▶ 제출 서류 안내</td>
-                </tr>
-                <tr>
-                  <td>재학(재적)증명서 발급 안내</td>
-                  <td>전입학 신청자 전체</td>
-                  <td>현 재학 학교에서 발급 방법 및 유의사항 안내</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>학교생활기록부 발급 안내</td>
-                  <td>전입학 신청자 전체</td>
-                  <td>학교알리미·나이스 통한 발급 방법 및 봉인 요령 안내</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>주민등록등본 준비 안내</td>
-                  <td>전입학 신청자 전체</td>
-                  <td>전 가족 기재 등본 발급 방법 및 세대주 확인 방법 안내</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-
-                <!-- 카테고리: 전입학 안내 자료 -->
-                <tr class="forms-cat-row">
-                  <td colspan="5">▶ 전입학 안내 자료</td>
-                </tr>
-                <tr>
-                  <td>교육감전형 신청 안내문</td>
-                  <td>타시도 → 천안·아산 일반계</td>
-                  <td>교육감전형 전체 절차·일정·서류 안내 책자</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>학교장전형 신청 안내문</td>
-                  <td>충남 내 전학 / 기타 일반계</td>
-                  <td>학교장전형 절차·학교 여석 확인 방법 안내</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>고등학교 전입학 Q&amp;A 자료집</td>
-                  <td>전입학 문의자 전체</td>
-                  <td>학부모 문의 빈도 상위 50개 질문·답변 수록</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>전입학 업무 처리 지침</td>
-                  <td>학교 담당자</td>
-                  <td>충남교육청 발행 연도별 전입학 업무 처리 지침 (학교용)</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-
-                <!-- 카테고리: 기타 참고 자료 -->
-                <tr class="forms-cat-row">
-                  <td colspan="5">▶ 기타 참고 자료</td>
-                </tr>
-                <tr>
-                  <td>충남 고등학교 현황 자료</td>
-                  <td>전입학 희망자</td>
-                  <td>충남 내 고등학교 유형·위치·연락처 목록 (연도별 업데이트)</td>
-                  <td><span class="file-type-badge xlsx">XLSX</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-                <tr>
-                  <td>전입학 관련 법령 안내</td>
-                  <td>전입학 문의자</td>
-                  <td>초·중등교육법 시행령 등 전입학 근거 법령 발췌 안내</td>
-                  <td><span class="file-type-badge pdf">PDF</span></td>
-                  <td><a href="#" class="btn-download disabled" aria-label="준비 중">↓ 준비 중</a></td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-
-          <div class="notice-box">
-            <strong>서식 파일은 순차적으로 업로드될 예정입니다.</strong><br>
-            현재 파일이 필요하신 경우 충청남도교육청 <strong>041-640-7217</strong>으로 문의하시거나,
-            <a href="https://www.cne.go.kr" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">충청남도교육청 누리집</a>을 방문해 주세요.
-          </div>
-        </section>
-
-      </div><!-- /#tab5 -->
-
-    </div><!-- /.tab-content-wrap -->
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer" role="contentinfo">
-    <p>© 충청남도교육청. All rights reserved. &nbsp;|&nbsp; 중등교육과 041-640-7217(천안·아산), 041-640-7216(그 외 지역)</p>
-  </footer>
-
-  <script src="js/main.js"></script>
-  <script src="js/schools.js"></script>
-  <script src="js/map.js"></script>
 </body>
 </html>
