@@ -147,7 +147,7 @@
   <!-- 담당자 문의처 -->
   <section class="content-section" aria-labelledby="sec-contact">
     <h2 class="section-title" id="sec-contact">담당자 문의처</h2>
-    <div class="contact-label">충청남도교육청 중등교육과</div>
+    <div class="contact-label" style="font-size:calc(1em + 4pt);">충청남도교육청 중등교육과</div>
     <div class="contact-phone">041-640-7217(천안·아산), 041-640-7216(그 외 지역)</div>
   </section>
 
@@ -620,173 +620,387 @@
 ══════════════════════════════════════════ -->
 <div id="tab5" role="tabpanel" aria-labelledby="btn-tab5" class="tab-panel" hidden>
 
+<style>
+/* ════════════════════════════════
+   충청남도교육청 게시판 스타일
+   ════════════════════════════════ */
+
+.cne-doc-wrap {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  line-height: 1.75;
+  max-width: 860px;
+}
+.cne-doc-wrap .cne-h1 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 0.15rem 0;
+  padding-bottom: 0.45rem;
+  border-bottom: 2.5px solid #1a5fa8;
+  display: inline-block;
+}
+.cne-doc-wrap .cne-subtitle {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0.35rem 0 1.1rem 0;
+}
+.cne-doc-wrap .cne-l1 {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 0.9rem 0 0.3rem 0;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.cne-doc-wrap .cne-l1 .cne-bullet1 {
+  color: #1a5fa8;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.cne-doc-wrap .cne-l2-list {
+  list-style: none;
+  margin: 0.1rem 0 0.5rem 1.5rem;
+  padding: 0;
+}
+.cne-doc-wrap .cne-l2-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.18rem 0;
+  color: #1a1a1a;
+  font-weight: 400;
+}
+.cne-doc-wrap .cne-l2-list li .cne-bullet2 {
+  color: #1a5fa8;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+.cne-doc-wrap .cne-desc {
+  margin: 0.2rem 0 0.4rem 1.5rem;
+  color: #2a2a2a;
+  font-weight: 400;
+}
+.cne-doc-wrap .cne-section {
+  margin-bottom: 2rem;
+}
+.cne-doc-wrap .cne-section-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111;
+  margin: 1.8rem 0 0.1rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 2.5px solid #1a5fa8;
+  display: inline-block;
+}
+
+/* ── 기존 bbs 스타일 (하위호환) ── */
+.bbs-wrap { margin-top: 1.2rem; }
+
+/* 제출방법 안내 바 */
+.bbs-submit-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #eef3fb;
+  border: 1px solid #c5d6f0;
+  border-radius: 8px;
+  padding: 0.85rem 1.2rem;
+  margin-bottom: 1.6rem;
+  font-size: 0.93rem;
+  color: #1a3a6b;
+}
+.bbs-submit-bar .bbs-submit-icon { font-size: 1.3rem; flex-shrink: 0; }
+.bbs-submit-bar strong { font-weight: 700; }
+
+/* 게시판 카테고리 헤더 */
+.bbs-category {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: #1a5fa8;
+  color: #fff;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.65rem 1.1rem;
+  border-radius: 6px 6px 0 0;
+  margin-top: 1.8rem;
+  letter-spacing: 0.01em;
+}
+.bbs-category .bbs-cat-icon { font-size: 1.1rem; }
+
+/* 게시판 서류 목록 테이블 */
+.bbs-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #d0daea;
+  border-top: none;
+  font-size: 0.91rem;
+  background: #fff;
+}
+.bbs-table thead tr {
+  background: #f0f4fa;
+  border-bottom: 1px solid #c0cfe4;
+}
+.bbs-table thead th {
+  padding: 0.6rem 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  text-align: center;
+  font-size: 0.86rem;
+  letter-spacing: 0.01em;
+  border-right: 1px solid #dde5f0;
+}
+.bbs-table thead th:last-child { border-right: none; }
+
+.bbs-table tbody tr {
+  border-bottom: 1px solid #e8edf5;
+  transition: background 0.12s;
+}
+.bbs-table tbody tr:last-child { border-bottom: none; }
+.bbs-table tbody tr:hover { background: #f7f9fd; }
+
+.bbs-table td {
+  padding: 0.72rem 0.9rem;
+  vertical-align: middle;
+  color: #1e2a3a;
+  border-right: 1px solid #edf1f8;
+}
+.bbs-table td:last-child { border-right: none; }
+
+/* 번호 열 */
+.bbs-num {
+  text-align: center;
+  width: 2.6rem;
+  color: #7b90aa;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+/* 파일 아이콘 열 */
+.bbs-file-col {
+  text-align: center;
+  width: 3rem;
+}
+.bbs-file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.bbs-file-icon.hwp  { background: #1164c2; }
+.bbs-file-icon.pdf  { background: #d93025; }
+.bbs-file-icon.doc  { background: #2b579a; }
+.bbs-file-icon.none { background: #94a3b8; font-size: 0.9rem; font-weight: 400; }
+
+/* 제목 열 */
+.bbs-title-col { min-width: 14rem; }
+.bbs-title-main {
+  font-weight: 500;
+  color: #1a2a45;
+  line-height: 1.5;
+}
+.bbs-title-sub {
+  display: block;
+  font-size: 0.8rem;
+  color: #6b7f99;
+  margin-top: 0.18rem;
+  line-height: 1.45;
+}
+/* 케이스 뱃지 */
+.bbs-case-badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  margin-bottom: 0.2rem;
+  vertical-align: middle;
+}
+
+/* 부수 정보 열 */
+.bbs-req {
+  text-align: center;
+  width: 4rem;
+  font-size: 0.84rem;
+  color: #475569;
+  white-space: nowrap;
+}
+
+/* 비고 열 */
+.bbs-note-col {
+  font-size: 0.82rem;
+  color: #64748b;
+  max-width: 14rem;
+  line-height: 1.45;
+}
+
+/* 하단 안내 박스 */
+.bbs-info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: #fffbeb;
+  border: 1px solid #f0d060;
+  border-left: 4px solid #f5a623;
+  border-radius: 0 6px 6px 0;
+  padding: 0.85rem 1.1rem;
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  color: #5a3e00;
+  line-height: 1.6;
+}
+.bbs-info-box .bbs-info-icon { font-size: 1.15rem; flex-shrink: 0; padding-top: 0.05rem; }
+
+/* 필수 뱃지 */
+.badge-required {
+  display: inline-block;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.05rem 0.38rem;
+  border-radius: 3px;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+}
+.badge-optional {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.05rem 0.38rem;
+  border-radius: 3px;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+}
+</style>
+
   <section class="content-section" aria-labelledby="sec-forms">
     <h2 class="section-title" id="sec-forms">전입학 관련 서식 안내</h2>
 
-    <div class="notice-box">
-      <strong>제출 방법:</strong> 충청남도교육청 중등교육과 <strong>방문 접수</strong> 또는 <strong>등기우편 발송</strong>
-    </div>
+    <div class="cne-doc-wrap">
 
-    <!-- 가. 교육감전형 -->
-    <div class="forms-doc-section">
-      <h3 class="forms-doc-title">가. 교육감전형 전·편입학 기본 서류</h3>
-      <ol class="forms-doc-list">
-        <li>
-          전입학 배정 신청서 1부
-          <span class="forms-doc-note">(전·편입자료 게시판에 게시)</span>
-        </li>
-        <li>
-          주민등록등본 1부
-          <span class="forms-doc-note">(주소변동내역 포함 / 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span>
-        </li>
-        <li>학교생활기록부(전산화 출력물) 1부</li>
-        <li>개인정보 활용 동의서 1부</li>
-      </ol>
-    </div>
+      <!-- ══ 제출서류 ══ -->
 
-    <!-- 나. 이혼가정 -->
-    <div class="forms-doc-section">
-      <h3 class="forms-doc-title">나. 이혼가정</h3>
-      <ol class="forms-doc-list">
-        <li>
-          전입학 배정 신청서 1부
-          <span class="forms-doc-note">(전·편입자료 게시판에 게시)</span>
-        </li>
-        <li>
-          주민등록등본 1부
-          <span class="forms-doc-note">(주소변동내역 포함 / 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span>
-        </li>
-        <li>학교생활기록부(전산화 출력물) 1부</li>
-        <li>
-          <span class="forms-doc-case">[친권자가 양육 시]</span>
-          학생의 기본증명서(친권자가 표시된 것) 1부
-        </li>
-        <li>
-          <span class="forms-doc-case">[친권자가 아닌 부 또는 모가 양육 시]</span>
-          학생의 가족관계증명서 1부, 친권자의 주민등록증 사본,
-          친권자의 전학동의서(고등학교 전편입학 업무처리지침 양식10) 1부
-        </li>
-        <li>개인정보 활용 동의서 1부</li>
-      </ol>
-    </div>
+      <!-- 제출서류 제목 + 제출방법 -->
+      <p class="cne-h1">제출서류</p>
+      <p class="cne-subtitle">(제출방법: 충청남도교육청 중등교육과 방문 접수 혹은 등기우편 발송)</p>
 
-    <!-- 다. 생업 종사자 -->
-    <div class="forms-doc-section">
-      <h3 class="forms-doc-title">다. 부 또는 모가 생업으로 인해 주소를 이전할 수 없는 경우</h3>
-      <p class="forms-doc-desc">주민등록이 타 지역에 되어 있는 '생업 종사자'에 해당하는 경우</p>
-      <ol class="forms-doc-list">
-        <li>
-          전입학 배정 신청서 1부
-          <span class="forms-doc-note">(전·편입자료 게시판에 게시)</span>
-        </li>
-        <li>
-          주민등록등본 1부
-          <span class="forms-doc-note">(주소변동내역 포함 / 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span>
-        </li>
-        <li>학교생활기록부(전산화 출력물) 1부</li>
-        <li>
-          학생의 가족관계증명서 1부,
-          이전 못하는 부 또는 모의 주민등록등본 1부,
-          재직증명서 혹은 사업자등록증 1부
-        </li>
-        <li>개인정보 활용 동의서 1부</li>
-      </ol>
-    </div>
-
-    <!-- 귀국학생 -->
-    <div class="forms-doc-section">
-      <h3 class="forms-doc-title">귀국학생 편입학 제출서류</h3>
-      <div class="notice-box" style="margin-bottom:1rem;">
-        <strong>신청 기한:</strong> 학기 중 귀국 시 외국학교 최종 재학일 이후 <strong>1개월 이내</strong> 신청<br>
-        <strong>접수 방법:</strong> 학교로 직접 방문 접수하여 편입학 신청<br>
-        <strong>대상:</strong> 한국국적 학생 / 부모 중 한 명이 외국인인 국제결혼가정이면서 우리나라에서 출생하고 한국국적이 있는 다문화가정 학생<br>
-        <strong>공증 안내:</strong> 성적증명서·졸업증명서에는 해당 학교가 정규학교임을 증명하는
-        <em>아포스티유</em> 혹은 <em>영사관/대사관 공증</em>이 필요하며,
-        모든 외국어 서류는 한국어로 번역 공증하여 제출
+      <!-- 가. 교육감전형 기본 서류 -->
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>가. 교육감전형 전·편입학 기본 서류</span>
       </div>
-      <ol class="forms-doc-list">
-        <li>외국학교 전 학년의 성적증명서</li>
-        <li>
-          외국학교 초·중학교 졸업증명서
-          <span class="forms-doc-note">(해당될 경우만)</span>
-        </li>
-        <li>국내 최종학교 재학/제적/졸업 증명서</li>
-        <li>국내 최종학교 생활기록부</li>
-        <li>
-          출입국사실증명서
-          <span class="forms-doc-note">(부, 모, 학생)</span>
-        </li>
-        <li>
-          주민등록등본
-          <span class="forms-doc-note">(전 가족 등재, 단독세대, 귀국일자 이후 발행)</span>
-        </li>
-        <li>
-          재외국민등록부등본
-          <span class="forms-doc-note">(부모와 함께 2년 이상 외국에서 재학한 학생만)</span>
-        </li>
-        <li>
-          예방접종증명서
-          <span class="forms-doc-note">(감염병의 예방 및 관리에 관한 법률 제27조)</span>
-        </li>
-        <li>
-          편입학 신청서
-          <span class="forms-doc-note">(고등학교 전편입학 업무처리지침 [양식4] 귀국학생 입취학(편입학) 신청서)</span>
-        </li>
-        <li>개인정보 활용 동의서 1부</li>
-      </ol>
-    </div>
+      <ul class="cne-l2-list">
+        <li><span class="cne-bullet2">◈</span><span>1) 전입학 배정 신청서 1부.(전·편입자료 게시판에 게시)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>2) 주민등록등본 1부(주소변동내역 포함, 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>3) 학교생활기록부(전산화 출력물) 1부</span></li>
+        <li><span class="cne-bullet2">◈</span><span>4) 개인정보 활용 동의서 1부</span></li>
+      </ul>
 
-    <!-- 외국인학생 -->
-    <div class="forms-doc-section">
-      <h3 class="forms-doc-title">외국인학생 편입학 제출서류</h3>
-      <div class="notice-box" style="margin-bottom:1rem;">
-        <strong>신청 기한:</strong> 학기 중 귀국 시 외국학교 최종 재학일 이후 <strong>1개월 이내</strong> 신청<br>
-        <strong>제출 대상:</strong> 외국국적 외국인가정 학생 / 외국·한국국적 다문화가정 학생<br>
-        <strong>제출 방법</strong>
-        <ul style="margin:0.5rem 0 0 1.4rem; padding:0;">
-          <li>주거지가 <strong>천안·아산</strong>인 경우 → 충청남도교육청 중등교육과로 방문 접수</li>
-          <li>주거지가 <strong>천안·아산 이외</strong>의 지역인 경우 → 학교로 직접 방문 접수하여 편입학 신청</li>
-        </ul>
-        <br>
-        <strong>공증 안내:</strong> 성적증명서·졸업증명서에는 해당 학교가 정규학교임을 증명하는
-        <em>아포스티유</em> 혹은 <em>영사관/대사관 공증</em>이 필요하며,
-        모든 외국어 서류는 한국어로 번역 공증하여 제출
+      <!-- 나. 이혼가정 -->
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>나. 이혼가정</span>
       </div>
-      <ol class="forms-doc-list">
-        <li>외국학교 전 학년의 성적증명서</li>
-        <li>
-          외국학교 초·중학교 졸업증명서
-          <span class="forms-doc-note">(해당될 경우만)</span>
-        </li>
-        <li>
-          출입국사실증명서
-          <span class="forms-doc-note">(부, 모, 학생)</span>
-        </li>
-        <li>제적등본, 호구부 등 가족관계를 입증할 수 있는 서류</li>
-        <li>
-          주민등록등본
-          <span class="forms-doc-note">(부모 중 1인이 한국인이고, 주민등록등본에 전 가족이 등재되어 있는 경우만)</span>
-        </li>
-        <li>
-          국내거소신고 사실증명서(부, 모, 학생) 혹은 외국인등록 사실증명서, 외국인등록증 등
-          국내거주사실을 확인할 수 있는 증명서류
-        </li>
-        <li>
-          예방접종증명서
-          <span class="forms-doc-note">(감염병의 예방 및 관리에 관한 법률 제27조)</span>
-        </li>
-        <li>
-          입학·편입학 신청서
-          <span class="forms-doc-note">(고등학교 전편입학 업무처리지침 [양식2] 교육감 전형 외국인 학생용)</span>
-        </li>
-        <li>
-          국내 이전학교 학교생활기록부
-          <span class="forms-doc-note">(국내학교 재학 이력이 있을 경우)</span>
-        </li>
-        <li>개인정보 활용 동의서 1부</li>
-      </ol>
-    </div>
+      <ul class="cne-l2-list">
+        <li><span class="cne-bullet2">◈</span><span>1) 전입학 배정 신청서 1부.(전·편입자료 게시판에 게시)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>2) 주민등록등본 1부(주소변동내역 포함, 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>3) 학교생활기록부(전산화 출력물) 1부</span></li>
+        <li><span class="cne-bullet2">◈</span><span>4) (친권자가 양육시) 학생의 기본증명서(친권자가 표시된) 1부.</span></li>
+        <li><span class="cne-bullet2">◈</span><span>5) (친권자가 아닌 부 또는 모가 양육시)학생의 가족관계증명서 1부, 친권자의 주민등록증 사본, 친권자의 전학동의서(고등학교 전편입학 업무처리지침 양식10) 1부.</span></li>
+        <li><span class="cne-bullet2">◈</span><span>6) 개인정보 활용 동의서 1부.</span></li>
+      </ul>
 
+      <!-- 다. 생업 종사자 -->
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>다. 부 또는 모가 주소를 이전할 수 없는 '생업 종사자'로 주민등록이 타 지역에 되어 있는 경우</span>
+      </div>
+      <ul class="cne-l2-list">
+        <li><span class="cne-bullet2">◈</span><span>1) 전입학 배정 신청서 1부.(전·편입자료 게시판에 게시)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>2) 주민등록등본 1부(주소변동내역 포함, 주소변동내역이 나오지 않을 경우 초본 추가 제출)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>3) 학교생활기록부(전산화 출력물) 1부</span></li>
+        <li><span class="cne-bullet2">◈</span><span>4) 학생의 가족관계증명서 1부, 이전 못하는 부 또는 모의 주민등록등본 1부, 재직증명서 혹은 사업자등록증 1부.</span></li>
+        <li><span class="cne-bullet2">◈</span><span>5) 개인정보 활용 동의서 1부</span></li>
+      </ul>
+
+      <!-- 귀국학생 편입학 -->
+      <p class="cne-section-title">귀국학생 편입학 제출서류</p>
+      <p class="cne-subtitle">(학기 중 귀국시 외국학교 최종 재학일 이후 1개월 이내에 신청, 학교로 직접 방문 접수하여 편입학 신청)</p>
+
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>대상: 한국국적 학생, 부모 중 한명이 외국인인 국제결혼가정이면서 우리나라에서 출생하고 한국국적이 있는 다문화가정 학생</span>
+      </div>
+
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>성적증명서, 졸업증명서에는 외국소재 해당학교가 정규학교임을 증명하는 아포스티유 혹은 영사관/대사관 공증이 필요하며, 모든 외국어 서류는 한국어로 번역 공증하여 제출</span>
+      </div>
+      <ul class="cne-l2-list">
+        <li><span class="cne-bullet2">◈</span><span>1. 외국학교 전학년의 성적증명서</span></li>
+        <li><span class="cne-bullet2">◈</span><span>2. 외국학교 초·중학교 졸업증명서(해당될 경우만)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>3. 국내 최종학교 재학/제적/졸업 증명서</span></li>
+        <li><span class="cne-bullet2">◈</span><span>4. 국내 최종학교 생활기록부</span></li>
+        <li><span class="cne-bullet2">◈</span><span>5. 출입국사실증명서(부,모,학생)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>6. 주민등록등본(전가족 등재, 단독세대, 귀국일자 이후 발행)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>7. 재외국민등록부등본(부모와 함께 2년 이상 외국에서 재학한 학생만)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>8. 예방접종증명서(감염병의 예방 및 관리에 관한 법률 제27조)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>9. 편입학 신청서(고등학교 전편입학 업무처리지침[양식4]귀국학생 입취학(편입학) 신청서)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>10. 개인정보 활용 동의서 1부</span></li>
+      </ul>
+
+      <!-- 외국인학생 편입학 -->
+      <p class="cne-section-title">외국인학생 편입학 제출서류</p>
+      <p class="cne-subtitle">(학기 중 귀국시 외국학교 최종 재학일 이후 1개월 이내에 신청)</p>
+
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>제출대상: 외국국적 외국인가정 학생, 외국/한국국적 다문화가정 학생</span>
+      </div>
+
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>제출방법</span>
+      </div>
+      <ul class="cne-l2-list">
+        <li><span class="cne-bullet2">◈</span><span>1) 주거지가 천안,아산인 경우: 충청남도교육청 중등교육과로 방문 접수</span></li>
+        <li><span class="cne-bullet2">◈</span><span>2) 주거지가 천안,아산 이외의 지역인 경우: 학교로 직접 방문 접수하여 편입학 신청</span></li>
+      </ul>
+
+      <div class="cne-l1">
+        <span class="cne-bullet1">●</span>
+        <span>성적증명서, 졸업증명서에는 외국소재 해당학교가 정규학교임을 증명하는 아포스티유 혹은 영사관/대사관 공증이 필요하며, 모든 외국어 서류는 한국어로 번역 공증하여 제출</span>
+      </div>
+      <ul class="cne-l2-list">
+        <li><span class="cne-bullet2">◈</span><span>1. 외국학교 전학년의 성적증명서</span></li>
+        <li><span class="cne-bullet2">◈</span><span>2. 외국학교 초·중학교 졸업증명서(해당될 경우만)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>3. 출입국사실증명서(부,모,학생)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>4. 제적등본, 호구부 등 가족관계를 입증할 수 있는 서류</span></li>
+        <li><span class="cne-bullet2">◈</span><span>5. 주민등록등본(부모중 1인이 한국인이고, 주민등록등본에 전 가족이 등재되어 있는 경우만)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>6. 국내거소신고 사실증명서(부,모,학생) 혹은 외국인등록 사실증명서, 외국인등록증 등 국내거주사실을 확인할 수 있는 증명서류</span></li>
+        <li><span class="cne-bullet2">◈</span><span>7. 예방접종증명서(감염병의 예방 및 관리에 관한 법률 제27조)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>8. 입학.편입학 신청서(고등학교 전편입학 업무처리지침[양식2]교육감 전형 외국인 학생용)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>9. 국내 이전학교 학교생활기록부(국내학교 재학한 이력이 있을 경우)</span></li>
+        <li><span class="cne-bullet2">◈</span><span>10. 개인정보 활용 동의서 1부</span></li>
+      </ul>
+
+    </div><!-- /.cne-doc-wrap -->
   </section>
 
 </div><!-- /#tab5 -->
