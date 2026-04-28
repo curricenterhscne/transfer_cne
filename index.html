@@ -701,6 +701,201 @@
 /* ── 기존 bbs 스타일 (하위호환) ── */
 .bbs-wrap { margin-top: 1.2rem; }
 
+/* ════════════════════════════════
+   서식 다운로드 섹션
+   ════════════════════════════════ */
+
+.dl-section {
+  margin-top: 2.4rem;
+  border: 1.5px solid #c8d8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 섹션 헤더 */
+.dl-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: #1a5fa8;
+  color: #fff;
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.dl-section-icon { font-size: 1.15rem; }
+.dl-section-label {}
+
+/* 카테고리 제목 */
+.dl-cat-title {
+  background: #f0f5fb;
+  border-top: 1px solid #dde8f5;
+  border-bottom: 1px solid #dde8f5;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a5fa8;
+  letter-spacing: 0.02em;
+}
+.dl-cat-title:first-of-type { border-top: none; }
+
+/* 파일 목록 */
+.dl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 개별 파일 행 */
+.dl-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.2rem;
+  border-bottom: 1px solid #edf2fa;
+  background: #fff;
+  transition: background 0.13s;
+}
+.dl-item:last-child { border-bottom: none; }
+.dl-item:hover { background: #f6f9ff; }
+
+/* 파일 종류 뱃지 */
+.dl-icon-wrap { flex-shrink: 0; }
+.dl-file-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.dl-file-badge.hwp { background: #1164c2; }
+.dl-file-badge.pdf { background: #d93025; }
+.dl-file-badge.xlsx { background: #217346; }
+.dl-file-badge.doc  { background: #2b579a; }
+
+/* 서식 이름 + 설명 */
+.dl-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+.dl-name {
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: #1a2a45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dl-desc {
+  font-size: 0.78rem;
+  color: #6b7f99;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 양식 번호 태그 */
+.dl-meta { flex-shrink: 0; }
+.dl-tag {
+  display: inline-block;
+  background: #e8f0fb;
+  color: #1a5fa8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* 다운로드 버튼 */
+.dl-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.13s, color 0.13s;
+}
+.dl-btn-icon { font-size: 0.85rem; }
+
+/* 활성 다운로드 버튼 */
+.dl-btn-active {
+  background: #1a5fa8;
+  color: #fff;
+  border: 1.5px solid #1a5fa8;
+}
+.dl-btn-active:hover {
+  background: #154d8a;
+  border-color: #154d8a;
+}
+
+/* 준비 중 버튼 */
+.dl-btn-ready {
+  background: #f1f4f9;
+  color: #9aaabf;
+  border: 1.5px solid #dde5f0;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* 하단 안내 */
+.dl-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  background: #fffbeb;
+  border-top: 1px solid #f0d87a;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.85rem;
+  color: #5a3e00;
+  line-height: 1.65;
+}
+.dl-notice-icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 0.05rem; }
+.dl-notice-link {
+  color: #1a5fa8;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.dl-notice-link:hover { color: #0e3d72; }
+
+/* 카테고리 전형 뱃지 */
+.dl-cat-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.1rem 0.55rem;
+  border-radius: 4px;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+}
+.dl-cat-badge.edu    { background: #dbeafe; color: #1d4ed8; }
+.dl-cat-badge.school { background: #dcfce7; color: #166534; }
+.dl-cat-badge.etc    { background: #fef3c7; color: #92400e; }
+
+/* 행 번호 */
+.dl-num {
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
 /* 제출방법 안내 바 */
 .bbs-submit-bar {
   display: flex;
@@ -999,6 +1194,149 @@
         <li><span class="cne-bullet2">◈</span><span>9. 국내 이전학교 학교생활기록부(국내학교 재학한 이력이 있을 경우)</span></li>
         <li><span class="cne-bullet2">◈</span><span>10. 개인정보 활용 동의서 1부</span></li>
       </ul>
+
+      <!-- ══════════════════════════════════════
+           서식 다운로드
+      ══════════════════════════════════════ -->
+      <div class="dl-section">
+
+        <div class="dl-section-header">
+          <span class="dl-section-icon">📂</span>
+          <span class="dl-section-label">전·편입학 관련 서식 다운로드</span>
+        </div>
+
+        <!-- ─── 교육감전형 서식 (1~3) ─── -->
+        <div class="dl-cat-title">
+          <span class="dl-cat-badge edu">교육감전형</span> 서식
+        </div>
+        <ul class="dl-list">
+
+          <li class="dl-item">
+            <span class="dl-num">1</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">교육감전형 고등학교 전입학 배정 신청서</span>
+              <span class="dl-desc">타시도·타시군 → 천안·아산 일반계 전입학 신청 시 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+          <li class="dl-item">
+            <span class="dl-num">2</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">개인정보 활용 동의서</span>
+              <span class="dl-desc">전입학 신청자 전체 공통 — 가·나·다 모든 경우 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+          <li class="dl-item">
+            <span class="dl-num">3</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">교육감전형 고등학교 외국인학생 입학/편입학 신청서</span>
+              <span class="dl-desc">외국국적·다문화가정 학생 — 천안·아산 거주 시 교육청 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+        </ul>
+
+        <!-- ─── 학교장전형 서식 (4~7) ─── -->
+        <div class="dl-cat-title">
+          <span class="dl-cat-badge school">학교장전형</span> 서식
+        </div>
+        <ul class="dl-list">
+
+          <li class="dl-item">
+            <span class="dl-num">4</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">학교장전형 고등학교 외국인학생 입학/편입학 신청서</span>
+              <span class="dl-desc">천안·아산 이외 지역 또는 특성화고·특목고 외국인학생 — 학교 직접 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+          <li class="dl-item">
+            <span class="dl-num">5</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">학교장전형 전입학 신청서</span>
+              <span class="dl-desc">학교장전형 고등학교 전입학 시 해당 학교 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+          <li class="dl-item">
+            <span class="dl-num">6</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">편입학 신청서</span>
+              <span class="dl-desc">고등학교 편입학 시 해당 학교 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+          <li class="dl-item">
+            <span class="dl-num">7</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">재입학 신청서</span>
+              <span class="dl-desc">고등학교 재입학 시 해당 학교 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+        </ul>
+
+        <!-- ─── 기타 서식 (8) ─── -->
+        <div class="dl-cat-title">
+          <span class="dl-cat-badge etc">기타</span> 서식
+        </div>
+        <ul class="dl-list">
+
+          <li class="dl-item">
+            <span class="dl-num">8</span>
+            <span class="dl-icon-wrap"><span class="dl-file-badge hwp">HWP</span></span>
+            <span class="dl-info">
+              <span class="dl-name">친권자 전학 동의서</span>
+              <span class="dl-desc">이혼가정 — 친권자가 아닌 부 또는 모가 양육 시 추가 제출</span>
+            </span>
+            <a href="#" class="dl-btn dl-btn-ready" aria-label="준비 중">
+              <span class="dl-btn-icon">⬇</span> 준비 중
+            </a>
+          </li>
+
+        </ul>
+
+        <!-- 안내 문구 -->
+        <div class="dl-notice">
+          <span class="dl-notice-icon">💡</span>
+          <span>
+            서식 파일은 순차적으로 업로드될 예정입니다.
+            현재 파일이 필요하신 경우 충청남도교육청 중등교육과
+            <strong>☎ 041-640-7217(천안·아산) &nbsp;/&nbsp; 041-640-7216(그 외 지역)</strong>으로 문의하시거나,
+            <a href="https://www.cne.go.kr" target="_blank" rel="noopener noreferrer" class="dl-notice-link">충청남도교육청 누리집</a>을 방문해 주세요.
+          </span>
+        </div>
+
+      </div><!-- /.dl-section -->
 
     </div><!-- /.cne-doc-wrap -->
   </section>
