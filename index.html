@@ -21,23 +21,11 @@
       <img src="images/cne-logo.png" alt="충청남도교육청" class="header-logo-img">
     </a>
     <div class="header-right">
-      <!-- 교직원 로그인 영역 -->
-      <div class="staff-auth-wrap" id="staffAuthWrap">
-        <!-- 비로그인 상태 -->
-        <div class="staff-login-box" id="staffLoginBox">
-          <button class="btn-staff-login" id="btnOpenLogin" aria-haspopup="dialog" aria-label="교직원 로그인">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            교직원 로그인
-          </button>
-        </div>
-        <!-- 로그인 완료 상태 (기본 숨김) -->
-        <div class="staff-loggedin-box" id="staffLoggedinBox" hidden>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <button class="btn-staff-logout" id="btnLogout" aria-label="교직원 로그아웃">
-            교직원 로그아웃
-          </button>
-        </div>
-      </div>
+      <!-- 교직원 로그인/로그아웃 버튼 (단일) -->
+      <button class="btn-staff-auth" id="btnStaffAuth" data-state="login">
+        <svg class="auth-icon-user" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span id="btnStaffAuthLabel">교직원 로그인</span>
+      </button>
       <a href="survey.html" class="back-link" aria-label="전입학 가능 여부 진단 페이지로 이동">
         전입학 진단하기 →
       </a>
@@ -1468,14 +1456,8 @@
   align-items: center;
   gap: 1rem;
 }
-.staff-auth-wrap { display: flex; align-items: center; }
-
-/* 비로그인 */
-.staff-login-box {
-  display: flex;
-  align-items: center;
-}
-.btn-staff-login {
+/* 교직원 로그인/로그아웃 단일 버튼 */
+.btn-staff-auth {
   display: inline-flex;
   align-items: center;
   gap: .4rem;
@@ -1489,32 +1471,20 @@
   cursor: pointer;
   font-family: inherit;
   white-space: nowrap;
-  transition: background .15s;
+  transition: background .15s, border-color .15s;
 }
-.btn-staff-login:hover { background: rgba(255,255,255,.28); }
-
-/* 로그인 완료 상태 */
-.staff-loggedin-box {
-  display: inline-flex;
-  align-items: center;
+.btn-staff-auth:hover {
+  background: rgba(255,255,255,.28);
 }
-.btn-staff-logout {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.35);
-  border-radius: 6px;
-  color: #fff;
-  font-size: .84em;
-  font-weight: 600;
-  font-family: inherit;
-  padding: .32rem .9rem .32rem .7rem;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background .15s;
+/* 로그인 상태일 때 — 살짝 강조 */
+.btn-staff-auth[data-state="logout"] {
+  background: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.5);
 }
-.btn-staff-logout:hover { background: rgba(255,255,255,.28); }
+.btn-staff-auth[data-state="logout"]:hover {
+  background: rgba(220,50,50,.55);
+  border-color: rgba(255,180,180,.5);
+}
 
 
 
@@ -1894,6 +1864,333 @@
   box-shadow: none;
   cursor: not-allowed;
 }
+
+/* ===== 글쓰기 모달 ===== */
+.write-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+.write-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,.22);
+}
+.write-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem .9rem;
+  border-bottom: 1px solid #eee;
+  background: #f7f9fc;
+  position: sticky;
+  top: 0;
+}
+.write-modal-title {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: var(--primary, #005bac);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.write-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  color: #666;
+  padding: .2rem .4rem;
+  border-radius: 4px;
+}
+.write-modal-close:hover { background: #eee; }
+.write-modal-body { padding: 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+.write-field {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.write-field label {
+  font-size: .88em;
+  font-weight: 600;
+  color: #333;
+}
+.write-field label .req { color: #d32; margin-left: 2px; }
+.write-field input[type="text"],
+.write-field select,
+.write-field textarea {
+  padding: .55rem .8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: .95em;
+  font-family: inherit;
+  transition: border-color .15s;
+  resize: vertical;
+}
+.write-field input:focus,
+.write-field select:focus,
+.write-field textarea:focus {
+  outline: none;
+  border-color: var(--primary, #005bac);
+  box-shadow: 0 0 0 3px rgba(0,91,172,.1);
+}
+.write-field textarea { min-height: 160px; }
+.write-file-hint { font-size: .8em; color: #888; margin-top: .2rem; }
+
+/* 핀 토글 */
+.write-pin-toggle {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .9em;
+  cursor: pointer;
+  user-select: none;
+}
+.write-pin-toggle input { width: 16px; height: 16px; cursor: pointer; }
+
+.write-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: .6rem;
+  padding: 1rem 1.4rem 1.4rem;
+  border-top: 1px solid #eee;
+}
+.btn-write-cancel {
+  padding: .55rem 1.3rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  font-size: .93em;
+  font-family: inherit;
+  cursor: pointer;
+  color: #555;
+}
+.btn-write-cancel:hover { background: #f5f5f5; }
+.btn-write-save {
+  padding: .55rem 1.5rem;
+  background: var(--primary, #005bac);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: .93em;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.btn-write-save:hover { opacity: .88; }
+
+/* 등록된 게시물 행 삭제 버튼 */
+.notice-del-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: .78em;
+  color: #999;
+  cursor: pointer;
+  padding: .18rem .5rem;
+  font-family: inherit;
+  transition: color .1s, border-color .1s;
+}
+.notice-del-btn:hover { color: #d32; border-color: #d32; }
+</style>
+
+<script>
+/* ======================================================
+   공통 상태
+====================================================== */
+var isLoggedIn = false;
+var currentUser = '';
+
+/* ===== 탭 초기화 ===== */
+(function() {
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var tabPanels = document.querySelectorAll('.tab-panel');
+
+  function activateTab(targetId) {
+    tabBtns.forEach(function(btn) {
+      var isTarget = btn.getAttribute('aria-controls') === targetId;
+      btn.classList.toggle('active', isTarget);
+      btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+      btn.setAttribute('tabindex', isTarget ? '0' : '-1');
+    });
+    tabPanels.forEach(function(panel) {
+      var isTarget = panel.id === targetId;
+      panel.classList.toggle('active', isTarget);
+      if (isTarget) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
+    });
+  }
+
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() { activateTab(this.getAttribute('aria-controls')); });
+    btn.addEventListener('keydown', function(e) {
+      var idx = Array.from(tabBtns).indexOf(this);
+      if (e.key === 'ArrowRight' && idx < tabBtns.length - 1) { tabBtns[idx+1].focus(); activateTab(tabBtns[idx+1].getAttribute('aria-controls')); }
+      else if (e.key === 'ArrowLeft' && idx > 0) { tabBtns[idx-1].focus(); activateTab(tabBtns[idx-1].getAttribute('aria-controls')); }
+    });
+  });
+  activateTab('tab0');
+})();
+
+/* ===== 로그인 / 로그아웃 — 단일 버튼 제어 ===== */
+var btnStaffAuth    = document.getElementById('btnStaffAuth');
+var btnStaffAuthLabel = document.getElementById('btnStaffAuthLabel');
+var loginOverlay    = document.getElementById('loginModalOverlay');
+var btnCloseLogin   = document.getElementById('btnCloseLogin');
+var btnWriteNotice  = document.getElementById('btnWriteNotice');
+
+/* ── 모달 열기 / 닫기 ── */
+function openLoginModal() {
+  loginOverlay.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+  var f = document.getElementById('btnCneLogin');
+  if (f) setTimeout(function(){ f.focus(); }, 60);
+}
+function closeLoginModal() {
+  loginOverlay.setAttribute('hidden', '');
+  document.body.style.overflow = '';
+}
+
+/* ── 로그인 상태 반영 ── */
+function applyLogin() {
+  isLoggedIn  = true;
+  currentUser = '교직원';
+  /* 버튼 텍스트·상태 변경 */
+  btnStaffAuth.setAttribute('data-state', 'logout');
+  btnStaffAuth.setAttribute('aria-label', '교직원 로그아웃');
+  btnStaffAuthLabel.textContent = '교직원 로그아웃';
+  /* 글쓰기 활성화 */
+  btnWriteNotice.classList.remove('locked');
+  btnWriteNotice.title = '공지사항 글쓰기';
+  /* 세션 저장 */
+  try { sessionStorage.setItem('cne_staff_login', '1'); } catch(e){}
+  closeLoginModal();
+}
+
+/* ── 로그아웃 상태 반영 ── */
+function applyLogout() {
+  isLoggedIn  = false;
+  currentUser = '';
+  /* 버튼 텍스트·상태 복원 */
+  btnStaffAuth.setAttribute('data-state', 'login');
+  btnStaffAuth.setAttribute('aria-label', '교직원 로그인');
+  btnStaffAuthLabel.textContent = '교직원 로그인';
+  /* 글쓰기 잠금 */
+  btnWriteNotice.classList.add('locked');
+  btnWriteNotice.title = '로그인 후 이용 가능합니다';
+  try { sessionStorage.removeItem('cne_staff_login'); } catch(e){}
+  if (typeof updateDelButtons === 'function') updateDelButtons();
+}
+
+/* ── 버튼 클릭: 상태에 따라 로그인 모달 열기 or 로그아웃 ── */
+btnStaffAuth.addEventListener('click', function(e) {
+  e.stopPropagation();
+  if (this.getAttribute('data-state') === 'logout') {
+    applyLogout();
+  } else {
+    openLoginModal();
+  }
+});
+
+/* 모달 닫기 버튼 */
+btnCloseLogin.addEventListener('click', closeLoginModal);
+loginOverlay.addEventListener('click', function(e) {
+  if (e.target === loginOverlay) closeLoginModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (!loginOverlay.hasAttribute('hidden')) closeLoginModal();
+    if (typeof writeOverlay !== 'undefined' && writeOverlay && writeOverlay.style.display === 'flex') closeWriteModal();
+  }
+});
+
+/* ── 세션 복원 (새로고침 시 로그인 유지) ── */
+(function() {
+  try { if (sessionStorage.getItem('cne_staff_login') === '1') applyLogin(); } catch(e){}
+})();
+
+/* ── 팝업 로그인 연계 ────────────────────────────────────────
+   충남교육청(cne.go.kr) / 나이스(neis.go.kr)는 별도 도메인이므로
+   Same-Origin Policy 상 쿠키를 직접 읽을 수 없습니다.
+   팝업 창이 닫히는 시점에 확인 대화상자로 처리합니다.
+──────────────────────────────────────────────────────────── */
+var cnePopup       = null;
+var popupPollTimer = null;
+
+function openCnePopup(url) {
+  if (cnePopup && !cnePopup.closed) { cnePopup.focus(); return; }
+
+  var W = 960, H = 720;
+  var left = Math.max(0, Math.round(screen.width  / 2 - W / 2));
+  var top  = Math.max(0, Math.round(screen.height / 2 - H / 2));
+  var opts = 'width=' + W + ',height=' + H + ',left=' + left + ',top=' + top +
+             ',scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=yes,status=no';
+
+  cnePopup = window.open(url, 'cneLoginPopup', opts);
+
+  if (!cnePopup || cnePopup.closed) {
+    alert('팝업이 차단되었습니다.\n브라우저 주소창 우측의 팝업 차단 아이콘을 클릭하여 이 사이트의 팝업을 허용해 주세요.');
+    return;
+  }
+  cnePopup.focus();
+
+  clearInterval(popupPollTimer);
+  popupPollTimer = setInterval(function() {
+    if (!cnePopup || cnePopup.closed) {
+      clearInterval(popupPollTimer);
+      cnePopup = null;
+      if (!isLoggedIn) {
+        var ok = window.confirm('충청남도교육청 로그인 창이 닫혔습니다.\n\n로그인을 완료하셨나요?\n\n확인: 로그인 처리  |  취소: 취소');
+        if (ok) applyLogin();
+      }
+    }
+  }, 500);
+}
+
+/* 나이스(NEIS) 버튼 */
+var btnCneLogin = document.getElementById('btnCneLogin');
+if (btnCneLogin) {
+  btnCneLogin.addEventListener('click', function(e) {
+    e.preventDefault();
+    openCnePopup('https://cne.neis.go.kr');
+  });
+}
+
+/* 충남교육청 누리집 버튼 */
+var btnCnePortalLogin = document.getElementById('btnCnePortalLogin');
+if (btnCnePortalLogin) {
+  btnCnePortalLogin.addEventListener('click', function() {
+    openCnePopup('https://www.cne.go.kr');
+  });
+}
+
+/* BroadcastChannel: 같은 브라우저 다른 탭에서 로그인 완료 메시지 수신 */
+(function() {
+  if (typeof BroadcastChannel === 'undefined') return;
+  try {
+    var bc = new BroadcastChannel('cne_login_channel');
+    bc.onmessage = function(ev) {
+      if (ev.data && ev.data.type === 'CNE_LOGIN_SUCCESS' && !isLoggedIn) applyLogin();
+    };
+  } catch(e){}
+})();
+
+/* 글쓰기 버튼: 미로그인 시 로그인 모달 열기 */
+btnWriteNotice.classList.add('locked');
+btnWriteNotice.addEventListener('click', function() {
+  if (!isLoggedIn) { openLoginModal(); return; }
+  openWriteModal();
+});
 
 /* ===== 글쓰기 모달 ===== */
 .write-modal-overlay {
