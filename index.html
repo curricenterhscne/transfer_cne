@@ -30,13 +30,7 @@
             교직원 로그인
           </button>
         </div>
-        <!-- 로그인 후 상태 (hidden) -->
-        <div class="staff-loggedin-box" id="staffLoggedinBox" hidden>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          <span class="staff-username" id="staffUsername"></span>
-          <span class="staff-dept">충청남도교육청</span>
-          <button class="btn-staff-logout" id="btnLogout">로그아웃</button>
-        </div>
+
       </div>
       <a href="survey.html" class="back-link" aria-label="전입학 가능 여부 진단 페이지로 이동">
         전입학 진단하기 →
@@ -1494,32 +1488,7 @@
 }
 .btn-staff-login:hover { background: rgba(255,255,255,.28); }
 
-/* 로그인 후 */
-.staff-loggedin-box {
-  display: flex;
-  align-items: center;
-  gap: .45rem;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.3);
-  border-radius: 6px;
-  padding: .3rem .8rem .3rem .65rem;
-  font-size: .83em;
-  color: #fff;
-}
-.staff-username { font-weight: 700; }
-.staff-dept { color: rgba(255,255,255,.7); font-size: .92em; }
-.btn-staff-logout {
-  background: rgba(255,255,255,.18);
-  border: 1px solid rgba(255,255,255,.35);
-  color: #fff;
-  border-radius: 4px;
-  padding: .22rem .65rem;
-  font-size: .82em;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background .15s;
-}
-.btn-staff-logout:hover { background: rgba(255,255,255,.28); }
+
 
 /* ===== 로그인 모달 (충청남도교육청 연계) ===== */
 .login-modal-overlay {
@@ -2079,7 +2048,6 @@ var currentUser = '';
 var loginOverlay   = document.getElementById('loginModalOverlay');
 var btnOpenLogin   = document.getElementById('btnOpenLogin');
 var btnCloseLogin  = document.getElementById('btnCloseLogin');
-var staffLoggedinBox = document.getElementById('staffLoggedinBox');
 var staffLoginBox    = document.getElementById('staffLoginBox');
 var btnWriteNotice   = document.getElementById('btnWriteNotice');
 
@@ -2144,23 +2112,11 @@ if (btnCneLogin) {
 function applyLogin(username) {
   isLoggedIn  = true;
   currentUser = username;
-  staffLoginBox.setAttribute('hidden', '');
-  staffLoggedinBox.removeAttribute('hidden');
-  document.getElementById('staffUsername').textContent = username;
   btnWriteNotice.classList.remove('locked');
   btnWriteNotice.title = '공지사항 글쓰기';
 }
 
-/* ---------- 로그아웃 ---------- */
-document.getElementById('btnLogout').addEventListener('click', function() {
-  isLoggedIn  = false;
-  currentUser = '';
-  staffLoggedinBox.setAttribute('hidden', '');
-  staffLoginBox.removeAttribute('hidden');
-  btnWriteNotice.classList.add('locked');
-  btnWriteNotice.title = '로그인 후 이용 가능합니다';
-  updateDelButtons();
-});
+
 
 /* 글쓰기 버튼: 미로그인 시 로그인 모달 열기 */
 btnWriteNotice.classList.add('locked');
