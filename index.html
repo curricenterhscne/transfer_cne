@@ -80,6 +80,16 @@
         충청남도교육청 누리집에서 로그인
       </button>
 
+      <!-- 이름 입력 -->
+      <div class="login-name-field">
+        <label for="loginNameInput">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          성명 <span style="color:#d32">*</span>
+        </label>
+        <input type="text" id="loginNameInput" placeholder="홍길동" maxlength="20" autocomplete="name" />
+        <p class="login-name-hint">나이스 로그인 완료 후 본인 성명을 입력하세요.</p>
+      </div>
+
       <!-- 안내 박스 -->
       <div class="login-info-box">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -1637,6 +1647,40 @@
 }
 .btn-cne-sub-login:hover { background: #f0f5fb; }
 
+/* 이름 입력 필드 */
+.login-name-field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+.login-name-field label {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .87em;
+  font-weight: 600;
+  color: #333;
+}
+.login-name-field input {
+  padding: .55rem .85rem;
+  border: 1.5px solid #ccc;
+  border-radius: 7px;
+  font-size: .97em;
+  font-family: inherit;
+  transition: border-color .15s, box-shadow .15s;
+}
+.login-name-field input:focus {
+  outline: none;
+  border-color: var(--primary, #005bac);
+  box-shadow: 0 0 0 3px rgba(0,91,172,.1);
+}
+.login-name-hint {
+  font-size: .78em;
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* 안내 박스 */
 .login-info-box {
   display: flex;
@@ -2110,16 +2154,21 @@ function openLoginModal() {
 function closeLoginModal() {
   loginOverlay.setAttribute('hidden', '');
   document.body.style.overflow = '';
+  var nameInput = document.getElementById('loginNameInput');
+  if (nameInput) nameInput.value = '';
 }
-function applyLogin() {
+function applyLogin(name) {
   isLoggedIn  = true;
-  currentUser = '교직원';
+  currentUser = (name && name.trim()) ? name.trim() : '교직원';
   btnStaffAuth.setAttribute('data-state', 'logout');
   btnStaffAuth.setAttribute('aria-label', '교직원 로그아웃');
   btnStaffAuthLabel.textContent = '교직원 로그아웃';
   btnWriteNotice.classList.remove('locked');
   btnWriteNotice.title = '공지사항 글쓰기';
-  try { sessionStorage.setItem('cne_staff_login', '1'); } catch (e) {}
+  try {
+    sessionStorage.setItem('cne_staff_login', '1');
+    sessionStorage.setItem('cne_staff_name', currentUser);
+  } catch (e) {}
   closeLoginModal();
   renderAllNotices();   /* 로그인 후 수정·삭제 버튼 표시 */
 }
@@ -2131,7 +2180,10 @@ function applyLogout() {
   btnStaffAuthLabel.textContent = '교직원 로그인';
   btnWriteNotice.classList.add('locked');
   btnWriteNotice.title = '로그인 후 이용 가능합니다';
-  try { sessionStorage.removeItem('cne_staff_login'); } catch (e) {}
+  try {
+    sessionStorage.removeItem('cne_staff_login');
+    sessionStorage.removeItem('cne_staff_name');
+  } catch (e) {}
   renderAllNotices();   /* 로그아웃 후 수정·삭제 버튼 숨김 */
 }
 btnStaffAuth.addEventListener('click', function (e) {
@@ -2167,7 +2219,14 @@ function openCnePopup(url) {
   popupPollTimer = setInterval(function () {
     if (!cnePopup || cnePopup.closed) {
       clearInterval(popupPollTimer); cnePopup = null;
-      if (!isLoggedIn && window.confirm('충청남도교육청 로그인 창이 닫혔습니다.\n\n로그인을 완료하셨나요?')) applyLogin();
+      if (!isLoggedIn && window.confirm('충청남도교육청 로그인 창이 닫혔습니다.\n\n로그인을 완료하셨나요?')) {
+        var nameInput = document.getElementById('loginNameInput');
+        var inputName = nameInput ? nameInput.value.trim() : '';
+        if (!inputName) {
+          inputName = window.prompt('성명을 입력하세요 (작성자로 등록됩니다)', '');
+        }
+        if (inputName !== null) applyLogin(inputName);
+      }
     }
   }, 500);
 }
@@ -2181,7 +2240,9 @@ function openCnePopup(url) {
   if (typeof BroadcastChannel === 'undefined') return;
   try {
     new BroadcastChannel('cne_login_channel').onmessage = function (ev) {
-      if (ev.data && ev.data.type === 'CNE_LOGIN_SUCCESS' && !isLoggedIn) applyLogin();
+      if (ev.data && ev.data.type === 'CNE_LOGIN_SUCCESS' && !isLoggedIn) {
+        applyLogin(ev.data.name || '');
+      }
     };
   } catch (e) {}
 }());
@@ -2632,7 +2693,11 @@ function escHtml(str) {
    세션 복원 (새로고침 시 로그인 유지)
 ===================================================== */
 (function () {
-  try { if (sessionStorage.getItem('cne_staff_login') === '1') applyLogin(); } catch (e) {}
+  try {
+    if (sessionStorage.getItem('cne_staff_login') === '1') {
+      applyLogin(sessionStorage.getItem('cne_staff_name') || '');
+    }
+  } catch (e) {}
 }());
 
 /* =====================================================
