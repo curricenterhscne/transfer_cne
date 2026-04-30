@@ -2002,20 +2002,6 @@
   transition: color .1s, border-color .1s;
 }
 .notice-del-btn:hover { color: #d32; border-color: #d32; }
-
-/* 수정 버튼 */
-.notice-edit-btn {
-  background: none;
-  border: 1px solid #aac4e0;
-  border-radius: 4px;
-  font-size: .78em;
-  color: var(--primary, #005bac);
-  cursor: pointer;
-  padding: .18rem .55rem;
-  font-family: inherit;
-  transition: background .12s, color .12s;
-}
-.notice-edit-btn:hover { background: var(--primary, #005bac); color: #fff; border-color: var(--primary, #005bac); }
 </style>
 
 <script>
@@ -2084,6 +2070,7 @@ function applyLogin() {
   btnWriteNotice.title = '공지사항 글쓰기';
   try { sessionStorage.setItem('cne_staff_login', '1'); } catch (e) {}
   closeLoginModal();
+  renderAllNotices();   /* 로그인 후 수정·삭제 버튼 표시 */
 }
 function applyLogout() {
   isLoggedIn  = false;
@@ -2094,7 +2081,7 @@ function applyLogout() {
   btnWriteNotice.classList.add('locked');
   btnWriteNotice.title = '로그인 후 이용 가능합니다';
   try { sessionStorage.removeItem('cne_staff_login'); } catch (e) {}
-  if (typeof updateDelButtons === 'function') updateDelButtons();
+  renderAllNotices();   /* 로그아웃 후 수정·삭제 버튼 숨김 */
 }
 btnStaffAuth.addEventListener('click', function (e) {
   e.stopPropagation();
@@ -2107,9 +2094,6 @@ document.addEventListener('keydown', function (e) {
   if (!loginOverlay.hasAttribute('hidden')) closeLoginModal();
   if (typeof writeOverlay !== 'undefined' && writeOverlay && writeOverlay.style.display === 'flex') closeWriteModal();
 });
-(function () {
-  try { if (sessionStorage.getItem('cne_staff_login') === '1') applyLogin(); } catch (e) {}
-}());
 
 /* =====================================================
    팝업 로그인 연계
@@ -2152,6 +2136,114 @@ function openCnePopup(url) {
 }());
 
 /* =====================================================
+   게시물 데이터 저장소 (localStorage 연동)
+   각 게시물: { seq, category, title, content, pinned,
+                fileName, fileBase64, fileMime,
+                author, dateStr, edited }
+===================================================== */
+var LS_KEY    = 'cne_notices';
+var noticeSeq = 0;
+
+function loadStore() {
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (!raw) return {};
+    var data = JSON.parse(raw);
+    /* seq 최댓값 복원 */
+    Object.values(data).forEach(function (d) {
+      if (d.seq > noticeSeq) noticeSeq = d.seq;
+    });
+    return data;
+  } catch (e) { return {}; }
+}
+
+function saveStore() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(noticeStore)); } catch (e) {
+    /* localStorage 용량 초과(첨부파일이 클 때) 안내 */
+    alert('저장 공간이 부족합니다.\n첨부파일 크기를 줄이거나 오래된 게시물을 삭제해 주세요.');
+  }
+}
+
+var noticeStore = loadStore();
+
+/* =====================================================
+   페이지 로드 시 localStorage 게시물 복원
+===================================================== */
+function renderAllNotices() {
+  var tbody = document.getElementById('notice-tbody');
+
+  /* 기존 동적 행 모두 제거 */
+  tbody.querySelectorAll('.notice-row, .notice-detail-row').forEach(function (r) { r.remove(); });
+  document.getElementById('noticeEmptyRow') && document.getElementById('noticeEmptyRow').remove();
+
+  /* seq 순 정렬, 고정 공지 먼저 */
+  var uids = Object.keys(noticeStore).sort(function (a, b) {
+    var da = noticeStore[a], db = noticeStore[b];
+    if (da.pinned !== db.pinned) return da.pinned ? -1 : 1;
+    return da.seq - db.seq;
+  });
+
+  if (uids.length === 0) {
+    var emptyTr = document.createElement('tr');
+    emptyTr.className = 'notice-empty-row';
+    emptyTr.id        = 'noticeEmptyRow';
+    emptyTr.innerHTML =
+      '<td colspan="6" class="notice-empty-cell">' +
+        '<div class="notice-empty-inner">' +
+          '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5">' +
+            '<rect x="3" y="3" width="18" height="18" rx="2"/>' +
+            '<path d="M8 7h8M8 11h8M8 15h5"/>' +
+          '</svg>' +
+          '<p>등록된 공지사항이 없습니다.</p>' +
+        '</div>' +
+      '</td>';
+    tbody.appendChild(emptyTr);
+    document.getElementById('notice-total').textContent = '0';
+    return;
+  }
+
+  uids.forEach(function (uid) {
+    var d = noticeStore[uid];
+
+    /* 목록 행 */
+    var tr = document.createElement('tr');
+    tr.className = 'notice-row' + (d.pinned ? ' notice-pinned' : '');
+    tr.setAttribute('data-uid', uid);
+    tr.innerHTML =
+      (d.pinned ? '<td><span class="notice-pin-badge">공지</span></td>' : '<td>' + d.seq + '</td>') +
+      '<td class="notice-title-cell">' +
+        '<button class="notice-title-btn" data-id="' + uid + '" aria-expanded="false">' +
+          '<span class="notice-new-badge">' + (d.edited ? '수정' : 'N') + '</span>' +
+          ' [' + escHtml(d.category) + '] ' + escHtml(d.title) +
+        '</button>' +
+      '</td>' +
+      (d.fileName
+        ? '<td class="notice-file-cell"><span class="notice-file-icon" title="' + escHtml(d.fileName) + '">&#x1F4CE;</span></td>'
+        : '<td class="notice-file-cell"></td>') +
+      '<td>' + escHtml(d.author) + '</td>' +
+      '<td>' + d.dateStr + '</td>' +
+      '<td>1</td>';
+
+    /* 상세 행 껍데기 */
+    var detailTr = document.createElement('tr');
+    detailTr.className = 'notice-detail-row';
+    detailTr.id = 'detail-' + uid;
+    detailTr.setAttribute('hidden', '');
+
+    tbody.appendChild(tr);
+    tbody.appendChild(detailTr);
+    rebuildDetail(uid);
+
+    tr.querySelector('.notice-title-btn').addEventListener('click', handleTitleClick);
+  });
+
+  document.getElementById('notice-total').textContent = uids.length;
+}
+
+/* 페이지 로드 시 즉시 렌더 */
+renderAllNotices();
+
+/* =====================================================
    글쓰기 버튼
 ===================================================== */
 btnWriteNotice.classList.add('locked');
@@ -2162,10 +2254,9 @@ btnWriteNotice.addEventListener('click', function () {
 
 /* =====================================================
    글쓰기 / 수정 모달
-   editUid: null → 신규 작성 / 'post-xxx' → 해당 글 수정
 ===================================================== */
 var writeOverlay = null;
-var editingUid   = null;   /* 현재 수정 중인 게시물 uid */
+var editingUid   = null;
 
 function openWriteModal(editUid) {
   editingUid = editUid || null;
@@ -2227,41 +2318,36 @@ function openWriteModal(editUid) {
     document.getElementById('btnSaveWrite').addEventListener('click', saveNotice);
   }
 
-  var titleEl   = document.getElementById('writeModalTitle');
-  var saveBtn   = document.getElementById('btnSaveWrite');
-  var keepEl    = document.getElementById('writeFileKeep');
+  var titleEl = document.getElementById('writeModalTitle');
+  var saveBtn = document.getElementById('btnSaveWrite');
+  var keepEl  = document.getElementById('writeFileKeep');
 
-  /* ── 수정 모드: 기존 데이터 채우기 ── */
   if (editingUid && noticeStore[editingUid]) {
     var d = noticeStore[editingUid];
-    titleEl.textContent                       = '공지사항 수정';
-    saveBtn.textContent                       = '수정 완료';
-    document.getElementById('writeCategory').value   = d.category;
-    document.getElementById('writeTitle').value      = d.title;
-    document.getElementById('writeContent').value    = d.content;
-    document.getElementById('writePinned').checked   = d.pinned;
-    document.getElementById('writeFile').value       = '';
-    /* 기존 첨부파일 안내 */
+    titleEl.textContent = '공지사항 수정';
+    saveBtn.textContent = '수정 완료';
+    document.getElementById('writeCategory').value = d.category;
+    document.getElementById('writeTitle').value    = d.title;
+    document.getElementById('writeContent').value  = d.content;
+    document.getElementById('writePinned').checked = d.pinned;
+    document.getElementById('writeFile').value     = '';
     if (d.fileName) {
       keepEl.style.display = 'block';
       keepEl.innerHTML = '&#x1F4CE; 기존 파일: <strong>' + escHtml(d.fileName) +
         '</strong> &nbsp;<span style="color:#888">(새 파일을 선택하면 교체됩니다)</span>';
     } else {
       keepEl.style.display = 'none';
-      keepEl.textContent   = '';
     }
   } else {
-    /* ── 신규 모드: 폼 초기화 ── */
-    editingUid              = null;
-    titleEl.textContent     = '공지사항 작성';
-    saveBtn.textContent     = '등록';
+    editingUid = null;
+    titleEl.textContent = '공지사항 작성';
+    saveBtn.textContent = '등록';
     document.getElementById('writeCategory').value = '';
     document.getElementById('writeTitle').value    = '';
     document.getElementById('writeContent').value  = '';
     document.getElementById('writePinned').checked = false;
     document.getElementById('writeFile').value     = '';
     keepEl.style.display = 'none';
-    keepEl.textContent   = '';
   }
 
   writeOverlay.style.display = 'flex';
@@ -2276,25 +2362,35 @@ function closeWriteModal() {
 }
 
 /* =====================================================
-   게시물 데이터 저장소
-   noticeStore[uid] = { category, title, content, pinned,
-                        fileName, blobUrl, author, dateStr }
+   파일 → Base64 변환 (localStorage 저장용)
 ===================================================== */
-var noticeStore = {};
-var noticeSeq   = 0;
+function fileToBase64(file, callback) {
+  var reader = new FileReader();
+  reader.onload = function (e) { callback(e.target.result); };
+  reader.readAsDataURL(file); /* "data:mime;base64,xxxx" 형식 */
+}
+
+/* Base64 → Blob URL 변환 (다운로드용) */
+function base64ToBlobUrl(dataUrl) {
+  var parts  = dataUrl.split(',');
+  var mime   = parts[0].match(/:(.*?);/)[1];
+  var binary = atob(parts[1]);
+  var arr    = new Uint8Array(binary.length);
+  for (var i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
+  return URL.createObjectURL(new Blob([arr], { type: mime }));
+}
 
 /* =====================================================
    게시물 저장 (신규 + 수정 통합)
 ===================================================== */
 function saveNotice() {
-  var category  = document.getElementById('writeCategory').value;
-  var title     = document.getElementById('writeTitle').value.trim();
-  var content   = document.getElementById('writeContent').value.trim();
-  var pinned    = document.getElementById('writePinned').checked;
-  var fileInput = document.getElementById('writeFile');
+  var category   = document.getElementById('writeCategory').value;
+  var title      = document.getElementById('writeTitle').value.trim();
+  var content    = document.getElementById('writeContent').value.trim();
+  var pinned     = document.getElementById('writePinned').checked;
+  var fileInput  = document.getElementById('writeFile');
   var hasNewFile = fileInput.files && fileInput.files.length > 0;
-  var newFileObj = hasNewFile ? fileInput.files[0] : null;
-  var newFileName = hasNewFile ? newFileObj.name : '';
+  var newFile    = hasNewFile ? fileInput.files[0] : null;
 
   if (!category) { alert('분류를 선택하세요.'); document.getElementById('writeCategory').focus(); return; }
   if (!title)    { alert('제목을 입력하세요.');  document.getElementById('writeTitle').focus();    return; }
@@ -2303,49 +2399,26 @@ function saveNotice() {
   /* ── 수정 모드 ── */
   if (editingUid && noticeStore[editingUid]) {
     var d = noticeStore[editingUid];
-
-    /* 새 파일 선택 시 기존 Blob URL 해제 후 교체 */
-    if (hasNewFile) {
-      if (d.blobUrl) URL.revokeObjectURL(d.blobUrl);
-      d.blobUrl  = URL.createObjectURL(newFileObj);
-      d.fileName = newFileName;
-    }
-
     d.category = category;
     d.title    = title;
     d.content  = content;
     d.pinned   = pinned;
     d.edited   = true;
 
-    /* 목록 행 갱신 */
-    var tr = document.querySelector('.notice-row[data-uid="' + editingUid + '"]');
-    if (tr) {
-      var titleBtn = tr.querySelector('.notice-title-btn');
-      if (titleBtn) titleBtn.innerHTML =
-        '<span class="notice-new-badge">수정</span> [' + escHtml(category) + '] ' + escHtml(title);
-      /* 고정 배지 갱신 */
-      var firstTd = tr.cells[0];
-      if (pinned) {
-        firstTd.innerHTML = '<span class="notice-pin-badge">공지</span>';
-        tr.classList.add('notice-pinned');
-      } else {
-        firstTd.textContent = firstTd.textContent.replace(/\D/g,'') || d.seq;
-        tr.classList.remove('notice-pinned');
-      }
-      /* 첨부파일 아이콘 갱신 */
-      var fileTd = tr.querySelector('.notice-file-cell');
-      if (fileTd) {
-        fileTd.innerHTML = d.fileName
-          ? '<span class="notice-file-icon" title="' + escHtml(d.fileName) + '">&#x1F4CE;</span>'
-          : '';
-      }
+    if (hasNewFile) {
+      /* 새 파일을 Base64로 변환 후 저장 */
+      fileToBase64(newFile, function (dataUrl) {
+        d.fileName    = newFile.name;
+        d.fileBase64  = dataUrl;
+        saveStore();
+        renderAllNotices();
+      });
+    } else {
+      saveStore();
+      renderAllNotices();
     }
 
-    /* 상세 행 갱신 */
-    rebuildDetail(editingUid);
-
     closeWriteModal();
-    if (tr) tr.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
@@ -2357,75 +2430,45 @@ function saveNotice() {
                 String(today.getDate()).padStart(2, '0');
   var uid = 'post-' + Date.now();
 
-  noticeStore[uid] = {
-    seq:      noticeSeq,
-    category: category,
-    title:    title,
-    content:  content,
-    pinned:   pinned,
-    fileName: newFileName,
-    blobUrl:  hasNewFile ? URL.createObjectURL(newFileObj) : null,
-    author:   currentUser,
-    dateStr:  dateStr,
-    edited:   false
+  var baseData = {
+    seq:         noticeSeq,
+    category:    category,
+    title:       title,
+    content:     content,
+    pinned:      pinned,
+    fileName:    '',
+    fileBase64:  '',
+    author:      currentUser,
+    dateStr:     dateStr,
+    edited:      false
   };
 
-  var tbody    = document.getElementById('notice-tbody');
-  var emptyRow = document.getElementById('noticeEmptyRow');
-  if (emptyRow) emptyRow.remove();
-
-  var rowCount = tbody.querySelectorAll('.notice-row').length + 1;
-  document.getElementById('notice-total').textContent = rowCount;
-
-  /* 목록 행 */
-  var tr = document.createElement('tr');
-  tr.className = 'notice-row' + (pinned ? ' notice-pinned' : '');
-  tr.setAttribute('data-uid', uid);
-  tr.innerHTML =
-    (pinned ? '<td><span class="notice-pin-badge">공지</span></td>' : '<td>' + rowCount + '</td>') +
-    '<td class="notice-title-cell">' +
-      '<button class="notice-title-btn" data-id="' + uid + '" aria-expanded="false">' +
-        '<span class="notice-new-badge">N</span> [' + escHtml(category) + '] ' + escHtml(title) +
-      '</button>' +
-    '</td>' +
-    (newFileName
-      ? '<td class="notice-file-cell"><span class="notice-file-icon" title="' + escHtml(newFileName) + '">&#x1F4CE;</span></td>'
-      : '<td class="notice-file-cell"></td>') +
-    '<td>' + escHtml(currentUser) + '</td>' +
-    '<td>' + dateStr + '</td>' +
-    '<td>1</td>';
-
-  /* 상세 행 — 빈 껍데기 후 rebuildDetail로 채움 */
-  var detailTr = document.createElement('tr');
-  detailTr.className = 'notice-detail-row';
-  detailTr.id = 'detail-' + uid;
-  detailTr.setAttribute('hidden', '');
-
-  if (pinned) {
-    tbody.insertBefore(detailTr, tbody.firstChild);
-    tbody.insertBefore(tr, detailTr);
+  if (hasNewFile) {
+    /* 파일을 Base64로 변환한 뒤 저장 (비동기) */
+    fileToBase64(newFile, function (dataUrl) {
+      baseData.fileName   = newFile.name;
+      baseData.fileBase64 = dataUrl;
+      noticeStore[uid] = baseData;
+      saveStore();
+      renderAllNotices();
+    });
   } else {
-    tbody.appendChild(tr);
-    tbody.appendChild(detailTr);
+    noticeStore[uid] = baseData;
+    saveStore();
+    renderAllNotices();
   }
 
-  rebuildDetail(uid);
-
-  tr.querySelector('.notice-title-btn').addEventListener('click', handleTitleClick);
-
   closeWriteModal();
-  tr.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 /* =====================================================
-   상세 행 DOM 재구성 (신규·수정 공통)
+   상세 행 DOM 재구성
 ===================================================== */
 function rebuildDetail(uid) {
   var d        = noticeStore[uid];
   var detailTr = document.getElementById('detail-' + uid);
   if (!d || !detailTr) return;
 
-  /* 기존 내용 비우기 */
   detailTr.innerHTML = '';
 
   var td = document.createElement('td');
@@ -2435,19 +2478,18 @@ function rebuildDetail(uid) {
   var inner = document.createElement('div');
   inner.className = 'notice-detail-inner';
 
-  /* 제목 */
   var h3 = document.createElement('h3');
   h3.textContent = '[' + d.category + '] ' + d.title;
   inner.appendChild(h3);
 
-  /* 본문 */
   var pBody = document.createElement('p');
   pBody.style.whiteSpace = 'pre-wrap';
   pBody.textContent = d.content;
   inner.appendChild(pBody);
 
-  /* 첨부파일 */
-  if (d.fileName && d.blobUrl) {
+  /* 첨부파일 — Base64 → Blob URL 변환 */
+  if (d.fileName && d.fileBase64) {
+    var blobUrl = base64ToBlobUrl(d.fileBase64);
     var ext     = d.fileName.split('.').pop().toUpperCase();
     var aDiv    = document.createElement('div');
     aDiv.className = 'notice-attach-list';
@@ -2455,7 +2497,7 @@ function rebuildDetail(uid) {
     strong.textContent = '첨부파일';
     aDiv.appendChild(strong);
     var a       = document.createElement('a');
-    a.href      = d.blobUrl;
+    a.href      = blobUrl;
     a.download  = d.fileName;
     a.className = 'notice-attach-link';
     var badge   = document.createElement('span');
@@ -2467,29 +2509,28 @@ function rebuildDetail(uid) {
     inner.appendChild(aDiv);
   }
 
-  /* 메타 */
   var pMeta = document.createElement('p');
   pMeta.style.cssText = 'font-size:.82em;color:#999;margin-top:.75rem';
   pMeta.textContent   = '작성자: ' + d.author + ' | ' + d.dateStr +
                         (d.edited ? ' (수정됨)' : '');
   inner.appendChild(pMeta);
 
-  /* 수정 / 삭제 버튼 영역 */
+  /* 수정·삭제 버튼 — 로그인 상태일 때만 표시 */
   var btnWrap = document.createElement('div');
   btnWrap.style.cssText = 'display:flex;justify-content:flex-end;gap:.5rem;margin-top:.6rem';
 
   var editBtn = document.createElement('button');
-  editBtn.className = 'notice-edit-btn';
+  editBtn.className   = 'notice-edit-btn';
   editBtn.setAttribute('data-uid', uid);
   editBtn.textContent = '✏ 수정';
-  editBtn.addEventListener('click', function () {
-    openWriteModal(this.getAttribute('data-uid'));
-  });
+  editBtn.style.display = isLoggedIn ? '' : 'none';
+  editBtn.addEventListener('click', function () { openWriteModal(this.getAttribute('data-uid')); });
 
   var delBtn = document.createElement('button');
-  delBtn.className = 'notice-del-btn';
+  delBtn.className   = 'notice-del-btn';
   delBtn.setAttribute('data-uid', uid);
   delBtn.textContent = '삭제';
+  delBtn.style.display = isLoggedIn ? '' : 'none';
   delBtn.addEventListener('click', deleteNotice);
 
   btnWrap.appendChild(editBtn);
@@ -2506,36 +2547,9 @@ function rebuildDetail(uid) {
 function deleteNotice(e) {
   var uid = e.currentTarget.getAttribute('data-uid');
   if (!confirm('이 공지사항을 삭제하시겠습니까?')) return;
-
-  if (noticeStore[uid] && noticeStore[uid].blobUrl) {
-    URL.revokeObjectURL(noticeStore[uid].blobUrl);
-  }
   delete noticeStore[uid];
-
-  var tr       = document.querySelector('.notice-row[data-uid="' + uid + '"]');
-  var detailTr = document.getElementById('detail-' + uid);
-  if (tr)       tr.remove();
-  if (detailTr) detailTr.remove();
-
-  var remaining = document.querySelectorAll('#notice-tbody .notice-row').length;
-  document.getElementById('notice-total').textContent = remaining;
-
-  if (remaining === 0) {
-    var emptyTr = document.createElement('tr');
-    emptyTr.className = 'notice-empty-row';
-    emptyTr.id        = 'noticeEmptyRow';
-    emptyTr.innerHTML =
-      '<td colspan="6" class="notice-empty-cell">' +
-        '<div class="notice-empty-inner">' +
-          '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5">' +
-            '<rect x="3" y="3" width="18" height="18" rx="2"/>' +
-            '<path d="M8 7h8M8 11h8M8 15h5"/>' +
-          '</svg>' +
-          '<p>등록된 공지사항이 없습니다.</p>' +
-        '</div>' +
-      '</td>';
-    document.getElementById('notice-tbody').appendChild(emptyTr);
-  }
+  saveStore();
+  renderAllNotices();
 }
 
 /* =====================================================
@@ -2550,15 +2564,16 @@ function handleTitleClick() {
   if (!isOpen && detail) { detail.hidden = false; this.setAttribute('aria-expanded', 'true'); }
 }
 
-function updateDelButtons() {
-  document.querySelectorAll('.notice-del-btn, .notice-edit-btn').forEach(function (btn) {
-    btn.style.display = isLoggedIn ? '' : 'none';
-  });
-}
-
 function escHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+/* =====================================================
+   세션 복원 (새로고침 시 로그인 유지)
+===================================================== */
+(function () {
+  try { if (sessionStorage.getItem('cne_staff_login') === '1') applyLogin(); } catch (e) {}
+}());
 
 /* =====================================================
    검색
