@@ -30,7 +30,14 @@
             교직원 로그인
           </button>
         </div>
-
+        <!-- 로그인 완료 상태 (기본 숨김) -->
+        <div class="staff-loggedin-box" id="staffLoggedinBox" hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="staff-loggedin-label">교직원</span>
+          <button class="btn-staff-logout" id="btnLogout" aria-label="교직원 로그아웃">
+            로그아웃
+          </button>
+        </div>
       </div>
       <a href="survey.html" class="back-link" aria-label="전입학 가능 여부 진단 페이지로 이동">
         전입학 진단하기 →
@@ -79,20 +86,19 @@
       <!-- 구분선 -->
       <div class="login-divider"><span>또는</span></div>
 
-      <!-- 충남교육청 누리집 직접 로그인 -->
-      <a href="https://www.cne.go.kr" target="_blank" rel="noopener noreferrer"
-         class="btn-cne-sub-login"
-         aria-label="충청남도교육청 누리집으로 이동">
+      <!-- 충남교육청 누리집 팝업 로그인 -->
+      <button class="btn-cne-sub-login" id="btnCnePortalLogin"
+         aria-label="충청남도교육청 누리집 팝업으로 로그인">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         충청남도교육청 누리집에서 로그인
-      </a>
+      </button>
 
       <!-- 안내 박스 -->
       <div class="login-info-box">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <div>
           <strong>교직원 전용 서비스</strong>
-          <p>공지사항 작성·관리는 충남교육청 교직원(나이스 계정 보유자)만 이용 가능합니다. 계정 관련 문의는 <strong>중등교육과 041-640-7216</strong>으로 연락해 주세요.</p>
+          <p>충청남도교육청 누리집 또는 나이스에서 로그인하면 본 페이지에 자동으로 로그인됩니다. 계정 문의: <strong>중등교육과 041-640-7216</strong></p>
         </div>
       </div>
 
@@ -1488,6 +1494,40 @@
 }
 .btn-staff-login:hover { background: rgba(255,255,255,.28); }
 
+/* 로그인 완료 상태 */
+.staff-loggedin-box {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 6px;
+  padding: .32rem .55rem .32rem .7rem;
+  color: #fff;
+  font-size: .84em;
+}
+.staff-loggedin-label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.btn-staff-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 4px;
+  color: #fff;
+  font-size: .82em;
+  font-weight: 600;
+  font-family: inherit;
+  padding: .22rem .65rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.btn-staff-logout:hover { background: rgba(255,255,255,.32); }
+
 
 
 /* ===== 로그인 모달 (충청남도교육청 연계) ===== */
@@ -2045,17 +2085,17 @@ var currentUser = '';
 })();
 
 /* ===== 로그인 모달 — 충청남도교육청 연계 ===== */
-var loginOverlay   = document.getElementById('loginModalOverlay');
-var btnOpenLogin   = document.getElementById('btnOpenLogin');
-var btnCloseLogin  = document.getElementById('btnCloseLogin');
-var staffLoginBox    = document.getElementById('staffLoginBox');
-var btnWriteNotice   = document.getElementById('btnWriteNotice');
+var loginOverlay    = document.getElementById('loginModalOverlay');
+var btnOpenLogin    = document.getElementById('btnOpenLogin');
+var btnCloseLogin   = document.getElementById('btnCloseLogin');
+var staffLoginBox   = document.getElementById('staffLoginBox');
+var staffLoggedinBox = document.getElementById('staffLoggedinBox');
+var btnWriteNotice  = document.getElementById('btnWriteNotice');
 
-/* ---------- 열기 / 닫기 ---------- */
+/* ---------- 모달 열기 / 닫기 ---------- */
 function openLoginModal() {
   loginOverlay.removeAttribute('hidden');
   document.body.style.overflow = 'hidden';
-  /* 포커스: 나이스 버튼 */
   var focusTarget = document.getElementById('btnCneLogin');
   if (focusTarget) setTimeout(function(){ focusTarget.focus(); }, 50);
 }
@@ -2064,21 +2104,14 @@ function closeLoginModal() {
   document.body.style.overflow = '';
 }
 
-/* 로그인 버튼 클릭 시에만 팝업 열림 */
 btnOpenLogin.addEventListener('click', function(e) {
   e.stopPropagation();
   openLoginModal();
 });
-
-/* 닫기 버튼 */
 btnCloseLogin.addEventListener('click', closeLoginModal);
-
-/* 오버레이 배경 클릭 시 닫기 */
 loginOverlay.addEventListener('click', function(e) {
   if (e.target === loginOverlay) closeLoginModal();
 });
-
-/* ESC 키로 닫기 */
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     if (!loginOverlay.hasAttribute('hidden')) closeLoginModal();
@@ -2086,37 +2119,124 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-/* ---------- 충청남도교육청 나이스 연계 ----------
-   외부 나이스 탭이 닫힌 뒤 포커스가 돌아오면
-   로그인 여부를 사용자에게 확인하여 처리합니다.
-------------------------------------------------- */
+/* ---------- 로그인 상태 적용 / 해제 ---------- */
+function applyLogin() {
+  isLoggedIn  = true;
+  currentUser = '교직원';
+  /* 헤더: 로그인 버튼 숨기고 로그아웃 버튼 표시 */
+  staffLoginBox.setAttribute('hidden', '');
+  staffLoggedinBox.removeAttribute('hidden');
+  /* 글쓰기 버튼 활성화 */
+  btnWriteNotice.classList.remove('locked');
+  btnWriteNotice.title = '공지사항 글쓰기';
+  /* 세션 저장 (새로고침 유지) */
+  try { sessionStorage.setItem('cne_staff_login', '1'); } catch(e){}
+  closeLoginModal();
+}
+
+function applyLogout() {
+  isLoggedIn  = false;
+  currentUser = '';
+  staffLoggedinBox.setAttribute('hidden', '');
+  staffLoginBox.removeAttribute('hidden');
+  btnWriteNotice.classList.add('locked');
+  btnWriteNotice.title = '로그인 후 이용 가능합니다';
+  try { sessionStorage.removeItem('cne_staff_login'); } catch(e){}
+  updateDelButtons();
+}
+
+/* 페이지 로드 시 세션 복원 */
+(function(){
+  try {
+    if (sessionStorage.getItem('cne_staff_login') === '1') applyLogin();
+  } catch(e){}
+})();
+
+/* ---------- 로그아웃 버튼 ---------- */
+document.getElementById('btnLogout').addEventListener('click', applyLogout);
+
+/* ---------- 나이스(NEIS) 팝업 로그인 ----------
+   팝업 창을 열고, 창이 닫히는 순간을 감지하여
+   자동으로 로그인 완료 처리합니다.
+------------------------------------------------ */
+var cnePopup = null;
+var popupCheckTimer = null;
+
+function openCnePopup(url) {
+  /* 기존 팝업이 있으면 포커스 */
+  if (cnePopup && !cnePopup.closed) { cnePopup.focus(); return; }
+
+  var w = 920, h = 700;
+  var left = Math.max(0, Math.round(window.screenX + (window.outerWidth  - w) / 2));
+  var top  = Math.max(0, Math.round(window.screenY + (window.outerHeight - h) / 2));
+  cnePopup = window.open(
+    url,
+    'cneLoginPopup',
+    'width=' + w + ',height=' + h + ',left=' + left + ',top=' + top +
+    ',scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=yes'
+  );
+
+  /* 팝업 차단 안내 */
+  if (!cnePopup || cnePopup.closed) {
+    alert('팝업이 차단되었습니다.
+브라우저 주소창 우측의 팝업 차단 아이콘을 클릭하여 허용해 주세요.');
+    return;
+  }
+
+  cnePopup.focus();
+
+  /* 팝업 닫힘 감지 — 닫히면 로그인 완료로 처리 */
+  clearInterval(popupCheckTimer);
+  popupCheckTimer = setInterval(function() {
+    if (!cnePopup || cnePopup.closed) {
+      clearInterval(popupCheckTimer);
+      cnePopup = null;
+      /* 팝업이 닫혔을 때 로그인 여부 확인 */
+      if (!isLoggedIn) {
+        var ok = window.confirm(
+          '충청남도교육청 로그인 창이 닫혔습니다.
+
+' +
+          '로그인을 완료하셨나요?
+
+' +
+          '• 확인: 로그인 처리
+• 취소: 취소'
+        );
+        if (ok) applyLogin();
+      }
+    }
+  }, 600);
+}
+
+/* 나이스 버튼 */
 var btnCneLogin = document.getElementById('btnCneLogin');
 if (btnCneLogin) {
-  btnCneLogin.addEventListener('click', function() {
-    /* 나이스 탭이 열린 직후 잠시 후 확인 팝업 */
-    setTimeout(function() {
-      if (loginOverlay.hasAttribute('hidden')) return; /* 이미 닫힌 경우 무시 */
-      var confirmed = window.confirm(
-        '충청남도교육청 나이스(NEIS) 로그인 페이지가 새 탭에서 열렸습니다.\n\n' +
-        '나이스에서 로그인을 완료하셨나요?\n\n' +
-        '[확인] — 로그인 완료 처리\n[취소] — 나중에 다시 시도'
-      );
-      if (confirmed) {
-        applyLogin('충남교직원');
-        closeLoginModal();
-      }
-    }, 2000);
+  btnCneLogin.addEventListener('click', function(e) {
+    e.preventDefault();
+    openCnePopup('https://cne.neis.go.kr');
   });
 }
 
-function applyLogin(username) {
-  isLoggedIn  = true;
-  currentUser = username;
-  btnWriteNotice.classList.remove('locked');
-  btnWriteNotice.title = '공지사항 글쓰기';
+/* 누리집 버튼 */
+var btnCnePortalLogin = document.getElementById('btnCnePortalLogin');
+if (btnCnePortalLogin) {
+  btnCnePortalLogin.addEventListener('click', function() {
+    openCnePopup('https://www.cne.go.kr');
+  });
 }
 
-
+/* ---------- BroadcastChannel: 같은 브라우저의 다른 탭에서
+   충남교육청 로그인 완료 메시지를 수신하면 자동 처리 ---------- */
+(function() {
+  if (typeof BroadcastChannel === 'undefined') return;
+  var bc = new BroadcastChannel('cne_login_channel');
+  bc.onmessage = function(e) {
+    if (e.data && e.data.type === 'CNE_LOGIN_SUCCESS') {
+      if (!isLoggedIn) applyLogin();
+    }
+  };
+})();
 
 /* 글쓰기 버튼: 미로그인 시 로그인 모달 열기 */
 btnWriteNotice.classList.add('locked');
