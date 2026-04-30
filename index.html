@@ -85,7 +85,7 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <div>
           <strong>교직원 전용 서비스</strong>
-          <p>충청남도교육청 누리집 또는 나이스에서 로그인하면 본 페이지에 자동으로 로그인됩니다.</p>
+          <p>충청남도교육청 누리집 또는 나이스에서 로그인하면 본 페이지에 자동으로 로그인됩니다. 계정 문의: <strong>중등교육과 041-640-7216</strong></p>
         </div>
       </div>
 
@@ -2004,55 +2004,49 @@
 .notice-del-btn:hover { color: #d32; border-color: #d32; }
 </style>
 
-<script>/* ==============================================
+<script>
+/* =====================================================
    공통 상태
-============================================== */
+===================================================== */
 var isLoggedIn  = false;
 var currentUser = '';
 
-/* ==============================================
+/* =====================================================
    탭 초기화
-============================================== */
-(function() {
-  var tabBtns   = document.querySelectorAll('.tab-btn');
-  var tabPanels = document.querySelectorAll('.tab-panel');
+===================================================== */
+(function () {
+  var btns   = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
 
-  function activateTab(targetId) {
-    tabBtns.forEach(function(btn) {
-      var on = btn.getAttribute('aria-controls') === targetId;
-      btn.classList.toggle('active', on);
-      btn.setAttribute('aria-selected', on ? 'true' : 'false');
-      btn.setAttribute('tabindex', on ? '0' : '-1');
+  function activate(id) {
+    btns.forEach(function (b) {
+      var on = b.getAttribute('aria-controls') === id;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+      b.setAttribute('tabindex', on ? '0' : '-1');
     });
-    tabPanels.forEach(function(panel) {
-      var on = panel.id === targetId;
-      panel.classList.toggle('active', on);
-      if (on) panel.removeAttribute('hidden');
-      else    panel.setAttribute('hidden', '');
+    panels.forEach(function (p) {
+      var on = p.id === id;
+      p.classList.toggle('active', on);
+      if (on) p.removeAttribute('hidden');
+      else    p.setAttribute('hidden', '');
     });
   }
 
-  tabBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      activateTab(this.getAttribute('aria-controls'));
-    });
-    btn.addEventListener('keydown', function(e) {
-      var idx = Array.from(tabBtns).indexOf(this);
-      if (e.key === 'ArrowRight' && idx < tabBtns.length - 1) {
-        tabBtns[idx + 1].focus();
-        activateTab(tabBtns[idx + 1].getAttribute('aria-controls'));
-      } else if (e.key === 'ArrowLeft' && idx > 0) {
-        tabBtns[idx - 1].focus();
-        activateTab(tabBtns[idx - 1].getAttribute('aria-controls'));
-      }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { activate(this.getAttribute('aria-controls')); });
+    b.addEventListener('keydown', function (e) {
+      var i = Array.from(btns).indexOf(this);
+      if (e.key === 'ArrowRight' && i < btns.length - 1) { btns[i+1].focus(); activate(btns[i+1].getAttribute('aria-controls')); }
+      if (e.key === 'ArrowLeft'  && i > 0)               { btns[i-1].focus(); activate(btns[i-1].getAttribute('aria-controls')); }
     });
   });
-  activateTab('tab0');
-})();
+  activate('tab0');
+}());
 
-/* ==============================================
+/* =====================================================
    로그인 / 로그아웃
-============================================== */
+===================================================== */
 var loginOverlay      = document.getElementById('loginModalOverlay');
 var btnCloseLogin     = document.getElementById('btnCloseLogin');
 var btnStaffAuth      = document.getElementById('btnStaffAuth');
@@ -2063,7 +2057,7 @@ function openLoginModal() {
   loginOverlay.removeAttribute('hidden');
   document.body.style.overflow = 'hidden';
   var f = document.getElementById('btnCneLogin');
-  if (f) setTimeout(function() { f.focus(); }, 60);
+  if (f) setTimeout(function () { f.focus(); }, 60);
 }
 function closeLoginModal() {
   loginOverlay.setAttribute('hidden', '');
@@ -2078,10 +2072,9 @@ function applyLogin() {
   btnStaffAuthLabel.textContent = '교직원 로그아웃';
   btnWriteNotice.classList.remove('locked');
   btnWriteNotice.title = '공지사항 글쓰기';
-  try { sessionStorage.setItem('cne_staff_login', '1'); } catch(e) {}
+  try { sessionStorage.setItem('cne_staff_login', '1'); } catch (e) {}
   closeLoginModal();
 }
-
 function applyLogout() {
   isLoggedIn  = false;
   currentUser = '';
@@ -2090,107 +2083,87 @@ function applyLogout() {
   btnStaffAuthLabel.textContent = '교직원 로그인';
   btnWriteNotice.classList.add('locked');
   btnWriteNotice.title = '로그인 후 이용 가능합니다';
-  try { sessionStorage.removeItem('cne_staff_login'); } catch(e) {}
+  try { sessionStorage.removeItem('cne_staff_login'); } catch (e) {}
   if (typeof updateDelButtons === 'function') updateDelButtons();
 }
 
-btnStaffAuth.addEventListener('click', function(e) {
+btnStaffAuth.addEventListener('click', function (e) {
   e.stopPropagation();
-  if (this.getAttribute('data-state') === 'logout') {
-    applyLogout();
-  } else {
-    openLoginModal();
-  }
+  if (this.getAttribute('data-state') === 'logout') applyLogout();
+  else openLoginModal();
 });
-
 btnCloseLogin.addEventListener('click', closeLoginModal);
-loginOverlay.addEventListener('click', function(e) {
-  if (e.target === loginOverlay) closeLoginModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    if (!loginOverlay.hasAttribute('hidden')) closeLoginModal();
-    if (typeof writeOverlay !== 'undefined' && writeOverlay &&
-        writeOverlay.style.display === 'flex') closeWriteModal();
-  }
+loginOverlay.addEventListener('click', function (e) { if (e.target === loginOverlay) closeLoginModal(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  if (!loginOverlay.hasAttribute('hidden')) closeLoginModal();
+  if (typeof writeOverlay !== 'undefined' && writeOverlay && writeOverlay.style.display === 'flex') closeWriteModal();
 });
 
-(function() {
-  try {
-    if (sessionStorage.getItem('cne_staff_login') === '1') applyLogin();
-  } catch(e) {}
-})();
+/* 세션 복원 */
+(function () {
+  try { if (sessionStorage.getItem('cne_staff_login') === '1') applyLogin(); } catch (e) {}
+}());
 
-/* ==============================================
+/* =====================================================
    팝업 로그인 연계
-============================================== */
+===================================================== */
 var cnePopup       = null;
 var popupPollTimer = null;
 
 function openCnePopup(url) {
   if (cnePopup && !cnePopup.closed) { cnePopup.focus(); return; }
-  var W    = 960, H = 720;
-  var left = Math.max(0, Math.round(screen.width  / 2 - W / 2));
-  var top  = Math.max(0, Math.round(screen.height / 2 - H / 2));
-  cnePopup = window.open(
-    url, 'cneLoginPopup',
-    'width=' + W + ',height=' + H +
-    ',left=' + left + ',top=' + top +
-    ',scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=yes,status=no'
-  );
+  var W = 960, H = 720;
+  var L = Math.max(0, Math.round(screen.width  / 2 - W / 2));
+  var T = Math.max(0, Math.round(screen.height / 2 - H / 2));
+  cnePopup = window.open(url, 'cneLogin',
+    'width=' + W + ',height=' + H + ',left=' + L + ',top=' + T +
+    ',scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=yes,status=no');
   if (!cnePopup || cnePopup.closed) {
     alert('팝업이 차단되었습니다.\n주소창 우측의 팝업 차단 아이콘을 클릭하여 허용해 주세요.');
     return;
   }
   cnePopup.focus();
   clearInterval(popupPollTimer);
-  popupPollTimer = setInterval(function() {
+  popupPollTimer = setInterval(function () {
     if (!cnePopup || cnePopup.closed) {
       clearInterval(popupPollTimer);
       cnePopup = null;
-      if (!isLoggedIn) {
-        if (window.confirm('충청남도교육청 로그인 창이 닫혔습니다.\n\n로그인을 완료하셨나요?')) {
-          applyLogin();
-        }
+      if (!isLoggedIn && window.confirm('충청남도교육청 로그인 창이 닫혔습니다.\n\n로그인을 완료하셨나요?')) {
+        applyLogin();
       }
     }
   }, 500);
 }
 
-var btnCneLogin = document.getElementById('btnCneLogin');
-if (btnCneLogin) {
-  btnCneLogin.addEventListener('click', function(e) {
-    e.preventDefault();
-    openCnePopup('https://cne.neis.go.kr');
-  });
-}
-var btnCnePortalLogin = document.getElementById('btnCnePortalLogin');
-if (btnCnePortalLogin) {
-  btnCnePortalLogin.addEventListener('click', function() {
-    openCnePopup('https://www.cne.go.kr');
-  });
-}
-(function() {
+(function () {
+  var b1 = document.getElementById('btnCneLogin');
+  if (b1) b1.addEventListener('click', function (e) { e.preventDefault(); openCnePopup('https://cne.neis.go.kr'); });
+  var b2 = document.getElementById('btnCnePortalLogin');
+  if (b2) b2.addEventListener('click', function () { openCnePopup('https://www.cne.go.kr'); });
+}());
+
+(function () {
   if (typeof BroadcastChannel === 'undefined') return;
   try {
-    new BroadcastChannel('cne_login_channel').onmessage = function(ev) {
+    new BroadcastChannel('cne_login_channel').onmessage = function (ev) {
       if (ev.data && ev.data.type === 'CNE_LOGIN_SUCCESS' && !isLoggedIn) applyLogin();
     };
-  } catch(e) {}
-})();
+  } catch (e) {}
+}());
 
-/* ==============================================
+/* =====================================================
    글쓰기 버튼
-============================================== */
+===================================================== */
 btnWriteNotice.classList.add('locked');
-btnWriteNotice.addEventListener('click', function() {
+btnWriteNotice.addEventListener('click', function () {
   if (!isLoggedIn) { openLoginModal(); return; }
   openWriteModal();
 });
 
-/* ==============================================
+/* =====================================================
    글쓰기 모달
-============================================== */
+===================================================== */
 var writeOverlay = null;
 
 function openWriteModal() {
@@ -2199,15 +2172,17 @@ function openWriteModal() {
     writeOverlay.className = 'write-modal-overlay';
     writeOverlay.setAttribute('role', 'dialog');
     writeOverlay.setAttribute('aria-modal', 'true');
-    writeOverlay.setAttribute('aria-labelledby', 'writeModalTitle');
-    writeOverlay.innerHTML =
+
+    var modalHtml =
       '<div class="write-modal">' +
         '<div class="write-modal-header">' +
           '<div class="write-modal-title">' +
-            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>' +
-            '<span id="writeModalTitle">공지사항 작성</span>' +
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+              '<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/>' +
+            '</svg>' +
+            '<span>공지사항 작성</span>' +
           '</div>' +
-          '<button class="write-modal-close" id="btnCloseWrite" aria-label="글쓰기 창 닫기">&#x2715;</button>' +
+          '<button class="write-modal-close" id="btnCloseWrite" aria-label="닫기">&#x2715;</button>' +
         '</div>' +
         '<div class="write-modal-body">' +
           '<div class="write-field">' +
@@ -2234,30 +2209,32 @@ function openWriteModal() {
             '<span class="write-file-hint">HWP, PDF, DOCX, XLSX, ZIP (최대 10MB)</span>' +
           '</div>' +
           '<label class="write-pin-toggle">' +
-            '<input type="checkbox" id="writePinned" />' +
-            ' 상단 고정 공지로 등록' +
+            '<input type="checkbox" id="writePinned" /> 상단 고정 공지로 등록' +
           '</label>' +
         '</div>' +
         '<div class="write-modal-footer">' +
           '<button class="btn-write-cancel" id="btnCancelWrite">취소</button>' +
-          '<button class="btn-write-save" id="btnSaveWrite">등록</button>' +
+          '<button class="btn-write-save"   id="btnSaveWrite">등록</button>' +
         '</div>' +
       '</div>';
+
+    writeOverlay.innerHTML = modalHtml;
     document.body.appendChild(writeOverlay);
+
     document.getElementById('btnCloseWrite').addEventListener('click', closeWriteModal);
     document.getElementById('btnCancelWrite').addEventListener('click', closeWriteModal);
-    writeOverlay.addEventListener('click', function(e) {
-      if (e.target === writeOverlay) closeWriteModal();
-    });
+    writeOverlay.addEventListener('click', function (e) { if (e.target === writeOverlay) closeWriteModal(); });
     document.getElementById('btnSaveWrite').addEventListener('click', saveNotice);
   }
+
   writeOverlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  document.getElementById('writeTitle').focus();
   document.getElementById('writeCategory').value = '';
   document.getElementById('writeTitle').value    = '';
   document.getElementById('writeContent').value  = '';
   document.getElementById('writePinned').checked = false;
+  document.getElementById('writeFile').value     = '';
+  document.getElementById('writeTitle').focus();
 }
 
 function closeWriteModal() {
@@ -2265,10 +2242,12 @@ function closeWriteModal() {
   document.body.style.overflow = '';
 }
 
-/* ==============================================
-   게시물 저장 / 삭제 / 아코디언
-============================================== */
+/* =====================================================
+   게시물 저장
+===================================================== */
 var noticeSeq = 0;
+/* 게시물별 첨부파일 Blob URL 저장소 */
+var attachBlobMap = {};
 
 function saveNotice() {
   var category  = document.getElementById('writeCategory').value;
@@ -2277,7 +2256,8 @@ function saveNotice() {
   var pinned    = document.getElementById('writePinned').checked;
   var fileInput = document.getElementById('writeFile');
   var hasFile   = fileInput.files && fileInput.files.length > 0;
-  var fileName  = hasFile ? fileInput.files[0].name : '';
+  var fileObj   = hasFile ? fileInput.files[0] : null;
+  var fileName  = hasFile ? fileObj.name : '';
 
   if (!category) { alert('분류를 선택하세요.'); document.getElementById('writeCategory').focus(); return; }
   if (!title)    { alert('제목을 입력하세요.');  document.getElementById('writeTitle').focus();    return; }
@@ -2290,13 +2270,19 @@ function saveNotice() {
                 String(today.getDate()).padStart(2, '0');
   var uid = 'post-' + Date.now();
 
-  var tbody = document.getElementById('notice-tbody');
+  /* Blob URL 생성 (페이지가 열려 있는 동안 유효) */
+  if (hasFile) {
+    attachBlobMap[uid] = { url: URL.createObjectURL(fileObj), name: fileName };
+  }
+
+  var tbody    = document.getElementById('notice-tbody');
   var emptyRow = document.getElementById('noticeEmptyRow');
   if (emptyRow) emptyRow.remove();
 
   var totalRows = tbody.querySelectorAll('.notice-row').length + 1;
   document.getElementById('notice-total').textContent = totalRows;
 
+  /* 목록 행 */
   var tr = document.createElement('tr');
   tr.className = 'notice-row' + (pinned ? ' notice-pinned' : '');
   tr.setAttribute('data-uid', uid);
@@ -2304,38 +2290,83 @@ function saveNotice() {
     (pinned ? '<td><span class="notice-pin-badge">공지</span></td>' : '<td>' + totalRows + '</td>') +
     '<td class="notice-title-cell">' +
       '<button class="notice-title-btn" data-id="' + uid + '" aria-expanded="false">' +
-        '<span class="notice-new-badge">N</span>' +
-        ' [' + escHtml(category) + '] ' + escHtml(title) +
+        '<span class="notice-new-badge">N</span> [' + escHtml(category) + '] ' + escHtml(title) +
       '</button>' +
     '</td>' +
-    (hasFile
-      ? '<td class="notice-file-cell"><span class="notice-file-icon" title="' + escHtml(fileName) + '">&#x1F4CE;</span></td>'
-      : '<td class="notice-file-cell"></td>') +
+    (hasFile ? '<td class="notice-file-cell"><span class="notice-file-icon" title="' + escHtml(fileName) + '">&#x1F4CE;</span></td>'
+             : '<td class="notice-file-cell"></td>') +
     '<td>' + escHtml(currentUser) + '</td>' +
     '<td>' + dateStr + '</td>' +
     '<td>1</td>';
 
+  /* 상세 행 — DOM으로 직접 구성 */
   var detailTr = document.createElement('tr');
   detailTr.className = 'notice-detail-row';
   detailTr.id = 'detail-' + uid;
   detailTr.setAttribute('hidden', '');
-  detailTr.innerHTML =
-    '<td colspan="6" class="notice-detail-content">' +
-      '<div class="notice-detail-inner">' +
-        '<h3>[' + escHtml(category) + '] ' + escHtml(title) + '</h3>' +
-        '<p style="white-space:pre-wrap">' + escHtml(content) + '</p>' +
-        (hasFile
-          ? '<div class="notice-attach-list"><strong>첨부파일</strong>' +
-            '<a href="#" class="notice-attach-link">' +
-            '<span class="dl-file-badge hwp">' + escHtml(fileName.split('.').pop().toUpperCase()) + '</span> ' +
-            escHtml(fileName) + '</a></div>'
-          : '') +
-        '<p style="font-size:.82em;color:#999;margin-top:.75rem">작성자: ' + escHtml(currentUser) + ' | ' + dateStr + '</p>' +
-        '<div style="text-align:right;margin-top:.5rem">' +
-          '<button class="notice-del-btn" data-uid="' + uid + '">&#x1F5D1; 삭제</button>' +
-        '</div>' +
-      '</div>' +
-    '</td>';
+
+  var td    = document.createElement('td');
+  td.colSpan = 6;
+  td.className = 'notice-detail-content';
+
+  var inner = document.createElement('div');
+  inner.className = 'notice-detail-inner';
+
+  /* 제목 */
+  var h3 = document.createElement('h3');
+  h3.textContent = '[' + category + '] ' + title;
+  inner.appendChild(h3);
+
+  /* 본문 */
+  var pContent = document.createElement('p');
+  pContent.style.whiteSpace = 'pre-wrap';
+  pContent.textContent = content;
+  inner.appendChild(pContent);
+
+  /* 첨부파일 — Blob URL 링크 */
+  if (hasFile) {
+    var blob    = attachBlobMap[uid];
+    var ext     = fileName.split('.').pop().toUpperCase();
+
+    var attachDiv   = document.createElement('div');
+    attachDiv.className = 'notice-attach-list';
+
+    var attachStrong = document.createElement('strong');
+    attachStrong.textContent = '첨부파일';
+    attachDiv.appendChild(attachStrong);
+
+    var a        = document.createElement('a');
+    a.href       = blob.url;
+    a.download   = blob.name;
+    a.className  = 'notice-attach-link';
+
+    var extBadge = document.createElement('span');
+    extBadge.className = 'dl-file-badge hwp';
+    extBadge.textContent = ext;
+    a.appendChild(extBadge);
+    a.appendChild(document.createTextNode(' ' + fileName));
+    attachDiv.appendChild(a);
+    inner.appendChild(attachDiv);
+  }
+
+  /* 메타 */
+  var pMeta = document.createElement('p');
+  pMeta.style.cssText = 'font-size:.82em;color:#999;margin-top:.75rem';
+  pMeta.textContent = '작성자: ' + currentUser + ' | ' + dateStr;
+  inner.appendChild(pMeta);
+
+  /* 삭제 버튼 */
+  var delWrap = document.createElement('div');
+  delWrap.style.cssText = 'text-align:right;margin-top:.5rem';
+  var delBtn = document.createElement('button');
+  delBtn.className = 'notice-del-btn';
+  delBtn.setAttribute('data-uid', uid);
+  delBtn.textContent = '삭제';
+  delWrap.appendChild(delBtn);
+  inner.appendChild(delWrap);
+
+  td.appendChild(inner);
+  detailTr.appendChild(td);
 
   if (pinned) {
     tbody.insertBefore(detailTr, tbody.firstChild);
@@ -2346,21 +2377,33 @@ function saveNotice() {
   }
 
   tr.querySelector('.notice-title-btn').addEventListener('click', handleTitleClick);
-  detailTr.querySelector('.notice-del-btn').addEventListener('click', deleteNotice);
+  delBtn.addEventListener('click', deleteNotice);
 
   closeWriteModal();
   tr.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+/* =====================================================
+   게시물 삭제
+===================================================== */
 function deleteNotice(e) {
   var uid = e.currentTarget.getAttribute('data-uid');
   if (!confirm('이 공지사항을 삭제하시겠습니까?')) return;
+
+  /* Blob URL 해제 */
+  if (attachBlobMap[uid]) {
+    URL.revokeObjectURL(attachBlobMap[uid].url);
+    delete attachBlobMap[uid];
+  }
+
   var tr       = document.querySelector('.notice-row[data-uid="' + uid + '"]');
   var detailTr = document.getElementById('detail-' + uid);
   if (tr)       tr.remove();
   if (detailTr) detailTr.remove();
+
   var remaining = document.querySelectorAll('#notice-tbody .notice-row').length;
   document.getElementById('notice-total').textContent = remaining;
+
   if (remaining === 0) {
     var emptyTr = document.createElement('tr');
     emptyTr.className = 'notice-empty-row';
@@ -2379,57 +2422,49 @@ function deleteNotice(e) {
   }
 }
 
+/* =====================================================
+   아코디언
+===================================================== */
 function handleTitleClick() {
-  var id        = this.getAttribute('data-id');
-  var detailRow = document.getElementById('detail-' + id);
-  var isOpen    = this.getAttribute('aria-expanded') === 'true';
-  document.querySelectorAll('.notice-detail-row').forEach(function(r) { r.hidden = true; });
-  document.querySelectorAll('.notice-title-btn').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });
-  if (!isOpen && detailRow) {
-    detailRow.hidden = false;
-    this.setAttribute('aria-expanded', 'true');
-  }
+  var id     = this.getAttribute('data-id');
+  var detail = document.getElementById('detail-' + id);
+  var isOpen = this.getAttribute('aria-expanded') === 'true';
+  document.querySelectorAll('.notice-detail-row').forEach(function (r) { r.hidden = true; });
+  document.querySelectorAll('.notice-title-btn').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+  if (!isOpen && detail) { detail.hidden = false; this.setAttribute('aria-expanded', 'true'); }
 }
 
 function updateDelButtons() {
-  document.querySelectorAll('.notice-del-btn').forEach(function(btn) {
+  document.querySelectorAll('.notice-del-btn').forEach(function (btn) {
     btn.style.display = isLoggedIn ? '' : 'none';
   });
 }
 
 function escHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-/* ==============================================
+/* =====================================================
    검색
-============================================== */
-document.querySelector('.board-search-btn').addEventListener('click', function() {
-  var keyword = document.querySelector('.board-search-input').value.trim().toLowerCase();
-  var rows    = document.querySelectorAll('#notice-tbody .notice-row');
-  var count   = 0;
-  rows.forEach(function(row) {
-    var titleEl = row.querySelector('.notice-title-btn');
-    var title   = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
-    var match   = !keyword || title.includes(keyword);
+===================================================== */
+document.querySelector('.board-search-btn').addEventListener('click', function () {
+  var kw   = document.querySelector('.board-search-input').value.trim().toLowerCase();
+  var rows = document.querySelectorAll('#notice-tbody .notice-row');
+  var cnt  = 0;
+  rows.forEach(function (row) {
+    var btn   = row.querySelector('.notice-title-btn');
+    var text  = btn ? btn.textContent.trim().toLowerCase() : '';
+    var match = !kw || text.includes(kw);
     row.style.display = match ? '' : 'none';
-    var id     = titleEl ? titleEl.getAttribute('data-id') : null;
-    var detail = id ? document.getElementById('detail-' + id) : null;
-    if (detail && !match) {
-      detail.hidden = true;
-      if (titleEl) titleEl.setAttribute('aria-expanded', 'false');
-    }
-    if (match) count++;
+    var id  = btn ? btn.getAttribute('data-id') : null;
+    var det = id  ? document.getElementById('detail-' + id) : null;
+    if (det && !match) { det.hidden = true; if (btn) btn.setAttribute('aria-expanded', 'false'); }
+    if (match) cnt++;
   });
   var total = document.querySelectorAll('#notice-tbody .notice-row').length;
-  document.getElementById('notice-total').textContent = keyword ? count : total;
+  document.getElementById('notice-total').textContent = kw ? cnt : total;
 });
-
-document.querySelector('.board-search-input').addEventListener('keydown', function(e) {
+document.querySelector('.board-search-input').addEventListener('keydown', function (e) {
   if (e.key === 'Enter') document.querySelector('.board-search-btn').click();
 });
 </script>
